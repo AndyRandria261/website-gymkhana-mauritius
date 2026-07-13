@@ -9,38 +9,103 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MembershipRouteImport } from './routes/membership'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TheClubHistoryRouteImport } from './routes/the-club.history'
+import { Route as SportsGolfRouteImport } from './routes/sports.golf'
 
+const MembershipRoute = MembershipRouteImport.update({
+  id: '/membership',
+  path: '/membership',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TheClubHistoryRoute = TheClubHistoryRouteImport.update({
+  id: '/the-club/history',
+  path: '/the-club/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SportsGolfRoute = SportsGolfRouteImport.update({
+  id: '/sports/golf',
+  path: '/sports/golf',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/membership': typeof MembershipRoute
+  '/sports/golf': typeof SportsGolfRoute
+  '/the-club/history': typeof TheClubHistoryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/membership': typeof MembershipRoute
+  '/sports/golf': typeof SportsGolfRoute
+  '/the-club/history': typeof TheClubHistoryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/membership': typeof MembershipRoute
+  '/sports/golf': typeof SportsGolfRoute
+  '/the-club/history': typeof TheClubHistoryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/membership'
+    | '/sports/golf'
+    | '/the-club/history'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/contact' | '/membership' | '/sports/golf' | '/the-club/history'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/membership'
+    | '/sports/golf'
+    | '/the-club/history'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
+  MembershipRoute: typeof MembershipRoute
+  SportsGolfRoute: typeof SportsGolfRoute
+  TheClubHistoryRoute: typeof TheClubHistoryRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/membership': {
+      id: '/membership'
+      path: '/membership'
+      fullPath: '/membership'
+      preLoaderRoute: typeof MembershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +113,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/the-club/history': {
+      id: '/the-club/history'
+      path: '/the-club/history'
+      fullPath: '/the-club/history'
+      preLoaderRoute: typeof TheClubHistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sports/golf': {
+      id: '/sports/golf'
+      path: '/sports/golf'
+      fullPath: '/sports/golf'
+      preLoaderRoute: typeof SportsGolfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
+  MembershipRoute: MembershipRoute,
+  SportsGolfRoute: SportsGolfRoute,
+  TheClubHistoryRoute: TheClubHistoryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

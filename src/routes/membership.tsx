@@ -27,7 +27,15 @@ export const Route = createFileRoute("/membership")({
   component: MembershipPage,
 });
 
-const CATEGORIES = [
+type Category = {
+  name: string;
+  price: string;
+  tagline: string;
+  features: string[];
+  featured?: boolean;
+};
+
+const CATEGORIES: Category[] = [
   {
     name: "Full Member",
     price: "Enquire",
