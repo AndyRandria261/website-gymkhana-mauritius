@@ -23,6 +23,7 @@ import { Route as TheClubRulesRouteImport } from './routes/the-club.rules'
 import { Route as TheClubHistoryRouteImport } from './routes/the-club.history'
 import { Route as TheClubCommitteeRouteImport } from './routes/the-club.committee'
 import { Route as TheClubCareersRouteImport } from './routes/the-club.careers'
+import { Route as SportsTennisRouteImport } from './routes/sports.tennis'
 import { Route as SportsSquashRouteImport } from './routes/sports.squash'
 import { Route as SportsPoolRouteImport } from './routes/sports.pool'
 import { Route as SportsGolfRouteImport } from './routes/sports.golf'
@@ -99,6 +100,11 @@ const TheClubCareersRoute = TheClubCareersRouteImport.update({
   path: '/the-club/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SportsTennisRoute = SportsTennisRouteImport.update({
+  id: '/sports/tennis',
+  path: '/sports/tennis',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SportsSquashRoute = SportsSquashRouteImport.update({
   id: '/sports/squash',
   path: '/sports/squash',
@@ -139,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/sports/golf': typeof SportsGolfRoute
   '/sports/pool': typeof SportsPoolRoute
   '/sports/squash': typeof SportsSquashRoute
+  '/sports/tennis': typeof SportsTennisRoute
   '/the-club/careers': typeof TheClubCareersRoute
   '/the-club/committee': typeof TheClubCommitteeRoute
   '/the-club/history': typeof TheClubHistoryRoute
@@ -160,6 +167,7 @@ export interface FileRoutesByTo {
   '/sports/golf': typeof SportsGolfRoute
   '/sports/pool': typeof SportsPoolRoute
   '/sports/squash': typeof SportsSquashRoute
+  '/sports/tennis': typeof SportsTennisRoute
   '/the-club/careers': typeof TheClubCareersRoute
   '/the-club/committee': typeof TheClubCommitteeRoute
   '/the-club/history': typeof TheClubHistoryRoute
@@ -182,6 +190,7 @@ export interface FileRoutesById {
   '/sports/golf': typeof SportsGolfRoute
   '/sports/pool': typeof SportsPoolRoute
   '/sports/squash': typeof SportsSquashRoute
+  '/sports/tennis': typeof SportsTennisRoute
   '/the-club/careers': typeof TheClubCareersRoute
   '/the-club/committee': typeof TheClubCommitteeRoute
   '/the-club/history': typeof TheClubHistoryRoute
@@ -205,6 +214,7 @@ export interface FileRouteTypes {
     | '/sports/golf'
     | '/sports/pool'
     | '/sports/squash'
+    | '/sports/tennis'
     | '/the-club/careers'
     | '/the-club/committee'
     | '/the-club/history'
@@ -226,6 +236,7 @@ export interface FileRouteTypes {
     | '/sports/golf'
     | '/sports/pool'
     | '/sports/squash'
+    | '/sports/tennis'
     | '/the-club/careers'
     | '/the-club/committee'
     | '/the-club/history'
@@ -247,6 +258,7 @@ export interface FileRouteTypes {
     | '/sports/golf'
     | '/sports/pool'
     | '/sports/squash'
+    | '/sports/tennis'
     | '/the-club/careers'
     | '/the-club/committee'
     | '/the-club/history'
@@ -268,6 +280,7 @@ export interface RootRouteChildren {
   SportsGolfRoute: typeof SportsGolfRoute
   SportsPoolRoute: typeof SportsPoolRoute
   SportsSquashRoute: typeof SportsSquashRoute
+  SportsTennisRoute: typeof SportsTennisRoute
   TheClubCareersRoute: typeof TheClubCareersRoute
   TheClubCommitteeRoute: typeof TheClubCommitteeRoute
   TheClubHistoryRoute: typeof TheClubHistoryRoute
@@ -376,6 +389,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TheClubCareersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sports/tennis': {
+      id: '/sports/tennis'
+      path: '/sports/tennis'
+      fullPath: '/sports/tennis'
+      preLoaderRoute: typeof SportsTennisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sports/squash': {
       id: '/sports/squash'
       path: '/sports/squash'
@@ -439,6 +459,7 @@ const rootRouteChildren: RootRouteChildren = {
   SportsGolfRoute: SportsGolfRoute,
   SportsPoolRoute: SportsPoolRoute,
   SportsSquashRoute: SportsSquashRoute,
+  SportsTennisRoute: SportsTennisRoute,
   TheClubCareersRoute: TheClubCareersRoute,
   TheClubCommitteeRoute: TheClubCommitteeRoute,
   TheClubHistoryRoute: TheClubHistoryRoute,
