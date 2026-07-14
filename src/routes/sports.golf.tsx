@@ -9,13 +9,13 @@ import historyImg from "@/assets/history-archive.jpg";
 export const Route = createFileRoute("/sports/golf")({
   head: () => ({
     meta: [
-      { title: "Golf at MGC — Green fees, coaching & the 1844 course | Mauritius Gymkhana Club" },
+      { title: "Golf at MGC - Green fees, coaching & the 1844 course | Mauritius Gymkhana Club" },
       {
         name: "description",
         content:
           "Play the oldest golf course in the Southern Hemisphere. Green fees, coaching, and equipment at the Mauritius Gymkhana Club in Vacoas.",
       },
-      { property: "og:title", content: "Golf at Mauritius Gymkhana Club — Since 1844" },
+      { property: "og:title", content: "Golf at Mauritius Gymkhana Club - Since 1844" },
       {
         property: "og:description",
         content:
@@ -34,16 +34,16 @@ const TABS = [
     label: "Members",
     rows: [
       ["Annual subscription", "Included in membership"],
-      ["Green fee — weekday", "Complimentary"],
-      ["Green fee — weekend", "Complimentary"],
+      ["Green fee - weekday", "Complimentary"],
+      ["Green fee - weekend", "Complimentary"],
     ],
   },
   {
     id: "visitors",
     label: "Visitors",
     rows: [
-      ["18 holes — weekday", "Rs 3,500"],
-      ["18 holes — weekend", "Rs 4,500"],
+      ["18 holes - weekday", "Rs 3,500"],
+      ["18 holes - weekend", "Rs 4,500"],
       ["9 holes", "Rs 2,200"],
       ["Annual visitor pass", "Rs 35,000"],
     ],

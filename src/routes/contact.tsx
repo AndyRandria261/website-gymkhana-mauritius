@@ -8,11 +8,11 @@ import heroImg from "@/assets/venue-events.jpg";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact & Directions — Mauritius Gymkhana Club" },
+      { title: "Contact & Directions - Mauritius Gymkhana Club" },
       {
         name: "description",
         content:
-          "Reach the Mauritius Gymkhana Club in Vacoas — phone, email, opening hours and directions.",
+          "Reach the Mauritius Gymkhana Club in Vacoas - phone, email, opening hours and directions.",
       },
       { property: "og:title", content: "Contact the Mauritius Gymkhana Club" },
       {
@@ -59,7 +59,7 @@ function ContactPage() {
               membership@mgc.mu
             </InfoBlock>
             <InfoBlock icon={<Clock className="size-5" />} title="Opening hours">
-              Tuesday to Sunday · 06:00 — 22:00
+              Tuesday to Sunday · 06:00 - 22:00
               <br />
               Closed Mondays (course maintenance)
             </InfoBlock>

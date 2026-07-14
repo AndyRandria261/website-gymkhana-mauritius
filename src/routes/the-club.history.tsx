@@ -6,7 +6,7 @@ import heroImg from "@/assets/history-archive.jpg";
 export const Route = createFileRoute("/the-club/history")({
   head: () => ({
     meta: [
-      { title: "History & Milestones — Mauritius Gymkhana Club" },
+      { title: "History & Milestones - Mauritius Gymkhana Club" },
       {
         name: "description",
         content:
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/the-club/history")({
       {
         property: "og:description",
         content:
-          "From polo ground to the oldest golf course of the Southern Hemisphere — a timeline.",
+          "From polo ground to the oldest golf course of the Southern Hemisphere - a timeline.",
       },
       { property: "og:image", content: heroImg },
       { property: "og:type", content: "article" },
@@ -29,7 +29,7 @@ const TIMELINE = [
   {
     year: "1834–1849",
     title: "The early days",
-    body: "Golf is introduced to Mauritius by officers of the British Military — the fourth country ever to receive the sport, after Scotland, England and India.",
+    body: "Golf is introduced to Mauritius by officers of the British Military - the fourth country ever to receive the sport, after Scotland, England and India.",
   },
   {
     year: "1844",
@@ -54,7 +54,7 @@ const TIMELINE = [
   {
     year: "1940s",
     title: "First tennis courts",
-    body: "The first grass tennis courts are laid — still the only grass courts of the Indian Ocean.",
+    body: "The first grass tennis courts are laid - still the only grass courts of the Indian Ocean.",
   },
   {
     year: "1976",

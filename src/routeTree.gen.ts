@@ -11,13 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VenueHireRouteImport } from './routes/venue-hire'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as MembershipRouteImport } from './routes/membership'
-import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as NewsRouteImport } from './routes/news'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as DiningRouteImport } from './routes/dining'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SportsIndexRouteImport } from './routes/sports.index'
+import { Route as MembershipIndexRouteImport } from './routes/membership.index'
+import { Route as GalleryIndexRouteImport } from './routes/gallery.index'
 import { Route as TheClubTendersRouteImport } from './routes/the-club.tenders'
 import { Route as TheClubRulesRouteImport } from './routes/the-club.rules'
 import { Route as TheClubHistoryRouteImport } from './routes/the-club.history'
@@ -29,6 +30,7 @@ import { Route as SportsPoolRouteImport } from './routes/sports.pool'
 import { Route as SportsGolfRouteImport } from './routes/sports.golf'
 import { Route as SportsFitnessRouteImport } from './routes/sports.fitness'
 import { Route as MembershipReciprocalRouteImport } from './routes/membership.reciprocal'
+import { Route as GalleryAlbumRouteImport } from './routes/gallery.$album'
 
 const VenueHireRoute = VenueHireRouteImport.update({
   id: '/venue-hire',
@@ -40,14 +42,9 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MembershipRoute = MembershipRouteImport.update({
-  id: '/membership',
-  path: '/membership',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GalleryRoute = GalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsRoute = EventsRouteImport.update({
@@ -73,6 +70,16 @@ const IndexRoute = IndexRouteImport.update({
 const SportsIndexRoute = SportsIndexRouteImport.update({
   id: '/sports/',
   path: '/sports/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipIndexRoute = MembershipIndexRouteImport.update({
+  id: '/membership/',
+  path: '/membership/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryIndexRoute = GalleryIndexRouteImport.update({
+  id: '/gallery/',
+  path: '/gallery/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TheClubTendersRoute = TheClubTendersRouteImport.update({
@@ -126,9 +133,14 @@ const SportsFitnessRoute = SportsFitnessRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const MembershipReciprocalRoute = MembershipReciprocalRouteImport.update({
-  id: '/reciprocal',
-  path: '/reciprocal',
-  getParentRoute: () => MembershipRoute,
+  id: '/membership/reciprocal',
+  path: '/membership/reciprocal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryAlbumRoute = GalleryAlbumRouteImport.update({
+  id: '/gallery/$album',
+  path: '/gallery/$album',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -136,10 +148,10 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/dining': typeof DiningRoute
   '/events': typeof EventsRoute
-  '/gallery': typeof GalleryRoute
-  '/membership': typeof MembershipRouteWithChildren
+  '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/venue-hire': typeof VenueHireRoute
+  '/gallery/$album': typeof GalleryAlbumRoute
   '/membership/reciprocal': typeof MembershipReciprocalRoute
   '/sports/fitness': typeof SportsFitnessRoute
   '/sports/golf': typeof SportsGolfRoute
@@ -151,6 +163,8 @@ export interface FileRoutesByFullPath {
   '/the-club/history': typeof TheClubHistoryRoute
   '/the-club/rules': typeof TheClubRulesRoute
   '/the-club/tenders': typeof TheClubTendersRoute
+  '/gallery/': typeof GalleryIndexRoute
+  '/membership/': typeof MembershipIndexRoute
   '/sports/': typeof SportsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -158,10 +172,10 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/dining': typeof DiningRoute
   '/events': typeof EventsRoute
-  '/gallery': typeof GalleryRoute
-  '/membership': typeof MembershipRouteWithChildren
+  '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/venue-hire': typeof VenueHireRoute
+  '/gallery/$album': typeof GalleryAlbumRoute
   '/membership/reciprocal': typeof MembershipReciprocalRoute
   '/sports/fitness': typeof SportsFitnessRoute
   '/sports/golf': typeof SportsGolfRoute
@@ -173,6 +187,8 @@ export interface FileRoutesByTo {
   '/the-club/history': typeof TheClubHistoryRoute
   '/the-club/rules': typeof TheClubRulesRoute
   '/the-club/tenders': typeof TheClubTendersRoute
+  '/gallery': typeof GalleryIndexRoute
+  '/membership': typeof MembershipIndexRoute
   '/sports': typeof SportsIndexRoute
 }
 export interface FileRoutesById {
@@ -181,10 +197,10 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/dining': typeof DiningRoute
   '/events': typeof EventsRoute
-  '/gallery': typeof GalleryRoute
-  '/membership': typeof MembershipRouteWithChildren
+  '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/venue-hire': typeof VenueHireRoute
+  '/gallery/$album': typeof GalleryAlbumRoute
   '/membership/reciprocal': typeof MembershipReciprocalRoute
   '/sports/fitness': typeof SportsFitnessRoute
   '/sports/golf': typeof SportsGolfRoute
@@ -196,6 +212,8 @@ export interface FileRoutesById {
   '/the-club/history': typeof TheClubHistoryRoute
   '/the-club/rules': typeof TheClubRulesRoute
   '/the-club/tenders': typeof TheClubTendersRoute
+  '/gallery/': typeof GalleryIndexRoute
+  '/membership/': typeof MembershipIndexRoute
   '/sports/': typeof SportsIndexRoute
 }
 export interface FileRouteTypes {
@@ -205,10 +223,10 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dining'
     | '/events'
-    | '/gallery'
-    | '/membership'
+    | '/news'
     | '/sitemap.xml'
     | '/venue-hire'
+    | '/gallery/$album'
     | '/membership/reciprocal'
     | '/sports/fitness'
     | '/sports/golf'
@@ -220,6 +238,8 @@ export interface FileRouteTypes {
     | '/the-club/history'
     | '/the-club/rules'
     | '/the-club/tenders'
+    | '/gallery/'
+    | '/membership/'
     | '/sports/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -227,10 +247,10 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dining'
     | '/events'
-    | '/gallery'
-    | '/membership'
+    | '/news'
     | '/sitemap.xml'
     | '/venue-hire'
+    | '/gallery/$album'
     | '/membership/reciprocal'
     | '/sports/fitness'
     | '/sports/golf'
@@ -242,6 +262,8 @@ export interface FileRouteTypes {
     | '/the-club/history'
     | '/the-club/rules'
     | '/the-club/tenders'
+    | '/gallery'
+    | '/membership'
     | '/sports'
   id:
     | '__root__'
@@ -249,10 +271,10 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dining'
     | '/events'
-    | '/gallery'
-    | '/membership'
+    | '/news'
     | '/sitemap.xml'
     | '/venue-hire'
+    | '/gallery/$album'
     | '/membership/reciprocal'
     | '/sports/fitness'
     | '/sports/golf'
@@ -264,6 +286,8 @@ export interface FileRouteTypes {
     | '/the-club/history'
     | '/the-club/rules'
     | '/the-club/tenders'
+    | '/gallery/'
+    | '/membership/'
     | '/sports/'
   fileRoutesById: FileRoutesById
 }
@@ -272,10 +296,11 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DiningRoute: typeof DiningRoute
   EventsRoute: typeof EventsRoute
-  GalleryRoute: typeof GalleryRoute
-  MembershipRoute: typeof MembershipRouteWithChildren
+  NewsRoute: typeof NewsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VenueHireRoute: typeof VenueHireRoute
+  GalleryAlbumRoute: typeof GalleryAlbumRoute
+  MembershipReciprocalRoute: typeof MembershipReciprocalRoute
   SportsFitnessRoute: typeof SportsFitnessRoute
   SportsGolfRoute: typeof SportsGolfRoute
   SportsPoolRoute: typeof SportsPoolRoute
@@ -286,6 +311,8 @@ export interface RootRouteChildren {
   TheClubHistoryRoute: typeof TheClubHistoryRoute
   TheClubRulesRoute: typeof TheClubRulesRoute
   TheClubTendersRoute: typeof TheClubTendersRoute
+  GalleryIndexRoute: typeof GalleryIndexRoute
+  MembershipIndexRoute: typeof MembershipIndexRoute
   SportsIndexRoute: typeof SportsIndexRoute
 }
 
@@ -305,18 +332,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/membership': {
-      id: '/membership'
-      path: '/membership'
-      fullPath: '/membership'
-      preLoaderRoute: typeof MembershipRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gallery': {
-      id: '/gallery'
-      path: '/gallery'
-      fullPath: '/gallery'
-      preLoaderRoute: typeof GalleryRouteImport
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events': {
@@ -352,6 +372,20 @@ declare module '@tanstack/react-router' {
       path: '/sports'
       fullPath: '/sports/'
       preLoaderRoute: typeof SportsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/membership/': {
+      id: '/membership/'
+      path: '/membership'
+      fullPath: '/membership/'
+      preLoaderRoute: typeof MembershipIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery/': {
+      id: '/gallery/'
+      path: '/gallery'
+      fullPath: '/gallery/'
+      preLoaderRoute: typeof GalleryIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/the-club/tenders': {
@@ -426,35 +460,31 @@ declare module '@tanstack/react-router' {
     }
     '/membership/reciprocal': {
       id: '/membership/reciprocal'
-      path: '/reciprocal'
+      path: '/membership/reciprocal'
       fullPath: '/membership/reciprocal'
       preLoaderRoute: typeof MembershipReciprocalRouteImport
-      parentRoute: typeof MembershipRoute
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery/$album': {
+      id: '/gallery/$album'
+      path: '/gallery/$album'
+      fullPath: '/gallery/$album'
+      preLoaderRoute: typeof GalleryAlbumRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface MembershipRouteChildren {
-  MembershipReciprocalRoute: typeof MembershipReciprocalRoute
-}
-
-const MembershipRouteChildren: MembershipRouteChildren = {
-  MembershipReciprocalRoute: MembershipReciprocalRoute,
-}
-
-const MembershipRouteWithChildren = MembershipRoute._addFileChildren(
-  MembershipRouteChildren,
-)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
   DiningRoute: DiningRoute,
   EventsRoute: EventsRoute,
-  GalleryRoute: GalleryRoute,
-  MembershipRoute: MembershipRouteWithChildren,
+  NewsRoute: NewsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VenueHireRoute: VenueHireRoute,
+  GalleryAlbumRoute: GalleryAlbumRoute,
+  MembershipReciprocalRoute: MembershipReciprocalRoute,
   SportsFitnessRoute: SportsFitnessRoute,
   SportsGolfRoute: SportsGolfRoute,
   SportsPoolRoute: SportsPoolRoute,
@@ -465,8 +495,20 @@ const rootRouteChildren: RootRouteChildren = {
   TheClubHistoryRoute: TheClubHistoryRoute,
   TheClubRulesRoute: TheClubRulesRoute,
   TheClubTendersRoute: TheClubTendersRoute,
+  GalleryIndexRoute: GalleryIndexRoute,
+  MembershipIndexRoute: MembershipIndexRoute,
   SportsIndexRoute: SportsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

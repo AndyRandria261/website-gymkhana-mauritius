@@ -12,13 +12,13 @@ import poolImg from "@/assets/sport-pool.jpg";
 export const Route = createFileRoute("/sports/")({
   head: () => ({
     meta: [
-      { title: "Sports — Mauritius Gymkhana Club" },
+      { title: "Sports - Mauritius Gymkhana Club" },
       {
         name: "description",
         content:
-          "Golf, grass tennis, squash, fitness and swimming — six sports on one historic estate in Vacoas, Mauritius.",
+          "Golf, grass tennis, squash, fitness and swimming - six sports on one historic estate in Vacoas, Mauritius.",
       },
-      { property: "og:title", content: "Sports at MGC — Golf, Tennis, Squash, Fitness, Pool" },
+      { property: "og:title", content: "Sports at MGC - Golf, Tennis, Squash, Fitness, Pool" },
       { property: "og:image", content: heroImg },
     ],
   }),
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/sports/")({
 
 const SPORTS = [
   { to: "/sports/golf", title: "Golf", overline: "Since 1844 · 18 holes", img: golfImg, body: "The oldest golf course of the Southern Hemisphere, still played today." },
-  { to: "/sports/tennis", title: "Grass Tennis", overline: "Only grass courts of the Indian Ocean", img: tennisImg, body: "First courts laid in the 1940s — a signature of the club." },
+  { to: "/sports/tennis", title: "Grass Tennis", overline: "Only grass courts of the Indian Ocean", img: tennisImg, body: "First courts laid in the 1940s - a signature of the club." },
   { to: "/sports/squash", title: "Squash", overline: "Two dedicated courts", img: squashImg, body: "Booking system for members, coaching by arrangement." },
   { to: "/sports/fitness", title: "Fitness Centre", overline: "Cardio & strength", img: fitnessImg, body: "Modern equipment, morning to evening access." },
   { to: "/sports/pool", title: "Swimming Pool", overline: "Outdoor 25 m pool", img: poolImg, body: "Family-friendly poolside with shaded lounging." },

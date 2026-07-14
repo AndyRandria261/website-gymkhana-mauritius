@@ -11,7 +11,7 @@ export const Route = createFileRoute("/sports/tennis")({
     meta: [
       {
         title:
-          "Tennis at MGC — The only grass courts of the Indian Ocean | Mauritius Gymkhana Club",
+          "Tennis at MGC - The only grass courts of the Indian Ocean | Mauritius Gymkhana Club",
       },
       {
         name: "description",
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/sports/tennis")({
       },
       {
         property: "og:title",
-        content: "Tennis at Mauritius Gymkhana Club — Grass since 1889",
+        content: "Tennis at Mauritius Gymkhana Club - Grass since 1889",
       },
       {
         property: "og:description",
@@ -40,8 +40,8 @@ const TABS = [
     label: "Members",
     rows: [
       ["Annual tennis subscription", "Included in membership"],
-      ["Grass court — booking", "Complimentary"],
-      ["Hard court — booking", "Complimentary"],
+      ["Grass court - booking", "Complimentary"],
+      ["Hard court - booking", "Complimentary"],
       ["Guest fee (per session)", "Rs 300"],
     ],
   },
@@ -49,8 +49,8 @@ const TABS = [
     id: "visitors",
     label: "Visitors",
     rows: [
-      ["Grass court — 1 hour", "Rs 1,200"],
-      ["Hard court — 1 hour", "Rs 700"],
+      ["Grass court - 1 hour", "Rs 1,200"],
+      ["Hard court - 1 hour", "Rs 700"],
       ["Racket hire", "Rs 250"],
       ["Ball set (3)", "Rs 350"],
     ],
@@ -86,7 +86,7 @@ function TennisPage() {
       <PageHero
         overline="Grass · Hard · Coaching"
         title="The only grass courts of the Indian Ocean"
-        intro="Tennis has been played at the Mauritius Gymkhana Club since the late 19th century. Our lawns remain the only grass courts on the island — and in the region."
+        intro="Tennis has been played at the Mauritius Gymkhana Club since the late 19th century. Our lawns remain the only grass courts on the island - and in the region."
         image={heroTennis}
         imageAlt="Freshly cut grass tennis court at MGC with mountains in the background"
       >

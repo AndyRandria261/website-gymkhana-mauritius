@@ -5,16 +5,16 @@ import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import heroImg from "@/assets/dining-brasserie.jpg";
 
-export const Route = createFileRoute("/membership")({
+export const Route = createFileRoute("/membership/")({
   head: () => ({
     meta: [
-      { title: "Membership — Mauritius Gymkhana Club" },
+      { title: "Membership - Mauritius Gymkhana Club" },
       {
         name: "description",
         content:
           "Individual, family and corporate membership at the Mauritius Gymkhana Club. Categories, benefits and how to apply.",
       },
-      { property: "og:title", content: "Become a Member — Mauritius Gymkhana Club" },
+      { property: "og:title", content: "Become a Member - Mauritius Gymkhana Club" },
       {
         property: "og:description",
         content:
@@ -102,7 +102,7 @@ function MembershipContent() {
         <SectionHeading
           overline="Categories"
           title="Three ways to belong"
-          intro="All fees are reviewed annually. Concrete rates are shared during the enquiry process — please contact us for your quotation."
+          intro="All fees are reviewed annually. Concrete rates are shared during the enquiry process - please contact us for your quotation."
           align="center"
         />
 

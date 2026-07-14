@@ -31,6 +31,7 @@ export function SiteFooter() {
             <FooterLink to="/contact">Contact & Directions</FooterLink>
             <FooterLink to="/venue-hire">Venue Hire</FooterLink>
             <FooterLink to="/events">Events</FooterLink>
+            <FooterLink to="/news">News</FooterLink>
             <FooterLink to="/gallery">Gallery</FooterLink>
           </FooterCol>
         </div>
@@ -49,9 +50,7 @@ export function SiteFooter() {
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="md:col-span-2">
-      <h4 className="text-xs font-semibold uppercase tracking-widest text-gold mb-6">
-        {title}
-      </h4>
+      <h4 className="text-xs font-semibold uppercase tracking-widest text-gold mb-6">{title}</h4>
       <ul className="space-y-4 text-sm text-ink/70">{children}</ul>
     </div>
   );

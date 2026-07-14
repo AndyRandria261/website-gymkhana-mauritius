@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Mauritius Gymkhana Club — Golf, Tennis & Club Life since 1849" },
+      { title: "Mauritius Gymkhana Club" },
       {
         name: "description",
         content:
@@ -87,7 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Mauritius Gymkhana Club" },
       { name: "theme-color", content: "#1B4332" },
-      { property: "og:title", content: "Mauritius Gymkhana Club — Since 1849" },
+      { property: "og:title", content: "Mauritius Gymkhana Club - Since 1849" },
       {
         property: "og:description",
         content:
@@ -108,7 +108,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,
