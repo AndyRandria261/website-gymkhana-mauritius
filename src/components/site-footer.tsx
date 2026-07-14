@@ -6,8 +6,9 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
           <div className="md:col-span-4">
-            <Link to="/" className="font-serif text-3xl text-pine block mb-6">
-              Mauritius Gymkhana Club
+            <Link to="/" className="flex items-center gap-3 mb-6">
+              <img src="/mcg-logo.png" alt="Mauritius Gymkhana Club" className="h-16 w-auto" />
+              <span className="font-serif text-2xl text-pine">Mauritius Gymkhana Club</span>
             </Link>
             <p className="text-sm text-ink/60 max-w-[32ch] leading-relaxed">
               Suffolk Road, Vacoas 73420, Mauritius.
@@ -37,9 +38,17 @@ export function SiteFooter() {
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-pine/5 text-[10px] uppercase tracking-widest text-ink/40 gap-4">
           <p>© {new Date().getFullYear()} Mauritius Gymkhana Club. All rights reserved.</p>
-          <div className="flex gap-6">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
             <Link to="/">Privacy</Link>
             <Link to="/">Terms</Link>
+            <a
+              href="https://www.visylo.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-pine transition-colors"
+            >
+              Powered By Visylo Consulting
+            </a>
           </div>
         </div>
       </div>
