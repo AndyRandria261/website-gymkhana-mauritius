@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Plus } from "lucide-react";
+import { motion } from "motion/react";
 import heroGolf from "@/assets/hero-golf-course.jpg";
 import sportGolf from "@/assets/sport-golf.jpg";
 import sportTennis from "@/assets/sport-tennis.jpg";
@@ -16,45 +17,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative min-h-screen flex flex-col justify-end pt-20">
-        <div className="absolute inset-0 z-0">
-          <img
-            src={heroGolf}
-            alt="The MGC golf course at sunset with the colonial clubhouse in the distance"
-            className="h-full w-full object-cover"
-            fetchPriority="high"
-          />
-          <div className="absolute inset-0 bg-linear-to-t from-pine/70 via-pine/20 to-pine/40" />
-        </div>
-
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-24">
-          <div className="max-w-3xl fade-up">
-            <span className="mb-4 block text-sm font-medium uppercase tracking-[0.3em] text-gold">
-              Since 1849 · Vacoas, Mauritius
-            </span>
-            <h1 className="font-serif text-5xl md:text-7xl leading-[1.05] text-cream text-balance mb-8">
-              The Living Heart of Mauritian Sporting Heritage
-            </h1>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                to="/membership"
-                className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink ring-1 ring-gold transition-transform hover:-translate-y-px"
-              >
-                <Plus className="size-4 shrink-0" strokeWidth={2.2} />
-                Become a Member
-              </Link>
-              <Link
-                to="/sports/golf"
-                className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-cream ring-1 ring-cream/30 transition-colors hover:bg-cream/20"
-              >
-                Visitor Green Fees
-                <ArrowRight className="size-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CinematicHero />
 
       {/* Heritage fact band */}
       <section className="bg-pine py-14 border-b border-gold/20">
