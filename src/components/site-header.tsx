@@ -32,13 +32,12 @@ export function SiteHeader() {
     >
       <div className="mx-auto grid h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6">
         <div className="flex min-w-0 items-center gap-8">
-          <Link
-            to="/"
-            className={`font-serif text-2xl tracking-tight ${
-              scrolled ? "text-pine" : "text-cream"
-            }`}
-          >
-            MGC
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src="/mcg-logo.png"
+              alt="Mauritius Gymkhana Club"
+              className="h-14 w-auto"
+            />
           </Link>
           <nav
             className={`hidden md:flex gap-6 text-sm font-medium uppercase tracking-wider ${
