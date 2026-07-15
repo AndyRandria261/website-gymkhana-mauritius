@@ -1,8 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ArrowRight, Globe, Mail, MapPin, Phone } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
+import { ActionButton } from "@/components/action-button";
 import { COUNTRIES, RECIPROCAL_CLUBS } from "@/lib/reciprocal-clubs-data";
 import img from "@/assets/dining-brasserie.jpg";
 
@@ -46,12 +47,9 @@ function ReciprocalPage() {
         image={img}
         imageAlt="Detail of colonial architecture at the clubhouse"
       >
-        <a
-          href="#directory"
-          className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
-        >
-          Browse the directory <ArrowRight className="size-4" />
-        </a>
+        <ActionButton href="#directory" variant="gold">
+          Browse the directory <ArrowRight />
+        </ActionButton>
       </PageHero>
 
       <div className="bg-pine text-cream border-y border-gold/20">
@@ -77,12 +75,9 @@ function ReciprocalPage() {
           secretary. Reciprocal members visiting Mauritius are welcome at the Gymkhana upon
           presentation of a valid member card and a letter from their home club.
         </p>
-        <Link
-          to="/contact"
-          className="inline-flex items-center gap-2 bg-pine text-cream py-3 pr-5 pl-4 text-sm font-medium"
-        >
-          Request a letter <ArrowRight className="size-4" />
-        </Link>
+        <ActionButton to="/contact" variant="pine">
+          Request a letter <ArrowRight />
+        </ActionButton>
       </Section>
 
       <section id="directory" className="bg-pine/5 py-24 scroll-mt-24">
@@ -153,12 +148,9 @@ function ReciprocalPage() {
           <p className="mx-auto max-w-xl text-cream/80 mb-8">
             Let us know ahead of your visit and we'll have your access ready at reception.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
-          >
-            Contact the office <ArrowRight className="size-4" />
-          </Link>
+          <ActionButton to="/contact" variant="gold">
+            Contact the office <ArrowRight />
+          </ActionButton>
         </div>
       </Section>
     </>

@@ -1,7 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, UtensilsCrossed } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
+import { ActionButton } from "@/components/action-button";
 import heroImg from "@/assets/dining-brasserie.jpg";
 
 export const Route = createFileRoute("/dining")({
@@ -93,18 +94,12 @@ function DiningPage() {
         image={heroImg}
         imageAlt="Elegant colonial dining room set with linens"
       >
-        <Link
-          to="/contact"
-          className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
-        >
-          Reserve a table <ArrowRight className="size-4" />
-        </Link>
-        <a
-          href="#menu"
-          className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-cream ring-1 ring-cream/30 hover:bg-cream/20"
-        >
+        <ActionButton to="/contact" variant="gold">
+          Reserve a table <ArrowRight />
+        </ActionButton>
+        <ActionButton href="#menu" variant="outline">
           This week's menu
-        </a>
+        </ActionButton>
       </PageHero>
 
       <div className="bg-pine text-cream border-y border-gold/20">
@@ -217,12 +212,9 @@ function DiningPage() {
           <p className="mx-auto max-w-xl text-cream/80 mb-8">
             Members and their guests may reserve by phone or through reception.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
-          >
-            Reserve a table <ArrowRight className="size-4" />
-          </Link>
+          <ActionButton to="/contact" variant="gold">
+            Reserve a table <ArrowRight />
+          </ActionButton>
         </div>
       </Section>
     </>

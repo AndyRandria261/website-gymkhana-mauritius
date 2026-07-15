@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { ArrowRight, Mail, Phone, Users } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
+import { ActionButton } from "@/components/action-button";
 import img from "@/assets/venue-events.jpg";
 
 export const Route = createFileRoute("/venue-hire")({
@@ -52,12 +53,9 @@ function VenueHirePage() {
         image={img}
         imageAlt="Grand event set-up in the MGC clubhouse ballroom"
       >
-        <a
-          href="#quote"
-          className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
-        >
-          Request a proposal <ArrowRight className="size-4" />
-        </a>
+        <ActionButton href="#quote" variant="gold">
+          Request a proposal <ArrowRight />
+        </ActionButton>
       </PageHero>
 
       <Section>
@@ -151,12 +149,9 @@ function VenueHirePage() {
                   className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine resize-none"
                 />
               </F>
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2 bg-pine text-cream py-3 pr-5 pl-4 text-sm font-medium"
-              >
-                Request a proposal <ArrowRight className="size-4" />
-              </button>
+              <ActionButton type="submit" variant="pine">
+                Request a proposal <ArrowRight />
+              </ActionButton>
             </form>
           )}
         </div>

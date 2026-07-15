@@ -1,8 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
+import { ActionButton } from "@/components/action-button";
+import { FilterTabs } from "@/components/filter-tabs";
 import heroImg from "@/assets/sport-fitness.jpg";
 
 export const Route = createFileRoute("/sports/fitness")({
@@ -81,18 +83,12 @@ function FitnessPage() {
         image={heroImg}
         imageAlt="Fitness centre interior with cardio equipment"
       >
-        <Link
-          to="/contact"
-          className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
-        >
-          Join a class <ArrowRight className="size-4" />
-        </Link>
-        <a
-          href="#fees"
-          className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-cream ring-1 ring-cream/30 hover:bg-cream/20"
-        >
+        <ActionButton to="/contact" variant="gold">
+          Join a class <ArrowRight />
+        </ActionButton>
+        <ActionButton href="#fees" variant="outline">
           Membership & rates
-        </a>
+        </ActionButton>
       </PageHero>
 
       {/* Stat chips */}
@@ -177,27 +173,13 @@ function FitnessPage() {
             title="Membership & drop-in rates"
             intro="Rates as of the 2026 season. A towel rental and guest passes are available at the front desk."
           />
-          <div
-            role="tablist"
-            aria-label="Fitness fees categories"
-            className="flex flex-wrap gap-2 border-b border-pine/10 mb-8"
-          >
-            {TABS.map((t) => (
-              <button
-                key={t.id}
-                role="tab"
-                aria-selected={tab === t.id}
-                onClick={() => setTab(t.id)}
-                className={`px-4 py-3 text-sm font-medium uppercase tracking-wider transition-colors ${
-                  tab === t.id
-                    ? "text-pine border-b-2 border-gold -mb-px"
-                    : "text-ink/50 hover:text-pine"
-                }`}
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
+          <FilterTabs
+            ariaLabel="Fitness fees categories"
+            items={TABS.map((t) => ({ id: t.id, label: t.label }))}
+            value={tab}
+            onChange={setTab}
+            className="mb-8"
+          />
           <table className="w-full text-left">
             <caption className="sr-only">{current.label} fees</caption>
             <tbody>
@@ -235,12 +217,9 @@ function FitnessPage() {
             Drop in for Rs 150, or ask about a monthly membership - no long-term commitment
             required.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
-          >
-            Enquire about fitness <ArrowRight className="size-4" />
-          </Link>
+          <ActionButton to="/contact" variant="gold">
+            Enquire about fitness <ArrowRight />
+          </ActionButton>
         </div>
       </Section>
     </>

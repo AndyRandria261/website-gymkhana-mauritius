@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, Plus } from "lucide-react";
+import { ActionButton } from "./action-button";
 
 const NAV = [
   { to: "/the-club/history", label: "The Club" },
@@ -48,7 +49,7 @@ export function SiteHeader() {
               <Link
                 key={item.to}
                 to={item.to}
-                className="transition-colors hover:text-gold"
+                className="transition-colors hover:text-gold focus-visible:outline-none focus-visible:text-gold focus-visible:underline focus-visible:underline-offset-8"
                 activeProps={{ className: "text-gold" }}
               >
                 {item.label}
@@ -65,19 +66,20 @@ export function SiteHeader() {
           >
             Contact
           </Link>
-          <Link
+          <ActionButton
             to="/membership"
-            className="hidden sm:inline-flex items-center gap-2 bg-pine py-2 pr-4 pl-3 text-sm font-medium text-cream ring-1 ring-pine transition-transform hover:-translate-y-px"
+            variant="pine"
+            className="hidden px-4 py-2 sm:inline-flex"
           >
-            <Plus className="size-4 shrink-0" strokeWidth={2} />
+            <Plus strokeWidth={2} />
             Join the Club
-          </Link>
+          </ActionButton>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle navigation"
             aria-expanded={open}
-            className={`md:hidden inline-flex size-10 items-center justify-center rounded-sm ${
+            className={`md:hidden inline-flex size-10 items-center justify-center rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
               scrolled ? "text-pine" : "text-cream"
             }`}
           >
@@ -99,13 +101,14 @@ export function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <Link
+            <ActionButton
               to="/membership"
+              variant="pine"
               onClick={() => setOpen(false)}
-              className="mt-4 inline-flex items-center justify-center gap-2 bg-pine px-5 py-3 text-cream"
+              className="mt-4 w-full"
             >
-              <Plus className="size-4" /> Join the Club
-            </Link>
+              <Plus /> Join the Club
+            </ActionButton>
           </nav>
         </div>
       )}

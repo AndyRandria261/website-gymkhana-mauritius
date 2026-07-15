@@ -4,7 +4,7 @@ import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import heroImg from "@/assets/sport-golf.jpg";
 import golfImg from "@/assets/sport-golf.jpg";
-import tennisImg from "@/assets/sport-tennis.jpg";
+import tennisImg from "@/assets/sport-tennis.png";
 import squashImg from "@/assets/sport-squash.jpg";
 import fitnessImg from "@/assets/sport-fitness.jpg";
 import poolImg from "@/assets/sport-pool.jpg";

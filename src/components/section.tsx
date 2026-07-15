@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Reveal } from "./reveal";
 
 export function SectionHeading({
   overline,
@@ -12,7 +13,7 @@ export function SectionHeading({
   align?: "left" | "center";
 }) {
   return (
-    <div
+    <Reveal
       className={`mb-12 space-y-3 ${align === "center" ? "text-center mx-auto max-w-2xl" : ""}`}
     >
       {overline && (
@@ -26,7 +27,7 @@ export function SectionHeading({
           {intro}
         </p>
       )}
-    </div>
+    </Reveal>
   );
 }
 

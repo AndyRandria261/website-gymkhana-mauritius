@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
+import { ActionButton } from "@/components/action-button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { getAlbum } from "@/lib/gallery-data";
 
@@ -69,12 +70,9 @@ function AlbumPage() {
         image={album.photos[0].src}
         imageAlt={album.photos[0].alt}
       >
-        <Link
-          to="/gallery"
-          className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-cream ring-1 ring-cream/30 hover:bg-cream/20"
-        >
-          <ArrowLeft className="size-4" /> All albums
-        </Link>
+        <ActionButton to="/gallery" variant="outline">
+          <ArrowLeft /> All albums
+        </ActionButton>
       </PageHero>
 
       <Section>

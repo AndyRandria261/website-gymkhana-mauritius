@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowRight, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section } from "@/components/section";
+import { ActionButton } from "@/components/action-button";
 import heroImg from "@/assets/venue-events.jpg";
 
 export const Route = createFileRoute("/contact")({
@@ -64,13 +65,16 @@ function ContactPage() {
               Closed Mondays (course maintenance)
             </InfoBlock>
 
-            <div className="aspect-video overflow-hidden rounded-sm ring-1 ring-pine/10">
+            {/* The raw OSM tiles are cold grey; the filter settles them into the
+                club's warm palette without hiding any map detail. */}
+            <div className="group relative aspect-video overflow-hidden rounded-sm ring-1 ring-pine/10">
               <iframe
                 title="Map to Mauritius Gymkhana Club"
                 src="https://www.openstreetmap.org/export/embed.html?bbox=57.475%2C-20.315%2C57.505%2C-20.295&layer=mapnik&marker=-20.305%2C57.49"
-                className="w-full h-full"
+                className="h-full w-full [filter:grayscale(0.85)_sepia(0.25)_contrast(0.95)_brightness(1.03)] transition-[filter] duration-500 group-hover:[filter:none]"
                 loading="lazy"
               />
+              <div className="pointer-events-none absolute inset-0 bg-pine/10 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-0" />
             </div>
           </div>
 
@@ -122,12 +126,9 @@ function ContactPage() {
                     className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine resize-none"
                   />
                 </F>
-                <button
-                  type="submit"
-                  className="inline-flex items-center gap-2 bg-pine text-cream py-3 pr-5 pl-4 text-sm font-medium"
-                >
-                  Send message <ArrowRight className="size-4" />
-                </button>
+                <ActionButton type="submit" variant="pine">
+                  Send message <ArrowRight />
+                </ActionButton>
               </form>
             )}
           </div>

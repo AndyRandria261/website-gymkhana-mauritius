@@ -1,8 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
+import { ActionButton } from "@/components/action-button";
 import heroImg from "@/assets/dining-brasserie.jpg";
 
 export const Route = createFileRoute("/membership/")({
@@ -226,12 +227,9 @@ function MembershipContent() {
                   className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine resize-none"
                 />
               </Field>
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2 bg-pine text-cream py-3 pr-5 pl-4 text-sm font-medium"
-              >
-                Send enquiry <ArrowRight className="size-4" />
-              </button>
+              <ActionButton type="submit" variant="pine">
+                Send enquiry <ArrowRight />
+              </ActionButton>
             </form>
           )}
         </div>

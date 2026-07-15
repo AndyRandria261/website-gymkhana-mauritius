@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Plus } from "lucide-react";
 import { motion } from "motion/react";
+import { ActionButton } from "@/components/action-button";
+import { Reveal } from "@/components/reveal";
 import heroGolf from "@/assets/hero-golf-course.jpg";
 import sportGolf from "@/assets/sport-golf.jpg";
-import sportTennis from "@/assets/sport-tennis.jpg";
+import sportTennis from "@/assets/sport-tennis.png";
 import sportSquash from "@/assets/sport-squash.jpg";
 import sportFitness from "@/assets/sport-fitness.jpg";
 import sportPool from "@/assets/sport-pool.jpg";
@@ -32,7 +34,7 @@ function Home() {
       {/* Sports asymmetric grid */}
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <Reveal className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
               <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-gold">
                 Six sports · One estate
@@ -47,34 +49,47 @@ function Home() {
             </div>
             <Link
               to="/sports"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-pine border-b border-pine/20 pb-1"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-pine border-b border-pine/20 pb-1 transition-colors hover:text-pine/70 hover:border-gold focus-visible:outline-none focus-visible:border-gold"
             >
               All sports <ArrowRight className="size-4" />
             </Link>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <SportCard
-              featured
+              large
+              className="md:col-span-2"
+              aspect="aspect-[16/10]"
               image={sportGolf}
               title="The 1844 Course"
               overline="Championship Golf · 18 holes"
               to="/sports/golf"
             />
             <SportCard
+              aspect="aspect-square"
               image={sportTennis}
               title="Grass Tennis"
               overline="The only grass courts of the Indian Ocean"
               to="/sports/tennis"
-              tallCard
             />
-            <SportCardStacked image={sportSquash} title="Squash" to="/sports/squash" />
-            <SportCardStacked
+            <SportCard
+              image={sportSquash}
+              title="Squash"
+              overline="Two dedicated courts"
+              to="/sports/squash"
+            />
+            <SportCard
               image={sportFitness}
               title="Health & Fitness"
+              overline="Cardio & strength"
               to="/sports/fitness"
             />
-            <SportCardStacked image={sportPool} title="Swimming" to="/sports/pool" />
+            <SportCard
+              image={sportPool}
+              title="Swimming"
+              overline="Heated · Open year-round"
+              to="/sports/pool"
+            />
           </div>
         </div>
       </section>
@@ -107,15 +122,15 @@ function Home() {
       {/* Club life */}
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-12 flex justify-between items-end">
+          <Reveal className="mb-12 flex justify-between items-end">
             <h2 className="font-serif text-4xl text-pine">Club Life</h2>
             <Link
               to="/events"
-              className="text-sm font-medium text-ink/60 hover:text-pine transition-colors"
+              className="text-sm font-medium text-ink/60 hover:text-pine transition-colors focus-visible:outline-none focus-visible:text-pine focus-visible:underline focus-visible:underline-offset-4"
             >
               View calendar
             </Link>
-          </div>
+          </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <NewsItem
               category="Tournament"
@@ -155,13 +170,10 @@ function Home() {
                 quiet luxury of the MGC. Applications open for individuals and
                 corporates.
               </p>
-              <Link
-                to="/membership"
-                className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink ring-1 ring-gold"
-              >
-                <Plus className="size-4 shrink-0" strokeWidth={2.2} />
+              <ActionButton to="/membership" variant="gold">
+                <Plus strokeWidth={2.2} />
                 Enquire about Membership
-              </Link>
+              </ActionButton>
             </div>
           </div>
         </div>
@@ -243,20 +255,14 @@ function CinematicHero() {
             }}
             className="flex flex-wrap gap-4"
           >
-            <Link
-              to="/membership"
-              className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink ring-1 ring-gold transition-transform hover:-translate-y-px"
-            >
-              <Plus className="size-4 shrink-0" strokeWidth={2.2} />
+            <ActionButton to="/membership" variant="gold">
+              <Plus strokeWidth={2.2} />
               Become a Member
-            </Link>
-            <Link
-              to="/sports/golf"
-              className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-cream ring-1 ring-cream/30 transition-colors hover:bg-cream/20"
-            >
+            </ActionButton>
+            <ActionButton to="/sports/golf" variant="outline">
               Visitor Green Fees
-              <ArrowRight className="size-4" />
-            </Link>
+              <ArrowRight />
+            </ActionButton>
           </motion.div>
         </div>
       </div>
@@ -274,69 +280,55 @@ function CinematicHero() {
   );
 }
 
+/**
+ * One card treatment for every sport: image, pine scrim, title over the image.
+ * Size is varied through `aspect` / `className` only — never through a second
+ * visual language.
+ */
 function SportCard({
   image,
   title,
   overline,
   to,
-  featured,
-  tallCard,
+  className = "",
+  aspect = "aspect-[4/3]",
+  large,
 }: {
   image: string;
   title: string;
   overline?: string;
   to: string;
-  featured?: boolean;
-  tallCard?: boolean;
+  className?: string;
+  aspect?: string;
+  large?: boolean;
 }) {
   return (
     <Link
       to={to}
-      className={`relative group overflow-hidden rounded-sm ring-1 ring-black/5 ${
-        featured ? "md:col-span-2" : ""
-      } ${tallCard ? "" : ""}`}
+      className={`group relative overflow-hidden rounded-sm ring-1 ring-black/5 ${aspect} ${className} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream`}
     >
+      {/* Decorative: the link is already named by the heading below. */}
       <img
         src={image}
-        alt={title}
+        alt=""
         loading="lazy"
-        className={`w-full ${featured ? "aspect-[16/10]" : "aspect-square"} object-cover transition-transform duration-[900ms] group-hover:scale-[1.03]`}
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.03]"
       />
-      <div className="absolute inset-0 bg-linear-to-t from-pine/85 via-pine/20 to-transparent" />
-      <div className="absolute bottom-6 left-6 right-6">
-        <h3 className="font-serif text-2xl md:text-3xl text-cream">{title}</h3>
-        {overline && (
-          <p className="mt-1 text-[11px] uppercase tracking-widest text-cream/75">
-            {overline}
-          </p>
-        )}
-      </div>
-    </Link>
-  );
-}
-
-function SportCardStacked({
-  image,
-  title,
-  to,
-}: {
-  image: string;
-  title: string;
-  to: string;
-}) {
-  return (
-    <Link to={to} className="group">
-      <div className="overflow-hidden rounded-sm ring-1 ring-black/5">
-        <img
-          src={image}
-          alt={title}
-          loading="lazy"
-          className="aspect-video w-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.03]"
-        />
-      </div>
-      <div className="mt-4 flex items-center justify-between">
-        <h3 className="font-serif text-xl text-pine">{title}</h3>
-        <ArrowRight className="size-4 text-pine/50 transition-transform group-hover:translate-x-1" />
+      <div className="absolute inset-0 bg-linear-to-t from-pine/85 via-pine/25 to-transparent" />
+      <div className="absolute inset-x-6 bottom-6 flex items-end justify-between gap-4">
+        <div>
+          <h3
+            className={`font-serif text-cream ${large ? "text-3xl md:text-4xl" : "text-2xl"}`}
+          >
+            {title}
+          </h3>
+          {overline && (
+            <p className="mt-1 text-[11px] uppercase tracking-widest text-cream/75">
+              {overline}
+            </p>
+          )}
+        </div>
+        <ArrowRight className="mb-1 size-4 shrink-0 text-cream/70 transition-transform group-hover:translate-x-1" />
       </div>
     </Link>
   );
@@ -385,7 +377,7 @@ function SplitFeature({
         </p>
         <Link
           to={linkTo}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-pine border-b border-pine/20 pb-1 hover:text-pine/70"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-pine border-b border-pine/20 pb-1 transition-colors hover:text-pine/70 hover:border-gold focus-visible:outline-none focus-visible:border-gold"
         >
           {linkLabel} <ArrowRight className="size-4" />
         </Link>
@@ -399,20 +391,32 @@ function NewsItem({
   date,
   title,
   excerpt,
+  to = "/news",
 }: {
   category: string;
   date: string;
   title: string;
   excerpt: string;
+  to?: string;
 }) {
   return (
-    <article className="space-y-3">
-      <div className="text-xs font-semibold tracking-widest text-gold uppercase">
-        {category}
-      </div>
-      <h3 className="font-serif text-xl text-ink">{title}</h3>
-      <p className="text-sm text-ink/65 leading-relaxed">{excerpt}</p>
-      <div className="text-xs text-ink/40 uppercase tracking-widest">{date}</div>
+    <article>
+      <Link
+        to={to}
+        className="group block border-t border-pine/15 pt-6 transition-colors hover:border-gold focus-visible:outline-none focus-visible:border-gold"
+      >
+        <div className="text-xs font-semibold tracking-widest text-gold uppercase">
+          {category}
+        </div>
+        <h3 className="mt-3 font-serif text-xl text-ink transition-colors group-hover:text-pine">
+          {title}
+        </h3>
+        <p className="mt-3 text-sm text-ink/65 leading-relaxed">{excerpt}</p>
+        <div className="mt-4 flex items-center justify-between">
+          <span className="text-xs text-ink/40 uppercase tracking-widest">{date}</span>
+          <ArrowRight className="size-4 text-pine/40 transition-transform group-hover:translate-x-1" />
+        </div>
+      </Link>
     </article>
   );
 }

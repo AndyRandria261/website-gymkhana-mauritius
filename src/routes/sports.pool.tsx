@@ -1,8 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
+import { ActionButton } from "@/components/action-button";
+import { FilterTabs } from "@/components/filter-tabs";
 import heroImg from "@/assets/sport-pool.jpg";
 
 export const Route = createFileRoute("/sports/pool")({
@@ -60,18 +62,12 @@ function PoolPage() {
         image={heroImg}
         imageAlt="MGC outdoor swimming pool surrounded by palm trees"
       >
-        <Link
-          to="/contact"
-          className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
-        >
-          Ask about lessons <ArrowRight className="size-4" />
-        </Link>
-        <a
-          href="#fees"
-          className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-cream ring-1 ring-cream/30 hover:bg-cream/20"
-        >
+        <ActionButton to="/contact" variant="gold">
+          Ask about lessons <ArrowRight />
+        </ActionButton>
+        <ActionButton href="#fees" variant="outline">
           Poolside rates
-        </a>
+        </ActionButton>
       </PageHero>
 
       {/* Stat chips */}
@@ -146,27 +142,13 @@ function PoolPage() {
             title="At the poolside"
             intro="Rates as of the 2026 season. Pool access is included for members; guests are welcome by prior arrangement."
           />
-          <div
-            role="tablist"
-            aria-label="Pool fees categories"
-            className="flex flex-wrap gap-2 border-b border-pine/10 mb-8"
-          >
-            {TABS.map((t) => (
-              <button
-                key={t.id}
-                role="tab"
-                aria-selected={tab === t.id}
-                onClick={() => setTab(t.id)}
-                className={`px-4 py-3 text-sm font-medium uppercase tracking-wider transition-colors ${
-                  tab === t.id
-                    ? "text-pine border-b-2 border-gold -mb-px"
-                    : "text-ink/50 hover:text-pine"
-                }`}
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
+          <FilterTabs
+            ariaLabel="Pool fees categories"
+            items={TABS.map((t) => ({ id: t.id, label: t.label }))}
+            value={tab}
+            onChange={setTab}
+            className="mb-8"
+          />
           <table className="w-full text-left">
             <caption className="sr-only">{current.label} fees</caption>
             <tbody>
@@ -201,12 +183,9 @@ function PoolPage() {
           <p className="mx-auto max-w-xl text-cream/80 mb-8">
             Book a first lesson for your child, or simply come by for an afternoon at the pool.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
-          >
-            Ask about the pool <ArrowRight className="size-4" />
-          </Link>
+          <ActionButton to="/contact" variant="gold">
+            Ask about the pool <ArrowRight />
+          </ActionButton>
         </div>
       </Section>
     </>

@@ -1,7 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
+import { ActionButton } from "@/components/action-button";
 import img from "@/assets/history-archive.jpg";
 
 export const Route = createFileRoute("/the-club/committee")({
@@ -44,12 +45,9 @@ function CommitteePage() {
             In the meantime, members may reach the office for any governance enquiry — AGM minutes,
             committee portfolios, or how to raise a matter for the committee's attention.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-pine text-cream py-3 pr-5 pl-4 text-sm font-medium"
-          >
-            Contact the office <ArrowRight className="size-4" />
-          </Link>
+          <ActionButton to="/contact" variant="pine">
+            Contact the office <ArrowRight />
+          </ActionButton>
         </div>
       </Section>
     </>

@@ -1,6 +1,6 @@
 import golfImg from "@/assets/sport-golf.jpg";
 import heroGolf from "@/assets/hero-golf-course.jpg";
-import tennisImg from "@/assets/sport-tennis.jpg";
+import tennisImg from "@/assets/sport-tennis.png";
 import heroTennis from "@/assets/hero-tennis-grass.jpg";
 import squashImg from "@/assets/sport-squash.jpg";
 import fitnessImg from "@/assets/sport-fitness.jpg";

@@ -1,9 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { addHours, format } from "date-fns";
 import { ArrowRight, CalendarPlus, MapPin } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
+import { ActionButton } from "@/components/action-button";
+import { FilterTabs } from "@/components/filter-tabs";
 import {
   Dialog,
   DialogContent,
@@ -163,27 +165,13 @@ function EventsPage() {
       <Section>
         <SectionHeading overline="What's on" title="Upcoming events" />
 
-        <div
-          role="tablist"
-          aria-label="Filter events by category"
-          className="flex flex-wrap gap-2 mb-10"
-        >
-          {CATEGORIES.map((c) => (
-            <button
-              key={c}
-              role="tab"
-              aria-selected={filter === c}
-              onClick={() => setFilter(c)}
-              className={`px-4 py-2 text-xs font-medium uppercase tracking-wider rounded-full ring-1 transition-colors ${
-                filter === c
-                  ? "bg-pine text-cream ring-pine"
-                  : "text-ink/60 ring-pine/15 hover:text-pine"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
+        <FilterTabs
+          ariaLabel="Filter events by category"
+          items={CATEGORIES.map((c) => ({ id: c, label: c }))}
+          value={filter}
+          onChange={setFilter}
+          className="mb-10"
+        />
 
         {filtered.length === 0 ? (
           <div className="p-6 border border-dashed border-pine/20 rounded-sm bg-pine/5 text-ink/60">
@@ -261,12 +249,9 @@ function EventsPage() {
             Add any event straight to your calendar, or get in touch for the full members'
             programme.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
-          >
-            Contact the office <ArrowRight className="size-4" />
-          </Link>
+          <ActionButton to="/contact" variant="gold">
+            Contact the office <ArrowRight />
+          </ActionButton>
         </div>
       </Section>
     </>

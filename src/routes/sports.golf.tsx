@@ -1,8 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight, MapPin, Phone } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
+import { ActionButton } from "@/components/action-button";
+import { FilterTabs } from "@/components/filter-tabs";
 import heroGolf from "@/assets/hero-golf-course.jpg";
 import historyImg from "@/assets/history-archive.jpg";
 
@@ -82,18 +84,12 @@ function GolfPage() {
         image={heroGolf}
         imageAlt="The MGC golf course at golden hour"
       >
-        <Link
-          to="/contact"
-          className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
-        >
-          Plan a round <ArrowRight className="size-4" />
-        </Link>
-        <a
-          href="#fees"
-          className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-cream ring-1 ring-cream/30 hover:bg-cream/20"
-        >
+        <ActionButton to="/contact" variant="gold">
+          Plan a round <ArrowRight />
+        </ActionButton>
+        <ActionButton href="#fees" variant="outline">
           Green fees
-        </a>
+        </ActionButton>
       </PageHero>
 
       {/* Stat chips */}
@@ -149,27 +145,13 @@ function GolfPage() {
             title="Play with us"
             intro="Rates as of the 2026 season. Members enjoy complimentary rounds; visitors and juniors are welcome by prior booking."
           />
-          <div
-            role="tablist"
-            aria-label="Green fees categories"
-            className="flex flex-wrap gap-2 border-b border-pine/10 mb-8"
-          >
-            {TABS.map((t) => (
-              <button
-                key={t.id}
-                role="tab"
-                aria-selected={tab === t.id}
-                onClick={() => setTab(t.id)}
-                className={`px-4 py-3 text-sm font-medium uppercase tracking-wider transition-colors ${
-                  tab === t.id
-                    ? "text-pine border-b-2 border-gold -mb-px"
-                    : "text-ink/50 hover:text-pine"
-                }`}
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
+          <FilterTabs
+            ariaLabel="Green fees categories"
+            items={TABS.map((t) => ({ id: t.id, label: t.label }))}
+            value={tab}
+            onChange={setTab}
+            className="mb-8"
+          />
           <table className="w-full text-left">
             <caption className="sr-only">{current.label} fees</caption>
             <tbody>
@@ -210,12 +192,9 @@ function GolfPage() {
             Tell us the dates, party size and preferred tee-off time. Our caddy master
             will confirm availability within 24 hours.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
-          >
-            Request a booking <ArrowRight className="size-4" />
-          </Link>
+          <ActionButton to="/contact" variant="gold">
+            Request a booking <ArrowRight />
+          </ActionButton>
         </div>
       </Section>
     </>

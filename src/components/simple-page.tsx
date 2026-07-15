@@ -1,7 +1,7 @@
-import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "./page-hero";
 import { Section, SectionHeading } from "./section";
+import { ActionButton } from "./action-button";
 
 export function SimplePage({
   overline,
@@ -46,12 +46,9 @@ export function SimplePage({
               {emptyState}
             </div>
           )}
-          <Link
-            to={ctaTo}
-            className="inline-flex items-center gap-2 bg-pine text-cream py-3 pr-5 pl-4 text-sm font-medium"
-          >
-            {ctaLabel} <ArrowRight className="size-4" />
-          </Link>
+          <ActionButton to={ctaTo} variant="pine">
+            {ctaLabel} <ArrowRight />
+          </ActionButton>
         </div>
       </Section>
     </>

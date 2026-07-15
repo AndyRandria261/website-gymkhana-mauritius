@@ -204,3 +204,12 @@
   pointer-events: none;
   background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.45) 100%);
 }
+
+/* Scroll reveals are a progressive enhancement: if JavaScript never runs,
+   the content must still be visible. */
+@media (scripting: none) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
