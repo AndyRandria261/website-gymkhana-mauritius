@@ -179,6 +179,101 @@ function Fact({ year, text }: { year: string; text: string }) {
   );
 }
 
+const HERO_TITLE = "The Living Heart of Mauritian Sporting Heritage";
+
+function CinematicHero() {
+  const words = HERO_TITLE.split(" ");
+  return (
+    <section className="relative min-h-screen flex flex-col justify-end pt-20 overflow-hidden">
+      {/* Image layer with Ken Burns + entry scale/blur */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <motion.div
+          initial={{ scale: 1.15, filter: "blur(12px)", opacity: 0.4 }}
+          animate={{ scale: 1, filter: "blur(0px)", opacity: 1 }}
+          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0"
+        >
+          <img
+            src={heroGolf}
+            alt="The MGC golf course at sunset with the colonial clubhouse in the distance"
+            className="ken-burns h-full w-full object-cover"
+            fetchPriority="high"
+          />
+        </motion.div>
+        {/* Cinematic overlays */}
+        <div className="vignette" />
+        <div className="film-grain" />
+        <div className="absolute inset-0 bg-linear-to-t from-pine/80 via-pine/25 to-pine/40" />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-24">
+        <div className="max-w-3xl">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-4 block text-sm font-medium uppercase tracking-[0.3em] text-gold"
+          >
+            Since 1849 · Vacoas, Mauritius
+          </motion.span>
+          <h1 className="font-serif text-5xl md:text-7xl leading-[1.05] text-cream text-balance mb-8">
+            {words.map((w, i) => (
+              <motion.span
+                key={`${w}-${i}`}
+                initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{
+                  duration: 0.9,
+                  delay: 0.8 + i * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="inline-block mr-[0.28em]"
+              >
+                {w}
+              </motion.span>
+            ))}
+          </h1>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.8 + words.length * 0.08 + 0.2,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="flex flex-wrap gap-4"
+          >
+            <Link
+              to="/membership"
+              className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink ring-1 ring-gold transition-transform hover:-translate-y-px"
+            >
+              <Plus className="size-4 shrink-0" strokeWidth={2.2} />
+              Become a Member
+            </Link>
+            <Link
+              to="/sports/golf"
+              className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-cream ring-1 ring-cream/30 transition-colors hover:bg-cream/20"
+            >
+              Visitor Green Fees
+              <ArrowRight className="size-4" />
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Scroll cue */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 2.2 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-cream/60 text-[10px] uppercase tracking-[0.4em]"
+      >
+        Scroll
+      </motion.div>
+    </section>
+  );
+}
+
 function SportCard({
   image,
   title,
