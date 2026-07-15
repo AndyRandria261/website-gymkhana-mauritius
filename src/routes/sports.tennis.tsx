@@ -5,6 +5,8 @@ import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import { ActionButton } from "@/components/action-button";
 import { FilterTabs } from "@/components/filter-tabs";
+import { BookingDialog } from "@/components/booking-dialog";
+import { CLUB_ADDRESS, CLUB_PHONES } from "@/lib/club-contact";
 import heroTennis from "@/assets/hero-tennis-grass.jpg";
 import courtImg from "@/assets/sport-tennis.png";
 
@@ -92,9 +94,15 @@ function TennisPage() {
         image={heroTennis}
         imageAlt="Freshly cut grass tennis court at MGC with mountains in the background"
       >
-        <ActionButton to="/contact" variant="gold">
-          Book a court <ArrowRight />
-        </ActionButton>
+        <BookingDialog
+          subject="tennis"
+          variant="gold"
+          ctaLabel={<>Request a booking <ArrowRight /></>}
+          title="Request a tennis booking"
+          description="Tell us the dates, format and level of play. Our tennis desk will confirm a court, grass or hard, and pair you with a partner or coach if you need one."
+          fields={["date", "time", "party"]}
+          partyLabel="Number of players"
+        />
         <ActionButton href="#fees" variant="outline">
           Court fees
         </ActionButton>
@@ -217,10 +225,10 @@ function TennisPage() {
 
           <div className="mt-10 flex flex-wrap gap-6 text-sm text-ink/60">
             <span className="inline-flex items-center gap-2">
-              <Phone className="size-4 text-gold" /> Front desk · +230 686 1247
+              <Phone className="size-4 text-gold" /> Front desk · {CLUB_PHONES.frontDesk}
             </span>
             <span className="inline-flex items-center gap-2">
-              <MapPin className="size-4 text-gold" /> Suffolk Road, Vacoas
+              <MapPin className="size-4 text-gold" /> {CLUB_ADDRESS.short}
             </span>
           </div>
         </div>
@@ -236,9 +244,15 @@ function TennisPage() {
             Tell us the dates, format and level of play. Our tennis desk will
             confirm a court, and pair you with a partner or coach if you need one.
           </p>
-          <ActionButton to="/contact" variant="gold">
-            Enquire about tennis <ArrowRight />
-          </ActionButton>
+          <BookingDialog
+            subject="tennis"
+            variant="gold"
+            ctaLabel={<>Request a booking <ArrowRight /></>}
+            title="Request a tennis booking"
+            description="Tell us the dates, format and level of play. Our tennis desk will confirm a court, grass or hard, and pair you with a partner or coach if you need one."
+            fields={["date", "time", "party"]}
+            partyLabel="Number of players"
+          />
         </div>
       </Section>
     </>

@@ -5,6 +5,8 @@ import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import { ActionButton } from "@/components/action-button";
 import { FilterTabs } from "@/components/filter-tabs";
+import { BookingDialog } from "@/components/booking-dialog";
+import { CLUB_ADDRESS, CLUB_PHONES } from "@/lib/club-contact";
 import heroImg from "@/assets/sport-fitness.jpg";
 
 export const Route = createFileRoute("/sports/fitness")({
@@ -83,9 +85,14 @@ function FitnessPage() {
         image={heroImg}
         imageAlt="Fitness centre interior with cardio equipment"
       >
-        <ActionButton to="/contact" variant="gold">
-          Join a class <ArrowRight />
-        </ActionButton>
+        <BookingDialog
+          subject="fitness"
+          variant="gold"
+          ctaLabel={<>Enquire about fitness <ArrowRight /></>}
+          title="Enquire about the fitness centre"
+          description="Tell us which classes interest you and when you'd like to start. The front desk will confirm the current timetable and get you set up."
+          fields={["date"]}
+        />
         <ActionButton href="#fees" variant="outline">
           Membership & rates
         </ActionButton>
@@ -198,10 +205,10 @@ function FitnessPage() {
 
           <div className="mt-10 flex flex-wrap gap-6 text-sm text-ink/60">
             <span className="inline-flex items-center gap-2">
-              <Phone className="size-4 text-gold" /> Front desk · +230 660 1844
+              <Phone className="size-4 text-gold" /> Front desk · {CLUB_PHONES.frontDesk}
             </span>
             <span className="inline-flex items-center gap-2">
-              <MapPin className="size-4 text-gold" /> Suffolk Road, Vacoas
+              <MapPin className="size-4 text-gold" /> {CLUB_ADDRESS.short}
             </span>
           </div>
         </div>
@@ -217,9 +224,14 @@ function FitnessPage() {
             Drop in for Rs 150, or ask about a monthly membership - no long-term commitment
             required.
           </p>
-          <ActionButton to="/contact" variant="gold">
-            Enquire about fitness <ArrowRight />
-          </ActionButton>
+          <BookingDialog
+            subject="fitness"
+            variant="gold"
+            ctaLabel={<>Enquire about fitness <ArrowRight /></>}
+            title="Enquire about the fitness centre"
+            description="Tell us which classes interest you and when you'd like to start. The front desk will confirm the current timetable and get you set up."
+            fields={["date"]}
+          />
         </div>
       </Section>
     </>

@@ -5,6 +5,8 @@ import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import { ActionButton } from "@/components/action-button";
 import { FilterTabs } from "@/components/filter-tabs";
+import { BookingDialog } from "@/components/booking-dialog";
+import { CLUB_ADDRESS, CLUB_PHONES } from "@/lib/club-contact";
 import heroGolf from "@/assets/hero-golf-course.jpg";
 import historyImg from "@/assets/history-archive.jpg";
 
@@ -84,9 +86,15 @@ function GolfPage() {
         image={heroGolf}
         imageAlt="The MGC golf course at golden hour"
       >
-        <ActionButton to="/contact" variant="gold">
-          Plan a round <ArrowRight />
-        </ActionButton>
+        <BookingDialog
+          subject="golf"
+          variant="gold"
+          ctaLabel={<>Request a booking <ArrowRight /></>}
+          title="Request a golf booking"
+          description="Tell us your preferred dates, tee-off time and party size. Our caddy master will confirm availability within 24 hours."
+          fields={["date", "time", "party"]}
+          partyLabel="Number of players"
+        />
         <ActionButton href="#fees" variant="outline">
           Green fees
         </ActionButton>
@@ -173,10 +181,10 @@ function GolfPage() {
 
           <div className="mt-10 flex flex-wrap gap-6 text-sm text-ink/60">
             <span className="inline-flex items-center gap-2">
-              <Phone className="size-4 text-gold" /> Caddy Master · +230 698 6302
+              <Phone className="size-4 text-gold" /> Caddy Master · {CLUB_PHONES.caddyMaster}
             </span>
             <span className="inline-flex items-center gap-2">
-              <MapPin className="size-4 text-gold" /> Suffolk Road, Vacoas
+              <MapPin className="size-4 text-gold" /> {CLUB_ADDRESS.short}
             </span>
           </div>
         </div>
@@ -192,9 +200,15 @@ function GolfPage() {
             Tell us the dates, party size and preferred tee-off time. Our caddy master
             will confirm availability within 24 hours.
           </p>
-          <ActionButton to="/contact" variant="gold">
-            Request a booking <ArrowRight />
-          </ActionButton>
+          <BookingDialog
+            subject="golf"
+            variant="gold"
+            ctaLabel={<>Request a booking <ArrowRight /></>}
+            title="Request a golf booking"
+            description="Tell us your preferred dates, tee-off time and party size. Our caddy master will confirm availability within 24 hours."
+            fields={["date", "time", "party"]}
+            partyLabel="Number of players"
+          />
         </div>
       </Section>
     </>

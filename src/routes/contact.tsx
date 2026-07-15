@@ -1,12 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { z } from "zod";
 import { ArrowRight, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section } from "@/components/section";
 import { ActionButton } from "@/components/action-button";
+import { FormField, fieldInputClass } from "@/components/form-field";
+import { CLUB_ADDRESS, CLUB_EMAILS, CLUB_PHONES } from "@/lib/club-contact";
 import heroImg from "@/assets/venue-events.jpg";
 
+const SUBJECTS = [
+  { value: "membership", label: "Membership enquiry" },
+  { value: "golf", label: "Golf - visitor green fees" },
+  { value: "tennis", label: "Tennis - court booking" },
+  { value: "squash", label: "Squash - court booking" },
+  { value: "fitness", label: "Fitness centre" },
+  { value: "pool", label: "Swimming pool & lessons" },
+  { value: "dining", label: "Restaurant reservation" },
+  { value: "venue", label: "Venue hire" },
+  { value: "press", label: "Press & media" },
+  { value: "other", label: "Other" },
+] as const;
+
+type Subject = (typeof SUBJECTS)[number]["value"];
+const SUBJECT_VALUES = SUBJECTS.map((s) => s.value) as [Subject, ...Subject[]];
+
+const contactSearchSchema = z.object({
+  subject: z
+    .enum(SUBJECT_VALUES)
+    .optional()
+    .catch(undefined),
+});
+
 export const Route = createFileRoute("/contact")({
+  validateSearch: contactSearchSchema,
   head: () => ({
     meta: [
       { title: "Contact & Directions - Mauritius Gymkhana Club" },
@@ -28,8 +55,14 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const [subject, setSubject] = useState("membership");
+  const search = Route.useSearch();
+  const [subject, setSubject] = useState<Subject>(search.subject ?? "membership");
   const [sent, setSent] = useState(false);
+  const confirmationRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (sent) confirmationRef.current?.focus();
+  }, [sent]);
 
   return (
     <>
@@ -45,19 +78,19 @@ function ContactPage() {
         <div className="grid md:grid-cols-2 gap-16">
           <div className="space-y-8">
             <InfoBlock icon={<MapPin className="size-5" />} title="Address">
-              Suffolk Road, Vacoas 73420
+              {CLUB_ADDRESS.line1}
               <br />
-              Mauritius
+              {CLUB_ADDRESS.country}
             </InfoBlock>
             <InfoBlock icon={<Phone className="size-5" />} title="Phone">
-              Main office · +230 696 1404
+              Main office · {CLUB_PHONES.mainOffice}
               <br />
-              Caddy Master · +230 698 6302
+              Caddy Master · {CLUB_PHONES.caddyMaster}
             </InfoBlock>
             <InfoBlock icon={<Mail className="size-5" />} title="Email">
-              info@mgc.mu
+              {CLUB_EMAILS.info}
               <br />
-              membership@mgc.mu
+              {CLUB_EMAILS.membership}
             </InfoBlock>
             <InfoBlock icon={<Clock className="size-5" />} title="Opening hours">
               Tuesday to Sunday · 06:00 - 22:00
@@ -81,7 +114,13 @@ function ContactPage() {
           <div>
             <h2 className="font-serif text-3xl text-pine mb-8">Send us a message</h2>
             {sent ? (
-              <div className="p-8 rounded-sm bg-pine text-cream">
+              <div
+                ref={confirmationRef}
+                tabIndex={-1}
+                role="status"
+                aria-live="polite"
+                className="p-8 rounded-sm bg-pine text-cream outline-none"
+              >
                 <p className="font-serif text-2xl text-gold mb-2">Thank you.</p>
                 <p>We will respond within 2 working days.</p>
               </div>
@@ -93,39 +132,37 @@ function ContactPage() {
                 }}
                 className="space-y-6"
               >
-                <F label="Full name" required>
-                  <input
-                    required
-                    className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine"
-                  />
-                </F>
-                <F label="Email" required>
+                <FormField label="Full name" required>
+                  <input required autoComplete="name" className={fieldInputClass} />
+                </FormField>
+                <FormField label="Email" required>
                   <input
                     type="email"
                     required
-                    className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine"
+                    autoComplete="email"
+                    className={fieldInputClass}
                   />
-                </F>
-                <F label="Subject">
+                </FormField>
+                <FormField label="Subject">
                   <select
                     value={subject}
-                    onChange={(e) => setSubject(e.target.value)}
-                    className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine"
+                    onChange={(e) => setSubject(e.target.value as Subject)}
+                    className={fieldInputClass}
                   >
-                    <option value="membership">Membership enquiry</option>
-                    <option value="golf">Visitor green fees</option>
-                    <option value="venue">Venue hire</option>
-                    <option value="press">Press & media</option>
-                    <option value="other">Other</option>
+                    {SUBJECTS.map((s) => (
+                      <option key={s.value} value={s.value}>
+                        {s.label}
+                      </option>
+                    ))}
                   </select>
-                </F>
-                <F label="Message" required>
+                </FormField>
+                <FormField label="Message" required>
                   <textarea
                     rows={5}
                     required
-                    className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine resize-none"
+                    className={`${fieldInputClass} resize-none`}
                   />
-                </F>
+                </FormField>
                 <ActionButton type="submit" variant="pine">
                   Send message <ArrowRight />
                 </ActionButton>
@@ -155,24 +192,5 @@ function InfoBlock({
         <p className="text-ink/80 leading-relaxed">{children}</p>
       </div>
     </div>
-  );
-}
-
-function F({
-  label,
-  required,
-  children,
-}: {
-  label: string;
-  required?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <label className="block">
-      <span className="block text-xs uppercase tracking-widest text-ink/50 mb-2">
-        {label} {required && <span className="text-gold">*</span>}
-      </span>
-      {children}
-    </label>
   );
 }

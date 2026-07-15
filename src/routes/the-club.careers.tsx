@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MapPin, Send } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
+import { CLUB_ADDRESS, CLUB_EMAILS } from "@/lib/club-contact";
 import img from "@/assets/dining-brasserie.jpg";
 
 export const Route = createFileRoute("/the-club/careers")({
@@ -21,10 +22,10 @@ export const Route = createFileRoute("/the-club/careers")({
 });
 
 const CHANNELS = [
-  { title: "By email", body: "Send your application to hr_officer@mgc.mu." },
+  { title: "By email", body: `Send your application to ${CLUB_EMAILS.hr}.` },
   {
     title: "By post",
-    body: "Club Manager, Mauritius Gymkhana Club, Suffolk Road, Vacoas, Mauritius.",
+    body: `Club Manager, Mauritius Gymkhana Club, ${CLUB_ADDRESS.full}.`,
   },
   { title: "In person", body: "Drop off your application at the Reception Desk." },
 ];
@@ -50,7 +51,7 @@ function CareersPage() {
         imageAlt="A candid moment in the clubhouse dining room"
       >
         <a
-          href="mailto:hr_officer@mgc.mu?subject=Application%20—%20Spontaneous%20enquiry"
+          href={`mailto:${CLUB_EMAILS.hr}?subject=Application%20—%20Spontaneous%20enquiry`}
           className="inline-flex items-center gap-2 bg-gold py-3 pr-5 pl-4 text-sm font-medium text-ink"
         >
           Send your CV <Send className="size-4" />
@@ -105,10 +106,10 @@ function CareersPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <span className="inline-flex items-center gap-2">
-              <Mail className="size-4 text-gold" /> hr_officer@mgc.mu
+              <Mail className="size-4 text-gold" /> {CLUB_EMAILS.hr}
             </span>
             <span className="inline-flex items-center gap-2">
-              <MapPin className="size-4 text-gold" /> Suffolk Road, Vacoas
+              <MapPin className="size-4 text-gold" /> {CLUB_ADDRESS.short}
             </span>
           </div>
         </div>
