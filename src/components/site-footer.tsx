@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { CLUB_ADDRESS } from "@/lib/club-contact";
 
 export function SiteFooter() {
   return (
@@ -11,7 +12,7 @@ export function SiteFooter() {
               <span className="font-serif text-2xl text-pine">Mauritius Gymkhana Club</span>
             </Link>
             <p className="text-sm text-ink/60 max-w-[32ch] leading-relaxed">
-              Suffolk Road, Vacoas 73420, Mauritius.
+              {CLUB_ADDRESS.full}
               <br />
               Established 1849.
             </p>

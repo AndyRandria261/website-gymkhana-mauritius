@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import { ActionButton } from "@/components/action-button";
+import { FormField, fieldInputClass } from "@/components/form-field";
 import heroImg from "@/assets/dining-brasserie.jpg";
 
 export const Route = createFileRoute("/membership/")({
@@ -88,6 +89,11 @@ export default function MembershipPage() {
 function MembershipContent() {
   const [form, setForm] = useState({ name: "", email: "", category: "family", message: "" });
   const [sent, setSent] = useState(false);
+  const confirmationRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (sent) confirmationRef.current?.focus();
+  }, [sent]);
 
   return (
     <>
@@ -179,7 +185,13 @@ function MembershipContent() {
             align="center"
           />
           {sent ? (
-            <div className="text-center p-12 rounded-sm bg-pine text-cream">
+            <div
+              ref={confirmationRef}
+              tabIndex={-1}
+              role="status"
+              aria-live="polite"
+              className="text-center p-12 rounded-sm bg-pine text-cream outline-none"
+            >
               <h3 className="font-serif text-3xl mb-3 text-gold">Thank you.</h3>
               <p>Our secretary will be in touch within 5 working days.</p>
             </div>
@@ -191,42 +203,44 @@ function MembershipContent() {
               }}
               className="space-y-6"
             >
-              <Field label="Full name" required>
+              <FormField label="Full name" required>
                 <input
                   required
+                  autoComplete="name"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine"
+                  className={fieldInputClass}
                 />
-              </Field>
-              <Field label="Email" required>
+              </FormField>
+              <FormField label="Email" required>
                 <input
                   type="email"
                   required
+                  autoComplete="email"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine"
+                  className={fieldInputClass}
                 />
-              </Field>
-              <Field label="Membership category">
+              </FormField>
+              <FormField label="Membership category">
                 <select
                   value={form.category}
                   onChange={(e) => setForm({ ...form, category: e.target.value })}
-                  className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine"
+                  className={fieldInputClass}
                 >
                   <option value="full">Full Member</option>
                   <option value="family">Family Member</option>
                   <option value="corporate">Corporate Member</option>
                 </select>
-              </Field>
-              <Field label="Tell us a little about yourself">
+              </FormField>
+              <FormField label="Tell us a little about yourself">
                 <textarea
                   rows={4}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine resize-none"
+                  className={`${fieldInputClass} resize-none`}
                 />
-              </Field>
+              </FormField>
               <ActionButton type="submit" variant="pine">
                 Send enquiry <ArrowRight />
               </ActionButton>
@@ -235,24 +249,5 @@ function MembershipContent() {
         </div>
       </Section>
     </>
-  );
-}
-
-function Field({
-  label,
-  required,
-  children,
-}: {
-  label: string;
-  required?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <label className="block">
-      <span className="block text-xs uppercase tracking-widest text-ink/50 mb-2">
-        {label} {required && <span className="text-gold">*</span>}
-      </span>
-      {children}
-    </label>
   );
 }

@@ -22,6 +22,15 @@ const variants: Record<Variant, string> = {
     "bg-cream/10 text-cream backdrop-blur-sm ring-1 ring-cream/30 hover:bg-cream/20 focus-visible:ring-cream focus-visible:ring-offset-transparent",
 };
 
+/**
+ * Same classes as <ActionButton>, exposed for callers that need to style a
+ * plain <a>/<button> themselves (e.g. a dialog trigger that must stay a real
+ * anchor for no-JS/middle-click fallback instead of going through <Link>).
+ */
+export function actionButtonClass(variant: Variant = "gold", className?: string) {
+  return cn(base, variants[variant], className);
+}
+
 type BaseProps = {
   variant?: Variant;
   className?: string;

@@ -5,7 +5,12 @@ import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import { ActionButton } from "@/components/action-button";
 import { FilterTabs } from "@/components/filter-tabs";
+import { BookingDialog } from "@/components/booking-dialog";
+import { CLUB_ADDRESS, CLUB_PHONES } from "@/lib/club-contact";
 import heroImg from "@/assets/sport-squash.jpg";
+
+const SQUASH_BOOKING_NOTE =
+  "Squash courts are held one week ahead of play and confirmed by the gym instructor - send your request and we'll follow up to lock in the slot.";
 
 export const Route = createFileRoute("/sports/squash")({
   head: () => ({
@@ -72,9 +77,15 @@ function SquashPage() {
         image={heroImg}
         imageAlt="Interior of an MGC squash court"
       >
-        <ActionButton to="/contact" variant="gold">
-          Book a court <ArrowRight />
-        </ActionButton>
+        <BookingDialog
+          subject="squash"
+          variant="gold"
+          ctaLabel={<>Request a booking <ArrowRight /></>}
+          title="Request a squash booking"
+          description={SQUASH_BOOKING_NOTE}
+          fields={["date", "time", "party"]}
+          partyLabel="Number of players"
+        />
         <ActionButton href="#fees" variant="outline">
           Court rules & rates
         </ActionButton>
@@ -178,10 +189,10 @@ function SquashPage() {
 
           <div className="mt-10 flex flex-wrap gap-6 text-sm text-ink/60">
             <span className="inline-flex items-center gap-2">
-              <Phone className="size-4 text-gold" /> Gym instructor · +230 660 1844
+              <Phone className="size-4 text-gold" /> Gym instructor · {CLUB_PHONES.frontDesk}
             </span>
             <span className="inline-flex items-center gap-2">
-              <MapPin className="size-4 text-gold" /> Suffolk Road, Vacoas
+              <MapPin className="size-4 text-gold" /> {CLUB_ADDRESS.short}
             </span>
           </div>
         </div>
@@ -197,9 +208,15 @@ function SquashPage() {
             Tell the gym instructor your preferred day and time, one week ahead of play, and a court
             will be held for you.
           </p>
-          <ActionButton to="/contact" variant="gold">
-            Enquire about squash <ArrowRight />
-          </ActionButton>
+          <BookingDialog
+            subject="squash"
+            variant="gold"
+            ctaLabel={<>Request a booking <ArrowRight /></>}
+            title="Request a squash booking"
+            description={SQUASH_BOOKING_NOTE}
+            fields={["date", "time", "party"]}
+            partyLabel="Number of players"
+          />
         </div>
       </Section>
     </>

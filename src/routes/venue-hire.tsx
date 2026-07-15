@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Mail, Phone, Users } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import { ActionButton } from "@/components/action-button";
+import { FormField, fieldInputClass } from "@/components/form-field";
+import { CLUB_EMAILS, CLUB_PHONES } from "@/lib/club-contact";
 import img from "@/assets/venue-events.jpg";
 
 export const Route = createFileRoute("/venue-hire")({
@@ -43,6 +44,11 @@ const VENUES = [
 
 function VenueHirePage() {
   const [sent, setSent] = useState(false);
+  const confirmationRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (sent) confirmationRef.current?.focus();
+  }, [sent]);
 
   return (
     <>
@@ -85,7 +91,13 @@ function VenueHirePage() {
             intro="Our events team will build a bespoke proposal within 48 hours of your enquiry."
           />
           {sent ? (
-            <div className="p-8 rounded-sm bg-pine text-cream">
+            <div
+              ref={confirmationRef}
+              tabIndex={-1}
+              role="status"
+              aria-live="polite"
+              className="p-8 rounded-sm bg-pine text-cream outline-none"
+            >
               <p className="font-serif text-2xl text-gold mb-2">Thank you.</p>
               <p>Our events team will respond within 48 hours.</p>
             </div>
@@ -98,57 +110,45 @@ function VenueHirePage() {
               className="space-y-6"
             >
               <div className="grid sm:grid-cols-2 gap-6">
-                <F label="Company or organisation">
-                  <input className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine" />
-                </F>
-                <F label="Contact name" required>
-                  <input
-                    required
-                    className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine"
-                  />
-                </F>
-                <F label="Email" required>
+                <FormField label="Company or organisation">
+                  <input autoComplete="organization" className={fieldInputClass} />
+                </FormField>
+                <FormField label="Contact name" required>
+                  <input required autoComplete="name" className={fieldInputClass} />
+                </FormField>
+                <FormField label="Email" required>
                   <input
                     type="email"
                     required
-                    className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine"
+                    autoComplete="email"
+                    className={fieldInputClass}
                   />
-                </F>
-                <F label="Phone">
-                  <input
-                    type="tel"
-                    className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine"
-                  />
-                </F>
-                <F label="Venue">
-                  <select className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine">
+                </FormField>
+                <FormField label="Phone">
+                  <input type="tel" autoComplete="tel" className={fieldInputClass} />
+                </FormField>
+                <FormField label="Venue">
+                  <select className={fieldInputClass}>
                     <option value="conference-room">Conference Room</option>
                     <option value="multipurpose-hall">Multipurpose Hall</option>
                     <option value="footfive">FootFive Pitch</option>
                     <option value="unsure">Not sure yet</option>
                   </select>
-                </F>
-                <F label="Preferred date">
-                  <input
-                    type="date"
-                    className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine"
-                  />
-                </F>
-                <F label="Expected guests">
-                  <input
-                    type="number"
-                    min={1}
-                    className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine"
-                  />
-                </F>
+                </FormField>
+                <FormField label="Preferred date">
+                  <input type="date" className={fieldInputClass} />
+                </FormField>
+                <FormField label="Expected guests">
+                  <input type="number" min={1} className={fieldInputClass} />
+                </FormField>
               </div>
-              <F label="Tell us about your event" required>
+              <FormField label="Tell us about your event" required>
                 <textarea
                   rows={5}
                   required
-                  className="w-full border-b border-pine/20 bg-transparent py-3 outline-none focus:border-pine resize-none"
+                  className={`${fieldInputClass} resize-none`}
                 />
-              </F>
+              </FormField>
               <ActionButton type="submit" variant="pine">
                 Request a proposal <ArrowRight />
               </ActionButton>
@@ -164,33 +164,14 @@ function VenueHirePage() {
           </h2>
           <div className="flex flex-wrap justify-center gap-6 text-sm mt-6">
             <span className="inline-flex items-center gap-2">
-              <Phone className="size-4 text-gold" /> +230 660 1845
+              <Phone className="size-4 text-gold" /> Events team · {CLUB_PHONES.eventsTeam}
             </span>
             <span className="inline-flex items-center gap-2">
-              <Mail className="size-4 text-gold" /> resto@mgc.mu
+              <Mail className="size-4 text-gold" /> {CLUB_EMAILS.events}
             </span>
           </div>
         </div>
       </Section>
     </>
-  );
-}
-
-function F({
-  label,
-  required,
-  children,
-}: {
-  label: string;
-  required?: boolean;
-  children: ReactNode;
-}) {
-  return (
-    <label className="block">
-      <span className="block text-xs uppercase tracking-widest text-ink/50 mb-2">
-        {label} {required && <span className="text-gold">*</span>}
-      </span>
-      {children}
-    </label>
   );
 }

@@ -5,6 +5,8 @@ import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import { ActionButton } from "@/components/action-button";
 import { FilterTabs } from "@/components/filter-tabs";
+import { BookingDialog } from "@/components/booking-dialog";
+import { CLUB_ADDRESS, CLUB_PHONES } from "@/lib/club-contact";
 import heroImg from "@/assets/sport-pool.jpg";
 
 export const Route = createFileRoute("/sports/pool")({
@@ -62,9 +64,14 @@ function PoolPage() {
         image={heroImg}
         imageAlt="MGC outdoor swimming pool surrounded by palm trees"
       >
-        <ActionButton to="/contact" variant="gold">
-          Ask about lessons <ArrowRight />
-        </ActionButton>
+        <BookingDialog
+          subject="pool"
+          variant="gold"
+          ctaLabel={<>Ask about lessons <ArrowRight /></>}
+          title="Ask about pool lessons"
+          description="Lessons run by appointment with the Club's swimming coach. Tell us the swimmer's age or level and a preferred date, and we'll confirm a slot."
+          fields={["date"]}
+        />
         <ActionButton href="#fees" variant="outline">
           Poolside rates
         </ActionButton>
@@ -167,10 +174,10 @@ function PoolPage() {
 
           <div className="mt-10 flex flex-wrap gap-6 text-sm text-ink/60">
             <span className="inline-flex items-center gap-2">
-              <Phone className="size-4 text-gold" /> Front desk · +230 660 1844
+              <Phone className="size-4 text-gold" /> Front desk · {CLUB_PHONES.frontDesk}
             </span>
             <span className="inline-flex items-center gap-2">
-              <MapPin className="size-4 text-gold" /> Suffolk Road, Vacoas
+              <MapPin className="size-4 text-gold" /> {CLUB_ADDRESS.short}
             </span>
           </div>
         </div>
@@ -183,9 +190,14 @@ function PoolPage() {
           <p className="mx-auto max-w-xl text-cream/80 mb-8">
             Book a first lesson for your child, or simply come by for an afternoon at the pool.
           </p>
-          <ActionButton to="/contact" variant="gold">
-            Ask about the pool <ArrowRight />
-          </ActionButton>
+          <BookingDialog
+            subject="pool"
+            variant="gold"
+            ctaLabel={<>Ask about the pool <ArrowRight /></>}
+            title="Ask about pool lessons"
+            description="Lessons run by appointment with the Club's swimming coach. Tell us the swimmer's age or level and a preferred date, and we'll confirm a slot."
+            fields={["date"]}
+          />
         </div>
       </Section>
     </>
