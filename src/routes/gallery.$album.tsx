@@ -81,7 +81,7 @@ function AlbumPage() {
           title="Browse the album"
         />
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {album.photos.map((p, i) => (
+          {album.photos.map((p: { src: string; alt: string }, i: number) => (
             <button
               key={p.src}
               type="button"
