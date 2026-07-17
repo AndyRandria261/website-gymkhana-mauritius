@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Plus, Quote } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 import { motion } from "motion/react";
 import { ActionButton } from "@/components/action-button";
 import { Reveal } from "@/components/reveal";
-import { RECIPROCAL_CLUBS } from "@/lib/reciprocal-clubs-data";
+import { AnimatedTestimonials, type Testimonial } from "@/components/ui/animated-testimonials";
+import { Marquee } from "@/components/ui/marquee";
+import { RECIPROCAL_CLUBS, type ReciprocalClub } from "@/lib/reciprocal-clubs-data";
 import heroGolf from "@/assets/hero-golf-course.jpg";
 import sportGolf from "@/assets/sport-golf.jpg";
 import sportTennis from "@/assets/sport-tennis.png";
@@ -199,69 +201,69 @@ function Fact({ year, text }: { year: string; text: string }) {
 }
 
 /* ---------- Testimonials ---------- */
-const TESTIMONIALS = [
+const TESTIMONIALS: Testimonial[] = [
   {
-    quote:
-      "Playing the 1844 Course feels like walking through a living chapter of golf history. There is nowhere else quite like the Gymkhana.",
+    id: 1,
     name: "Charles L.",
     role: "Member since 2007",
+    company: "Golf Section",
+    content:
+      "Playing the 1844 Course feels like walking through a living chapter of golf history. There is nowhere else quite like the Gymkhana.",
+    rating: 5,
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces&auto=format",
   },
   {
-    quote:
-      "The only grass tennis courts of the Indian Ocean — impeccably maintained. A rare privilege on this side of the world.",
+    id: 2,
     name: "Priya M.",
-    role: "Tennis Section",
+    role: "Member since 2015",
+    company: "Tennis Section",
+    content:
+      "The only grass tennis courts of the Indian Ocean — impeccably maintained. A rare privilege on this side of the world.",
+    rating: 5,
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=faces&auto=format",
   },
   {
-    quote:
+    id: 3,
+    name: "Julien D.",
+    role: "Private Event",
+    company: "Wedding, 2025",
+    content:
       "We hosted our wedding on the veranda. Every detail, from the shuttered light to the service, felt effortlessly considered.",
-    name: "Julien & Aisha D.",
-    role: "Private Event, 2025",
+    rating: 5,
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=faces&auto=format",
   },
-] as const;
+  {
+    id: 4,
+    name: "Aisha K.",
+    role: "Corporate Member",
+    company: "Venue Hire",
+    content:
+      "We ran our annual gala in the Multipurpose Hall and the team handled every last detail. Our guests are still talking about the estate.",
+    rating: 5,
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=faces&auto=format",
+  },
+];
 
 function Testimonials() {
   return (
-    <section className="py-24 bg-cream">
-      <div className="mx-auto max-w-7xl px-6">
-        <Reveal className="mb-16 max-w-2xl">
-          <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-3">
-            In their words
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl text-pine text-balance">
-            A community that stays.
-          </h2>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          {TESTIMONIALS.map((t, i) => (
-            <Reveal key={t.name}>
-              <figure className="h-full flex flex-col">
-                <Quote className="size-6 text-gold mb-6" strokeWidth={1.5} />
-                <blockquote className="font-serif text-xl text-pine/90 leading-relaxed text-pretty mb-6">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-auto pt-6 border-t border-pine/10">
-                  <div className="text-sm font-semibold text-ink">{t.name}</div>
-                  <div className="text-xs uppercase tracking-widest text-ink/50 mt-1">
-                    {t.role}
-                  </div>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
+    <AnimatedTestimonials
+      badgeText="In their words"
+      title="A community that stays."
+      subtitle="From the fairways of the 1844 Course to the veranda of the Brasserie, our members and guests share what keeps them coming back to the Gymkhana."
+      testimonials={TESTIMONIALS}
+    />
   );
 }
 
 /* ---------- Reciprocal clubs strip ---------- */
+const RECIPROCAL_ROW_1 = RECIPROCAL_CLUBS.slice(0, Math.ceil(RECIPROCAL_CLUBS.length / 2));
+const RECIPROCAL_ROW_2 = RECIPROCAL_CLUBS.slice(Math.ceil(RECIPROCAL_CLUBS.length / 2));
+
 function ReciprocalStrip() {
-  const clubs = RECIPROCAL_CLUBS.slice(0, 12);
   return (
     <section className="py-20 bg-pine text-cream border-t border-gold/15">
       <div className="mx-auto max-w-7xl px-6">
-        <Reveal className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <Reveal className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <div>
             <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-3">
               Reciprocal access
@@ -277,21 +279,59 @@ function ReciprocalStrip() {
             See the full list <ArrowRight className="size-4" />
           </Link>
         </Reveal>
-        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-3">
-          {clubs.map((c) => (
-            <li
-              key={c.name}
-              className="text-cream/75 text-sm py-2 border-b border-cream/10 flex items-baseline justify-between gap-4"
-            >
-              <span className="font-serif text-base truncate">{c.name}</span>
-              <span className="text-[10px] uppercase tracking-widest text-gold/80 shrink-0">
-                {c.country}
-              </span>
-            </li>
+      </div>
+
+      <div className="relative">
+        <Marquee pauseOnHover className="[--duration:50s] [--gap:1.5rem]">
+          {RECIPROCAL_ROW_1.map((club) => (
+            <ReciprocalClubCard key={club.name} club={club} />
           ))}
-        </ul>
+        </Marquee>
+        <Marquee reverse pauseOnHover className="mt-6 [--duration:50s] [--gap:1.5rem]">
+          {RECIPROCAL_ROW_2.map((club) => (
+            <ReciprocalClubCard key={club.name} club={club} />
+          ))}
+        </Marquee>
+        {/* Edge fades so cards scroll in/out under the pine background rather than clipping */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-32 bg-linear-to-r from-pine to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-32 bg-linear-to-l from-pine to-transparent" />
       </div>
     </section>
+  );
+}
+
+/** First letters of the club's two most significant words — its emblem when no crest artwork exists. */
+function clubInitials(name: string) {
+  const words = name
+    .replace(/[^\w\s]/g, "")
+    .split(" ")
+    .filter((w) => w && !["the", "of", "and"].includes(w.toLowerCase()));
+  return words
+    .slice(0, 2)
+    .map((w) => w[0]!.toUpperCase())
+    .join("");
+}
+
+function ReciprocalClubCard({ club }: { club: ReciprocalClub }) {
+  return (
+    <div className="flex h-full w-72 shrink-0 flex-col items-center rounded-sm border border-cream/10 bg-pine-deep/70 px-6 py-8 text-center transition-colors hover:border-gold/40">
+      {/* Logo emblem — the focal point of the card */}
+      <div className="relative mb-5 flex size-20 shrink-0 items-center justify-center rounded-full border border-gold/30 bg-linear-to-b from-gold/15 to-transparent">
+        <span className="font-serif text-2xl text-gold">{clubInitials(club.name)}</span>
+        <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-gold/20" />
+      </div>
+
+      <h3 className="font-serif text-lg text-cream text-balance leading-snug">{club.name}</h3>
+      <span className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.25em] text-gold/80">
+        {club.country}
+      </span>
+
+      <div className="mt-5 w-full space-y-1.5 border-t border-cream/10 pt-4 text-xs leading-relaxed">
+        <p className="text-cream/65 text-pretty">{club.address}</p>
+        <p className="text-cream/45">{club.phone}</p>
+        <p className="truncate text-gold/70">{club.website}</p>
+      </div>
+    </div>
   );
 }
 
