@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Plus } from "lucide-react";
+import { ArrowRight, Plus, Crown, Flag, Sparkles, Quote } from "lucide-react";
 import { motion } from "motion/react";
 import { ActionButton } from "@/components/action-button";
 import { Reveal } from "@/components/reveal";
+import { RECIPROCAL_CLUBS } from "@/lib/reciprocal-clubs-data";
 import heroGolf from "@/assets/hero-golf-course.jpg";
 import sportGolf from "@/assets/sport-golf.jpg";
 import sportTennis from "@/assets/sport-tennis.png";
@@ -20,6 +21,9 @@ function Home() {
   return (
     <>
       <CinematicHero />
+
+      {/* 3 Personas — pathways */}
+      <Personas />
 
       {/* Heritage fact band */}
       <section className="bg-pine py-14 border-b border-gold/20">
@@ -153,6 +157,12 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials */}
+      <Testimonials />
+
+      {/* Reciprocal clubs proof */}
+      <ReciprocalStrip />
 
       {/* Membership CTA */}
       <section className="py-24">
