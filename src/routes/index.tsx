@@ -443,6 +443,21 @@ function CinematicHero() {
               <ArrowRight />
             </ActionButton>
           </motion.div>
+          <motion.ul
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              duration: 1,
+              delay: 0.8 + words.length * 0.08 + 0.5,
+            }}
+            className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-cream/70 text-xs uppercase tracking-[0.28em]"
+          >
+            <li><span className="text-gold font-semibold">180</span> years of heritage</li>
+            <li className="hidden sm:block h-3 w-px bg-cream/25" aria-hidden />
+            <li><span className="text-gold font-semibold">26</span> reciprocal clubs</li>
+            <li className="hidden sm:block h-3 w-px bg-cream/25" aria-hidden />
+            <li><span className="text-gold font-semibold">6</span> sports · one estate</li>
+          </motion.ul>
         </div>
       </div>
 
