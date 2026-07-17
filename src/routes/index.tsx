@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Plus, Crown, Flag, Sparkles, Quote } from "lucide-react";
+import { ArrowRight, Plus, Quote } from "lucide-react";
 import { motion } from "motion/react";
 import { ActionButton } from "@/components/action-button";
 import { Reveal } from "@/components/reveal";
@@ -21,9 +21,6 @@ function Home() {
   return (
     <>
       <CinematicHero />
-
-      {/* 3 Personas — pathways */}
-      <Personas />
 
       {/* Heritage fact band */}
       <section className="bg-pine py-14 border-b border-gold/20">
