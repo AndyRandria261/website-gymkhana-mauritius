@@ -201,6 +201,175 @@ function Fact({ year, text }: { year: string; text: string }) {
   );
 }
 
+/* ---------- 3 Personas Cards ---------- */
+const PERSONAS = [
+  {
+    icon: Crown,
+    overline: "Prospective Member",
+    title: "Become a Member",
+    body: "Join a 180-year legacy. Individual, family and corporate memberships open — with reciprocal access to 26 clubs worldwide.",
+    linkTo: "/membership",
+    linkLabel: "Explore membership",
+  },
+  {
+    icon: Flag,
+    overline: "Visitor · Green Fees",
+    title: "Play Today",
+    body: "Non-members are welcome on the 1844 Course and the grass tennis courts. Reserve a tee time or a court within minutes.",
+    linkTo: "/sports/golf",
+    linkLabel: "Visitor green fees",
+  },
+  {
+    icon: Sparkles,
+    overline: "Event Planner",
+    title: "Host an Event",
+    body: "Weddings, galas, corporate retreats and private dinners staged inside the historic clubhouse and Multipurpose Hall.",
+    linkTo: "/venue-hire",
+    linkLabel: "Venue hire",
+  },
+] as const;
+
+function Personas() {
+  return (
+    <section className="relative -mt-20 z-20">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          {PERSONAS.map((p, i) => (
+            <motion.div
+              key={p.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Link
+                to={p.linkTo}
+                className="group block h-full bg-cream border border-pine/10 shadow-[0_20px_60px_-30px_rgba(27,67,50,0.35)] p-8 md:p-10 rounded-sm transition-all hover:shadow-[0_30px_80px_-30px_rgba(27,67,50,0.5)] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              >
+                <div className="flex items-center justify-between mb-8">
+                  <span className="inline-flex size-11 items-center justify-center rounded-full bg-pine/5 text-pine">
+                    <p.icon className="size-5" strokeWidth={1.5} />
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-gold">
+                    {p.overline}
+                  </span>
+                </div>
+                <h3 className="font-serif text-3xl text-pine mb-4 text-balance">
+                  {p.title}
+                </h3>
+                <p className="text-ink/70 text-sm leading-relaxed mb-8 text-pretty">
+                  {p.body}
+                </p>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-pine border-b border-pine/20 pb-1 transition-colors group-hover:border-gold">
+                  {p.linkLabel}
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Testimonials ---------- */
+const TESTIMONIALS = [
+  {
+    quote:
+      "Playing the 1844 Course feels like walking through a living chapter of golf history. There is nowhere else quite like the Gymkhana.",
+    name: "Charles L.",
+    role: "Member since 2007",
+  },
+  {
+    quote:
+      "The only grass tennis courts of the Indian Ocean — impeccably maintained. A rare privilege on this side of the world.",
+    name: "Priya M.",
+    role: "Tennis Section",
+  },
+  {
+    quote:
+      "We hosted our wedding on the veranda. Every detail, from the shuttered light to the service, felt effortlessly considered.",
+    name: "Julien & Aisha D.",
+    role: "Private Event, 2025",
+  },
+] as const;
+
+function Testimonials() {
+  return (
+    <section className="py-24 bg-cream">
+      <div className="mx-auto max-w-7xl px-6">
+        <Reveal className="mb-16 max-w-2xl">
+          <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-3">
+            In their words
+          </span>
+          <h2 className="font-serif text-4xl md:text-5xl text-pine text-balance">
+            A community that stays.
+          </h2>
+        </Reveal>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+          {TESTIMONIALS.map((t, i) => (
+            <Reveal key={t.name}>
+              <figure className="h-full flex flex-col">
+                <Quote className="size-6 text-gold mb-6" strokeWidth={1.5} />
+                <blockquote className="font-serif text-xl text-pine/90 leading-relaxed text-pretty mb-6">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-auto pt-6 border-t border-pine/10">
+                  <div className="text-sm font-semibold text-ink">{t.name}</div>
+                  <div className="text-xs uppercase tracking-widest text-ink/50 mt-1">
+                    {t.role}
+                  </div>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Reciprocal clubs strip ---------- */
+function ReciprocalStrip() {
+  const clubs = RECIPROCAL_CLUBS.slice(0, 12);
+  return (
+    <section className="py-20 bg-pine text-cream border-t border-gold/15">
+      <div className="mx-auto max-w-7xl px-6">
+        <Reveal className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <div>
+            <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-3">
+              Reciprocal access
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl text-cream text-balance max-w-2xl">
+              Members welcomed at {RECIPROCAL_CLUBS.length} sister clubs across the world.
+            </h2>
+          </div>
+          <Link
+            to="/membership/reciprocal"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-cream border-b border-cream/25 pb-1 transition-colors hover:border-gold hover:text-gold"
+          >
+            See the full list <ArrowRight className="size-4" />
+          </Link>
+        </Reveal>
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-3">
+          {clubs.map((c) => (
+            <li
+              key={c.name}
+              className="text-cream/75 text-sm py-2 border-b border-cream/10 flex items-baseline justify-between gap-4"
+            >
+              <span className="font-serif text-base truncate">{c.name}</span>
+              <span className="text-[10px] uppercase tracking-widest text-gold/80 shrink-0">
+                {c.country}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 const HERO_TITLE = "The Living Heart of Mauritian Sporting Heritage";
 
 function CinematicHero() {
