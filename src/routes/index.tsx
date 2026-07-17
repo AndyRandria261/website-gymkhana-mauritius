@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Plus, Crown, Flag, Sparkles, Quote } from "lucide-react";
+import { ArrowRight, Plus, Quote } from "lucide-react";
 import { motion } from "motion/react";
 import { ActionButton } from "@/components/action-button";
 import { Reveal } from "@/components/reveal";
@@ -21,9 +21,6 @@ function Home() {
   return (
     <>
       <CinematicHero />
-
-      {/* 3 Personas — pathways */}
-      <Personas />
 
       {/* Heritage fact band */}
       <section className="bg-pine py-14 border-b border-gold/20">
@@ -198,78 +195,6 @@ function Fact({ year, text }: { year: string; text: string }) {
       <span className="block font-serif text-3xl text-gold">{year}</span>
       <p className="text-cream/70 text-sm max-w-[22ch] leading-snug">{text}</p>
     </div>
-  );
-}
-
-/* ---------- 3 Personas Cards ---------- */
-const PERSONAS = [
-  {
-    icon: Crown,
-    overline: "Prospective Member",
-    title: "Become a Member",
-    body: "Join a 180-year legacy. Individual, family and corporate memberships open — with reciprocal access to 26 clubs worldwide.",
-    linkTo: "/membership",
-    linkLabel: "Explore membership",
-  },
-  {
-    icon: Flag,
-    overline: "Visitor · Green Fees",
-    title: "Play Today",
-    body: "Non-members are welcome on the 1844 Course and the grass tennis courts. Reserve a tee time or a court within minutes.",
-    linkTo: "/sports/golf",
-    linkLabel: "Visitor green fees",
-  },
-  {
-    icon: Sparkles,
-    overline: "Event Planner",
-    title: "Host an Event",
-    body: "Weddings, galas, corporate retreats and private dinners staged inside the historic clubhouse and Multipurpose Hall.",
-    linkTo: "/venue-hire",
-    linkLabel: "Venue hire",
-  },
-] as const;
-
-function Personas() {
-  return (
-    <section className="relative -mt-20 z-20">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          {PERSONAS.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <Link
-                to={p.linkTo}
-                className="group block h-full bg-cream border border-pine/10 shadow-[0_20px_60px_-30px_rgba(27,67,50,0.35)] p-8 md:p-10 rounded-sm transition-all hover:shadow-[0_30px_80px_-30px_rgba(27,67,50,0.5)] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-              >
-                <div className="flex items-center justify-between mb-8">
-                  <span className="inline-flex size-11 items-center justify-center rounded-full bg-pine/5 text-pine">
-                    <p.icon className="size-5" strokeWidth={1.5} />
-                  </span>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-gold">
-                    {p.overline}
-                  </span>
-                </div>
-                <h3 className="font-serif text-3xl text-pine mb-4 text-balance">
-                  {p.title}
-                </h3>
-                <p className="text-ink/70 text-sm leading-relaxed mb-8 text-pretty">
-                  {p.body}
-                </p>
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-pine border-b border-pine/20 pb-1 transition-colors group-hover:border-gold">
-                  {p.linkLabel}
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 }
 
