@@ -301,10 +301,14 @@ const HERO_FRAMES = [
   { src: sportPool, alt: "The heated swimming pool at dusk", kb: 2 },
 ] as const;
 
+// Every scale value stays >= 1.04 — the minimum overscan needed so object-cover
+// still fully covers the frame at this preset's largest paired translate (1.4%).
+// Dropping to 1.0–1.02 (as some of these once did) leaves zero slack, so the
+// translate slides the image off one edge and uncovers a bare sliver of frame.
 const KB_PRESETS = [
-  { from: { scale: 1.16, x: "-1.2%", y: "1%" }, to: { scale: 1.02, x: "0.6%", y: "-0.6%" } },
-  { from: { scale: 1.02, x: "1.2%", y: "-1%" }, to: { scale: 1.2, x: "-0.6%", y: "0.6%" } },
-  { from: { scale: 1.14, x: "-1.4%", y: "-0.8%" }, to: { scale: 1.0, x: "0.8%", y: "0.6%" } },
+  { from: { scale: 1.16, x: "-1.2%", y: "1%" }, to: { scale: 1.04, x: "0.6%", y: "-0.6%" } },
+  { from: { scale: 1.04, x: "1.2%", y: "-1%" }, to: { scale: 1.2, x: "-0.6%", y: "0.6%" } },
+  { from: { scale: 1.14, x: "-1.4%", y: "-0.8%" }, to: { scale: 1.04, x: "0.8%", y: "0.6%" } },
   { from: { scale: 1.04, x: "1.4%", y: "0.8%" }, to: { scale: 1.2, x: "-0.6%", y: "-0.6%" } },
 ] as const;
 
@@ -384,10 +388,17 @@ function CinematicHero() {
             }
       }
     >
-      {/* Image layer with drone-flyover sequence + entry blur reveal */}
+      {/* Image layer with drone-flyover sequence + entry blur reveal.
+          Settles at scale 1.1, not 1 — the mouse parallax below shifts this
+          whole layer (images + vignette + grain, all its children) by up to
+          ±14px/±10px, and at scale 1 that has zero slack, so the shift used
+          to slide the layer off one edge of the section and expose bare,
+          unvignetted background there. The permanent 10% overscan (5% per
+          side) comfortably absorbs that translate at any realistic viewport
+          width, so the layer always fully covers the section. */}
       <motion.div
-        initial={{ scale: 1.06, filter: "blur(14px)", opacity: 0.35 }}
-        animate={{ scale: 1, filter: "blur(0px)", opacity: 1 }}
+        initial={{ scale: 1.16, filter: "blur(14px)", opacity: 0.35 }}
+        animate={{ scale: 1.1, filter: "blur(0px)", opacity: 1 }}
         transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
         style={reduce ? undefined : { x: px, y: py }}
         className="absolute inset-0 z-0"
