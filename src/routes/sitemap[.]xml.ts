@@ -8,7 +8,7 @@ const PATHS = [
   "/the-club/history",
   "/the-club/committee",
   "/the-club/careers",
-  "/the-club/tenders",
+  "/the-club/procurement",
   "/the-club/rules",
   "/sports",
   "/sports/golf",
