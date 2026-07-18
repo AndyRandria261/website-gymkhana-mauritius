@@ -56,8 +56,6 @@
   --color-pine-deep: var(--pine-deep);
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
-  --color-emerald: var(--emerald);
-  --color-emerald-deep: var(--emerald-deep);
   --color-cream: var(--cream);
   --color-ink: var(--ink);
   --font-serif: "DM Serif Display", ui-serif, Georgia, serif;
@@ -66,17 +64,13 @@
 
 :root {
   --radius: 0.375rem;
-  /* Brand tokens — "Indigo & Emerald" (anchored on the MGC crest royal blue) */
-  /* `pine` is kept as the primary token name for backwards compatibility across
-     components, but now renders the deep royal indigo of the crest. */
-  --pine: oklch(0.28 0.16 278);        /* #1E1E6E royal indigo — crest blue */
-  --pine-deep: oklch(0.22 0.15 278);   /* #14135A deeper indigo */
-  --emerald: oklch(0.42 0.09 165);     /* #0C5F45 deep golf-course green */
-  --emerald-deep: oklch(0.30 0.07 165);/* #083D2D shadow emerald */
-  --gold: oklch(0.75 0.14 82);         /* #D4A03A richer brass gold */
-  --gold-soft: oklch(0.87 0.09 85);
-  --cream: oklch(0.97 0.02 92);        /* #FBF7EC warm ivory */
-  --ink: oklch(0.22 0.008 60);         /* deeper warm near-black */
+  /* Brand tokens (from user pick) */
+  --pine: oklch(0.32 0.055 155);       /* #1B4332 deep tropical green */
+  --pine-deep: oklch(0.24 0.045 155);
+  --gold: oklch(0.78 0.135 82);        /* #E8B04B warm gold */
+  --gold-soft: oklch(0.88 0.08 85);
+  --cream: oklch(0.98 0.012 90);       /* #FDFBF5 warm cream */
+  --ink: oklch(0.24 0.008 60);         /* #2D2A26 near-black warm */
 
   /* Semantic mapping */
   --background: var(--cream);
@@ -95,8 +89,8 @@
   --accent-foreground: var(--ink);
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: var(--cream);
-  --border: oklch(0.28 0.16 278 / 0.14);
-  --input: oklch(0.28 0.16 278 / 0.20);
+  --border: oklch(0.32 0.055 155 / 0.12);
+  --input: oklch(0.32 0.055 155 / 0.18);
   --ring: var(--pine);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -109,7 +103,7 @@
   --sidebar-primary-foreground: var(--cream);
   --sidebar-accent: var(--gold);
   --sidebar-accent-foreground: var(--ink);
-  --sidebar-border: oklch(0.28 0.16 278 / 0.14);
+  --sidebar-border: oklch(0.32 0.055 155 / 0.12);
   --sidebar-ring: var(--pine);
 }
 
