@@ -1,12 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Plus } from "lucide-react";
-import { motion } from "motion/react";
+import {
+  motion,
+  useAnimationControls,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+} from "motion/react";
+import { useEffect, useState } from "react";
 import { ActionButton } from "@/components/action-button";
 import { Reveal } from "@/components/reveal";
 import { AnimatedTestimonials, type Testimonial } from "@/components/ui/animated-testimonials";
 import { Marquee } from "@/components/ui/marquee";
 import { RECIPROCAL_CLUBS, type ReciprocalClub } from "@/lib/reciprocal-clubs-data";
 import heroGolf from "@/assets/hero-golf-course.jpg";
+import heroTennis from "@/assets/hero-tennis-grass.jpg";
 import sportGolf from "@/assets/sport-golf.jpg";
 import sportTennis from "@/assets/sport-tennis.png";
 import sportSquash from "@/assets/sport-squash.jpg";
