@@ -48,7 +48,6 @@ const MEGA_NAV: MegaSection[] = [
         links: [
           { to: "/the-club/careers", label: "Careers", description: "Join the team" },
           { to: "/the-club/procurement", label: "Procurement", description: "Open tenders" },
-          { to: "/contact", label: "Contact", description: "Reach the office" },
         ],
       },
     ],
@@ -134,7 +133,6 @@ const MEGA_NAV: MegaSection[] = [
         heading: "Stay in touch",
         links: [
           { to: "/news", label: "News", description: "From the estate" },
-          { to: "/contact", label: "Contact", description: "Office & directions" },
         ],
       },
     ],
