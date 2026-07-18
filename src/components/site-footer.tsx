@@ -38,7 +38,7 @@ export function SiteFooter() {
             <FooterLink to="/the-club/history">Our History</FooterLink>
             <FooterLink to="/membership/reciprocal">Reciprocal Clubs</FooterLink>
             <FooterLink to="/the-club/careers">Careers</FooterLink>
-            <FooterLink to="/the-club/tenders">Tender Bids</FooterLink>
+            <FooterLink to="/the-club/procurement">Procurement</FooterLink>
           </FooterCol>
           <FooterCol title="Activities">
             <FooterLink to="/sports/golf">Golf</FooterLink>

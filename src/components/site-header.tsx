@@ -47,7 +47,7 @@ const MEGA_NAV: MegaSection[] = [
         heading: "Working with us",
         links: [
           { to: "/the-club/careers", label: "Careers", description: "Join the team" },
-          { to: "/the-club/tenders", label: "Tenders", description: "Open procurement" },
+          { to: "/the-club/procurement", label: "Procurement", description: "Open tenders" },
           { to: "/contact", label: "Contact", description: "Reach the office" },
         ],
       },

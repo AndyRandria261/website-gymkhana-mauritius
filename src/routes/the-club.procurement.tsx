@@ -4,19 +4,19 @@ import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import img from "@/assets/venue-events.jpg";
 
-export const Route = createFileRoute("/the-club/tenders")({
+export const Route = createFileRoute("/the-club/procurement")({
   head: () => ({
     meta: [
-      { title: "Tender Bids — Mauritius Gymkhana Club" },
+      { title: "Procurement — Mauritius Gymkhana Club" },
       {
         name: "description",
         content: "Current tender bids and procurement notices from the Mauritius Gymkhana Club.",
       },
-      { property: "og:title", content: "Tender Bids — MGC" },
+      { property: "og:title", content: "Procurement — MGC" },
       { property: "og:image", content: img },
     ],
   }),
-  component: TendersPage,
+  component: ProcurementPage,
 });
 
 type Tender = {
@@ -30,14 +30,14 @@ const TENDERS: Tender[] = [];
 
 const LAST_UPDATED = "14 July 2026";
 
-function TendersPage() {
+function ProcurementPage() {
   const open = TENDERS.filter((t) => new Date(`${t.deadline}T23:59:59`) >= new Date());
 
   return (
     <>
       <PageHero
         overline="Procurement"
-        title="Tender bids"
+        title="Procurement"
         intro="From time to time the club publishes tender notices for supply, maintenance or professional services."
         image={img}
         imageAlt="Detail of the MGC clubhouse"
