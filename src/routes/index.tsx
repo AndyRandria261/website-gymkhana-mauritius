@@ -1,12 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Plus } from "lucide-react";
-import { motion } from "motion/react";
+import {
+  motion,
+  useAnimationControls,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+} from "motion/react";
+import { useEffect, useState } from "react";
 import { ActionButton } from "@/components/action-button";
 import { Reveal } from "@/components/reveal";
 import { AnimatedTestimonials, type Testimonial } from "@/components/ui/animated-testimonials";
 import { Marquee } from "@/components/ui/marquee";
 import { RECIPROCAL_CLUBS, type ReciprocalClub } from "@/lib/reciprocal-clubs-data";
 import heroGolf from "@/assets/hero-golf-course.jpg";
+import heroTennis from "@/assets/hero-tennis-grass.jpg";
 import sportGolf from "@/assets/sport-golf.jpg";
 import sportTennis from "@/assets/sport-tennis.png";
 import sportSquash from "@/assets/sport-squash.jpg";
@@ -337,30 +346,129 @@ function ReciprocalClubCard({ club }: { club: ReciprocalClub }) {
 
 const HERO_TITLE = "The Living Heart of Mauritian Sporting Heritage";
 
+/**
+ * Drone-flyover hero sequence: seven aerial + ground plates crossfade with
+ * per-frame Ken Burns motion so it reads as one continuous camera move rather
+ * than a slideshow. Total loop ≈ 36s. Respects prefers-reduced-motion.
+ */
+const HERO_FRAMES = [
+  { src: heroGolf, alt: "Wide aerial view of the Mauritius Gymkhana estate at sunset", kb: 0 },
+  { src: sportGolf, alt: "Descending over the 1844 golf course fairways", kb: 1 },
+  { src: heroTennis, alt: "The grass tennis courts from above", kb: 2 },
+  { src: sportTennis, alt: "Sweeping across the tennis pavilion", kb: 3 },
+  { src: venueEvents, alt: "The historic clubhouse dressed for a private event", kb: 0 },
+  { src: diningBrasserie, alt: "The Brasserie veranda at golden hour", kb: 1 },
+  { src: sportPool, alt: "The heated swimming pool at dusk", kb: 2 },
+] as const;
+
+const KB_PRESETS = [
+  { from: { scale: 1.16, x: "-1.2%", y: "1%" }, to: { scale: 1.02, x: "0.6%", y: "-0.6%" } },
+  { from: { scale: 1.02, x: "1.2%", y: "-1%" }, to: { scale: 1.2, x: "-0.6%", y: "0.6%" } },
+  { from: { scale: 1.14, x: "-1.4%", y: "-0.8%" }, to: { scale: 1.0, x: "0.8%", y: "0.6%" } },
+  { from: { scale: 1.04, x: "1.4%", y: "0.8%" }, to: { scale: 1.2, x: "-0.6%", y: "-0.6%" } },
+] as const;
+
+const FRAME_MS = 5200; // per-frame dwell; 7 × 5.2s ≈ 36s loop
+const CROSSFADE_S = 1.4;
+const KB_DURATION_S = 6.8; // slightly longer than dwell so motion never stalls
+
+function HeroFrame({ frame, active, eager }: { frame: (typeof HERO_FRAMES)[number]; active: boolean; eager: boolean }) {
+  const preset = KB_PRESETS[frame.kb];
+  const controls = useAnimationControls();
+  const reduce = useReducedMotion();
+  useEffect(() => {
+    if (!active) return;
+    if (reduce) {
+      controls.set({ scale: 1, x: "0%", y: "0%" });
+      return;
+    }
+    controls.set(preset.from);
+    controls.start({
+      scale: preset.to.scale,
+      x: preset.to.x,
+      y: preset.to.y,
+      transition: { duration: KB_DURATION_S, ease: "linear" },
+    });
+  }, [active, controls, preset, reduce]);
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: active ? 1 : 0, filter: active ? "blur(0px)" : "blur(6px)" }}
+      transition={{ duration: CROSSFADE_S, ease: [0.4, 0, 0.2, 1] }}
+      className="absolute inset-0"
+    >
+      <motion.img
+        src={frame.src}
+        alt={frame.alt}
+        animate={controls}
+        initial={preset.from}
+        className="h-full w-full object-cover"
+        loading={eager ? "eager" : "lazy"}
+        fetchPriority={eager ? "high" : "auto"}
+        draggable={false}
+      />
+    </motion.div>
+  );
+}
+
 function CinematicHero() {
   const words = HERO_TITLE.split(" ");
+  const reduce = useReducedMotion();
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (reduce) return;
+    const id = window.setInterval(
+      () => setActive((i) => (i + 1) % HERO_FRAMES.length),
+      FRAME_MS,
+    );
+    return () => window.clearInterval(id);
+  }, [reduce]);
+
+  // Gentle mouse parallax on the whole image layer.
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const px = useSpring(useTransform(mx, [-1, 1], [-14, 14]), { stiffness: 40, damping: 20, mass: 0.6 });
+  const py = useSpring(useTransform(my, [-1, 1], [-10, 10]), { stiffness: 40, damping: 20, mass: 0.6 });
+
   return (
-    <section className="relative min-h-screen flex flex-col justify-end pt-20 overflow-hidden">
-      {/* Image layer with Ken Burns + entry scale/blur */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <motion.div
-          initial={{ scale: 1.15, filter: "blur(12px)", opacity: 0.4 }}
-          animate={{ scale: 1, filter: "blur(0px)", opacity: 1 }}
-          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0"
-        >
-          <img
-            src={heroGolf}
-            alt="The MGC golf course at sunset with the colonial clubhouse in the distance"
-            className="ken-burns h-full w-full object-cover"
-            fetchPriority="high"
-          />
-        </motion.div>
+    <section
+      className="relative min-h-screen flex flex-col justify-end pt-20 overflow-hidden"
+      onMouseMove={
+        reduce
+          ? undefined
+          : (e) => {
+              const r = e.currentTarget.getBoundingClientRect();
+              mx.set(((e.clientX - r.left) / r.width) * 2 - 1);
+              my.set(((e.clientY - r.top) / r.height) * 2 - 1);
+            }
+      }
+    >
+      {/* Image layer with drone-flyover sequence + entry blur reveal */}
+      <motion.div
+        initial={{ scale: 1.06, filter: "blur(14px)", opacity: 0.35 }}
+        animate={{ scale: 1, filter: "blur(0px)", opacity: 1 }}
+        transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+        style={reduce ? undefined : { x: px, y: py }}
+        className="absolute inset-0 z-0"
+      >
+        {HERO_FRAMES.map((frame, i) => (
+          <HeroFrame key={i} frame={frame} active={i === active} eager={i === 0} />
+        ))}
         {/* Cinematic overlays */}
+        <div className="absolute inset-0 bg-linear-to-t from-pine/85 via-pine/30 to-pine/45" />
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(65% 55% at 50% 42%, color-mix(in oklab, var(--gold) 14%, transparent), transparent 72%)",
+            mixBlendMode: "soft-light",
+          }}
+        />
         <div className="vignette" />
         <div className="film-grain" />
-        <div className="absolute inset-0 bg-linear-to-t from-pine/80 via-pine/25 to-pine/40" />
-      </div>
+      </motion.div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-24">
         <div className="max-w-3xl">
