@@ -177,12 +177,16 @@
   100% { transform: translate(0, 0); }
 }
 
-/* Cinematic vignette — radial darkening around the frame */
+/* Cinematic vignette — radial darkening around the frame.
+   `farthest-side` (not the default farthest-corner) so the dark stop is
+   reached at the edge midpoints too, not just the corners — otherwise the
+   ellipse overshoots past the sides and the mid-edges never reach full
+   opacity, leaving the frame looking uncovered along the top/bottom/sides. */
 @utility vignette {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.45) 100%);
+  background: radial-gradient(ellipse farthest-side at center, transparent 45%, rgba(0,0,0,0.45) 100%);
 }
 
 /* Scroll reveals are a progressive enhancement: if JavaScript never runs,
