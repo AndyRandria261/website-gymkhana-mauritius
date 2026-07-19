@@ -487,60 +487,6 @@ function CinematicHero() {
   );
 }
 
-/**
- * One card treatment for every sport: image, pine scrim, title over the image.
- * Size is varied through `aspect` / `className` only — never through a second
- * visual language.
- */
-function SportCard({
-  image,
-  title,
-  overline,
-  to,
-  className = "",
-  aspect = "aspect-[4/3]",
-  large,
-}: {
-  image: string;
-  title: string;
-  overline?: string;
-  to: string;
-  className?: string;
-  aspect?: string;
-  large?: boolean;
-}) {
-  return (
-    <Link
-      to={to}
-      className={`group relative overflow-hidden rounded-sm ring-1 ring-black/5 ${aspect} ${className} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream`}
-    >
-      {/* Decorative: the link is already named by the heading below. */}
-      <img
-        src={image}
-        alt=""
-        loading="lazy"
-        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.03]"
-      />
-      <div className="absolute inset-0 bg-linear-to-t from-pine/85 via-pine/25 to-transparent" />
-      <div className="absolute inset-x-6 bottom-6 flex items-end justify-between gap-4">
-        <div>
-          <h3
-            className={`font-serif text-cream ${large ? "text-3xl md:text-4xl" : "text-2xl"}`}
-          >
-            {title}
-          </h3>
-          {overline && (
-            <p className="mt-1 text-[11px] uppercase tracking-widest text-cream/75">
-              {overline}
-            </p>
-          )}
-        </div>
-        <ArrowRight className="mb-1 size-4 shrink-0 text-cream/70 transition-transform group-hover:translate-x-1" />
-      </div>
-    </Link>
-  );
-}
-
 type Service = {
   to: string;
   image: string;
