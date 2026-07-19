@@ -156,7 +156,7 @@ const TIMELINE = [
       <div>
         <h3 className={heading}>A living heritage</h3>
         <p className={lead}>
-          Six sports, one estate, and a community of members that spans
+          Eleven sports, one estate, and a community of members that spans
           generations of Mauritian sporting life.
         </p>
       </div>
