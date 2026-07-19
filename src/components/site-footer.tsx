@@ -40,17 +40,24 @@ export function SiteFooter() {
             <FooterLink to="/the-club/careers">Careers</FooterLink>
             <FooterLink to="/the-club/procurement">Procurement</FooterLink>
           </FooterCol>
-          <FooterCol title="Activities">
+          <FooterCol title="Sports">
             <FooterLink to="/sports/golf">Golf</FooterLink>
             <FooterLink to="/sports/tennis">Grass Tennis</FooterLink>
-            <FooterLink to="/sports/fitness">Fitness</FooterLink>
-            <FooterLink to="/dining">Dining</FooterLink>
+            <FooterLink to="/sports/paddle">Paddle</FooterLink>
+            <FooterLink to="/sports/football">Six-a-side Football</FooterLink>
+            <FooterLink to="/sports">All Sports</FooterLink>
+          </FooterCol>
+          <FooterCol title="Studio">
+            <FooterLink to="/sports/yoga">Yoga</FooterLink>
+            <FooterLink to="/sports/taichi">Tai Chi</FooterLink>
+            <FooterLink to="/sports/zumba">Zumba</FooterLink>
+            <FooterLink to="/sports/bollywood">Bollywood Dance</FooterLink>
           </FooterCol>
           <FooterCol title="Visit">
+            <FooterLink to="/dining">Dining</FooterLink>
             <FooterLink to="/contact">Contact & Directions</FooterLink>
             <FooterLink to="/venue-hire">Venue Hire</FooterLink>
             <FooterLink to="/events">Events</FooterLink>
-            <FooterLink to="/news">News</FooterLink>
             <FooterLink to="/gallery">Gallery</FooterLink>
           </FooterCol>
         </div>
