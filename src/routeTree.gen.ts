@@ -19,8 +19,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SportsIndexRouteImport } from './routes/sports.index'
 import { Route as MembershipIndexRouteImport } from './routes/membership.index'
 import { Route as GalleryIndexRouteImport } from './routes/gallery.index'
-import { Route as TheClubTendersRouteImport } from './routes/the-club.tenders'
 import { Route as TheClubRulesRouteImport } from './routes/the-club.rules'
+import { Route as TheClubProcurementRouteImport } from './routes/the-club.procurement'
 import { Route as TheClubHistoryRouteImport } from './routes/the-club.history'
 import { Route as TheClubCommitteeRouteImport } from './routes/the-club.committee'
 import { Route as TheClubCareersRouteImport } from './routes/the-club.careers'
@@ -82,14 +82,14 @@ const GalleryIndexRoute = GalleryIndexRouteImport.update({
   path: '/gallery/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TheClubTendersRoute = TheClubTendersRouteImport.update({
-  id: '/the-club/tenders',
-  path: '/the-club/tenders',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TheClubRulesRoute = TheClubRulesRouteImport.update({
   id: '/the-club/rules',
   path: '/the-club/rules',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TheClubProcurementRoute = TheClubProcurementRouteImport.update({
+  id: '/the-club/procurement',
+  path: '/the-club/procurement',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TheClubHistoryRoute = TheClubHistoryRouteImport.update({
@@ -161,8 +161,8 @@ export interface FileRoutesByFullPath {
   '/the-club/careers': typeof TheClubCareersRoute
   '/the-club/committee': typeof TheClubCommitteeRoute
   '/the-club/history': typeof TheClubHistoryRoute
+  '/the-club/procurement': typeof TheClubProcurementRoute
   '/the-club/rules': typeof TheClubRulesRoute
-  '/the-club/tenders': typeof TheClubTendersRoute
   '/gallery/': typeof GalleryIndexRoute
   '/membership/': typeof MembershipIndexRoute
   '/sports/': typeof SportsIndexRoute
@@ -185,8 +185,8 @@ export interface FileRoutesByTo {
   '/the-club/careers': typeof TheClubCareersRoute
   '/the-club/committee': typeof TheClubCommitteeRoute
   '/the-club/history': typeof TheClubHistoryRoute
+  '/the-club/procurement': typeof TheClubProcurementRoute
   '/the-club/rules': typeof TheClubRulesRoute
-  '/the-club/tenders': typeof TheClubTendersRoute
   '/gallery': typeof GalleryIndexRoute
   '/membership': typeof MembershipIndexRoute
   '/sports': typeof SportsIndexRoute
@@ -210,8 +210,8 @@ export interface FileRoutesById {
   '/the-club/careers': typeof TheClubCareersRoute
   '/the-club/committee': typeof TheClubCommitteeRoute
   '/the-club/history': typeof TheClubHistoryRoute
+  '/the-club/procurement': typeof TheClubProcurementRoute
   '/the-club/rules': typeof TheClubRulesRoute
-  '/the-club/tenders': typeof TheClubTendersRoute
   '/gallery/': typeof GalleryIndexRoute
   '/membership/': typeof MembershipIndexRoute
   '/sports/': typeof SportsIndexRoute
@@ -236,8 +236,8 @@ export interface FileRouteTypes {
     | '/the-club/careers'
     | '/the-club/committee'
     | '/the-club/history'
+    | '/the-club/procurement'
     | '/the-club/rules'
-    | '/the-club/tenders'
     | '/gallery/'
     | '/membership/'
     | '/sports/'
@@ -260,8 +260,8 @@ export interface FileRouteTypes {
     | '/the-club/careers'
     | '/the-club/committee'
     | '/the-club/history'
+    | '/the-club/procurement'
     | '/the-club/rules'
-    | '/the-club/tenders'
     | '/gallery'
     | '/membership'
     | '/sports'
@@ -284,8 +284,8 @@ export interface FileRouteTypes {
     | '/the-club/careers'
     | '/the-club/committee'
     | '/the-club/history'
+    | '/the-club/procurement'
     | '/the-club/rules'
-    | '/the-club/tenders'
     | '/gallery/'
     | '/membership/'
     | '/sports/'
@@ -309,8 +309,8 @@ export interface RootRouteChildren {
   TheClubCareersRoute: typeof TheClubCareersRoute
   TheClubCommitteeRoute: typeof TheClubCommitteeRoute
   TheClubHistoryRoute: typeof TheClubHistoryRoute
+  TheClubProcurementRoute: typeof TheClubProcurementRoute
   TheClubRulesRoute: typeof TheClubRulesRoute
-  TheClubTendersRoute: typeof TheClubTendersRoute
   GalleryIndexRoute: typeof GalleryIndexRoute
   MembershipIndexRoute: typeof MembershipIndexRoute
   SportsIndexRoute: typeof SportsIndexRoute
@@ -388,18 +388,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/the-club/tenders': {
-      id: '/the-club/tenders'
-      path: '/the-club/tenders'
-      fullPath: '/the-club/tenders'
-      preLoaderRoute: typeof TheClubTendersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/the-club/rules': {
       id: '/the-club/rules'
       path: '/the-club/rules'
       fullPath: '/the-club/rules'
       preLoaderRoute: typeof TheClubRulesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/the-club/procurement': {
+      id: '/the-club/procurement'
+      path: '/the-club/procurement'
+      fullPath: '/the-club/procurement'
+      preLoaderRoute: typeof TheClubProcurementRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/the-club/history': {
@@ -493,8 +493,8 @@ const rootRouteChildren: RootRouteChildren = {
   TheClubCareersRoute: TheClubCareersRoute,
   TheClubCommitteeRoute: TheClubCommitteeRoute,
   TheClubHistoryRoute: TheClubHistoryRoute,
+  TheClubProcurementRoute: TheClubProcurementRoute,
   TheClubRulesRoute: TheClubRulesRoute,
-  TheClubTendersRoute: TheClubTendersRoute,
   GalleryIndexRoute: GalleryIndexRoute,
   MembershipIndexRoute: MembershipIndexRoute,
   SportsIndexRoute: SportsIndexRoute,
