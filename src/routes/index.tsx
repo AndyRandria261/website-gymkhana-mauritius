@@ -43,68 +43,8 @@ function Home() {
         </div>
       </section>
 
-      {/* Sports asymmetric grid */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div className="space-y-3 max-w-2xl">
-              <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-                Six sports · One estate
-              </span>
-              <h2 className="font-serif text-4xl md:text-5xl text-pine text-balance">
-                Centuries of Sport
-              </h2>
-              <p className="text-base text-ink/70 text-pretty leading-relaxed">
-                From the rolling fairways of our historic golf course to the precision
-                of the Indian Ocean's only grass tennis courts.
-              </p>
-            </div>
-            <Link
-              to="/sports"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-pine border-b border-pine/20 pb-1 transition-colors hover:text-pine/70 hover:border-gold focus-visible:outline-none focus-visible:border-gold"
-            >
-              All sports <ArrowRight className="size-4" />
-            </Link>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <SportCard
-              large
-              className="md:col-span-2"
-              aspect="aspect-[16/10]"
-              image={sportGolf}
-              title="The 1844 Course"
-              overline="Championship Golf · 18 holes"
-              to="/sports/golf"
-            />
-            <SportCard
-              aspect="aspect-square"
-              image={sportTennis}
-              title="Grass Tennis"
-              overline="The only grass courts of the Indian Ocean"
-              to="/sports/tennis"
-            />
-            <SportCard
-              image={sportSquash}
-              title="Squash"
-              overline="Two dedicated courts"
-              to="/sports/squash"
-            />
-            <SportCard
-              image={sportFitness}
-              title="Health & Fitness"
-              overline="Cardio & strength"
-              to="/sports/fitness"
-            />
-            <SportCard
-              image={sportPool}
-              title="Swimming"
-              overline="Heated · Open year-round"
-              to="/sports/pool"
-            />
-          </div>
-        </div>
-      </section>
+      {/* Sports — bento showcase */}
+      <ServiceShowcase />
 
       {/* Alternating dining / venue */}
       <section className="py-24 bg-pine/5">
