@@ -7,8 +7,8 @@ import sportPool from "@/assets/sport-pool.jpg";
 /**
  * Single source of truth for the club's sporting disciplines.
  *
- * Every consumer — the header mega-menu, the footer, the home showcase, the
- * /sports index and the sitemap — reads from this list rather than keeping its
+ * Every consumer -the header mega-menu, the footer, the home showcase, the
+ * /sports index and the sitemap -reads from this list rather than keeping its
  * own copy. Adding or renaming a sport is a one-line change here.
  *
  * The five heritage sports use optimised local assets; the six newer
@@ -49,7 +49,7 @@ export const SPORTS: readonly Sport[] = [
     overline: "Since 1844 · 18 holes",
     megaShort: "1844 · 18 holes",
     tagline:
-      "18 holes woven through 180 years of Mauritian history — the oldest course of the Southern Hemisphere, still played today.",
+      "18 holes woven through 180 years of Mauritian history -the oldest course of the Southern Hemisphere, still played today.",
     body: "The oldest golf course of the Southern Hemisphere, still played today.",
     stat: { value: "1844", label: "Founded" },
     cta: "Explore the course",
@@ -64,8 +64,8 @@ export const SPORTS: readonly Sport[] = [
     overline: "Only grass courts of the Indian Ocean",
     megaShort: "Grass & hard courts",
     tagline:
-      "The only manicured grass courts in the Indian Ocean — a Wimbledon-style bounce, minutes from Curepipe.",
-    body: "First courts laid in the 1940s — a signature of the club.",
+      "The only manicured grass courts in the Indian Ocean -a Wimbledon-style bounce, minutes from Curepipe.",
+    body: "First courts laid in the 1940s -a signature of the club.",
     stat: { value: "4", label: "Grass courts" },
     cta: "Discover tennis",
     image: sportTennis,
@@ -94,8 +94,8 @@ export const SPORTS: readonly Sport[] = [
     overline: "Glass courts · Doubles play",
     megaShort: "Fast, social doubles",
     tagline:
-      "The fastest-growing racquet sport in the world — social, easy to learn and endlessly addictive, on enclosed courts.",
-    body: "Enclosed courts for fast, sociable doubles — the club's newest racquet discipline.",
+      "The fastest-growing racquet sport in the world -social, easy to learn and endlessly addictive, on enclosed courts.",
+    body: "Enclosed courts for fast, sociable doubles -the club's newest racquet discipline.",
     stat: { value: "New", label: "Courts" },
     cta: "Book a court",
     image: unsplash("photo-1554068865-24cecd4e34b8"),
@@ -109,7 +109,7 @@ export const SPORTS: readonly Sport[] = [
     overline: "Studio · Mind & body",
     megaShort: "Mat & breath classes",
     tagline:
-      "Sunrise flows and restorative sessions in a light-filled studio — breath, balance and stillness above the estate.",
+      "Sunrise flows and restorative sessions in a light-filled studio -breath, balance and stillness above the estate.",
     body: "Vinyasa, Hatha and restorative classes for every level, from sunrise flows to gentle evening sessions.",
     stat: { value: "Daily", label: "Classes" },
     cta: "Find your flow",
@@ -124,7 +124,7 @@ export const SPORTS: readonly Sport[] = [
     overline: "Garden · Balance & flow",
     megaShort: "Slow-flow in the garden",
     tagline:
-      "Slow, deliberate movement practised in the morning garden — a quiet discipline of balance, breath and calm.",
+      "Slow, deliberate movement practised in the morning garden -a quiet discipline of balance, breath and calm.",
     body: "Gentle standing forms practised outdoors, cultivating balance, focus and calm.",
     stat: { value: "Dawn", label: "Sessions" },
     cta: "Find your balance",
@@ -139,7 +139,7 @@ export const SPORTS: readonly Sport[] = [
     overline: "Studio · Dance fitness",
     megaShort: "Dance-fitness cardio",
     tagline:
-      "A full-body dance-fitness party — Latin rhythms, big energy and a serious cardio workout that never feels like one.",
+      "A full-body dance-fitness party -Latin rhythms, big energy and a serious cardio workout that never feels like one.",
     body: "Latin-inspired dance-fitness classes that pack a cardio workout into a party.",
     stat: { value: "High", label: "Energy" },
     cta: "Feel the rhythm",
@@ -154,7 +154,7 @@ export const SPORTS: readonly Sport[] = [
     overline: "Studio · Rhythm & colour",
     megaShort: "Choreography & rhythm",
     tagline:
-      "High-energy choreography set to the beat of Mumbai — a joyful, expressive class for every generation.",
+      "High-energy choreography set to the beat of Mumbai -a joyful, expressive class for every generation.",
     body: "Expressive routines blending classical and film-style dance, for all ages and abilities.",
     stat: { value: "All", label: "Levels" },
     cta: "Join the beat",
@@ -169,7 +169,7 @@ export const SPORTS: readonly Sport[] = [
     overline: "Floodlit FootFive pitch",
     megaShort: "Floodlit FootFive pitch",
     tagline:
-      "Fast, floodlit six-a-side on the FootFive pitch — weekly fixtures, casual kickabouts and private bookings after dark.",
+      "Fast, floodlit six-a-side on the FootFive pitch -weekly fixtures, casual kickabouts and private bookings after dark.",
     body: "Book the floodlit FootFive pitch for six-a-side matches, leagues and evening kickabouts.",
     stat: { value: "6-a-side", label: "Format" },
     cta: "Book the pitch",
@@ -217,7 +217,7 @@ export function sportsByGroup(group: SportGroup): Sport[] {
 }
 
 /**
- * Curated line-up for the home showcase — a balance of heritage signatures and
+ * Curated line-up for the home showcase -a balance of heritage signatures and
  * the newest disciplines. The full eleven live on /sports.
  */
 export const FEATURED_SLUGS = ["golf", "tennis", "paddle", "yoga", "football"] as const;

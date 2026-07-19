@@ -12,7 +12,7 @@ const heroImg =
   "https://images.unsplash.com/photo-1535525153412-5a42439a210d?w=1600&q=80&auto=format&fit=crop";
 
 const ZUMBA_NOTE =
-  "Bring water and trainers with good grip — that's it. Reserve your place ahead of the class and we'll confirm the instructor and studio.";
+  "Bring water and trainers with good grip -that's it. Reserve your place ahead of the class and we'll confirm the instructor and studio.";
 
 export const Route = createFileRoute("/sports/zumba")({
   head: () => ({
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/sports/zumba")({
       {
         property: "og:description",
         content:
-          "A full-body dance-fitness party — Latin rhythms, big energy and a serious cardio workout.",
+          "A full-body dance-fitness party -Latin rhythms, big energy and a serious cardio workout.",
       },
       { property: "og:image", content: heroImg },
       { property: "og:type", content: "website" },
@@ -65,7 +65,7 @@ function ZumbaPage() {
       <PageHero
         overline="Studio · Dance fitness"
         title="Zumba"
-        intro="A full-body dance-fitness party — Latin rhythms, big energy and a serious cardio workout that never feels like one."
+        intro="A full-body dance-fitness party -Latin rhythms, big energy and a serious cardio workout that never feels like one."
         image={heroImg}
         imageAlt="A dancer mid-movement, full of energy"
       >
@@ -108,7 +108,7 @@ function ZumbaPage() {
             intro="Zumba blends salsa, merengue, reggaeton and more into choreography anyone can follow. Keep up, let go, and the cardio takes care of itself."
           />
           <p className="text-ink/70 leading-relaxed text-pretty max-w-[60ch]">
-            No dance background required — the steps repeat, the playlist carries you, and every class
+            No dance background required -the steps repeat, the playlist carries you, and every class
             builds from a warm-up to a peak and back down to a stretch. Come for the workout, stay for
             the atmosphere.
           </p>
@@ -131,7 +131,7 @@ function ZumbaPage() {
               },
               {
                 title: "Real cardio",
-                body: "Interval-style choreography keeps your heart rate up — expect to work up a sweat and burn serious energy.",
+                body: "Interval-style choreography keeps your heart rate up -expect to work up a sweat and burn serious energy.",
               },
               {
                 title: "Bring a friend",

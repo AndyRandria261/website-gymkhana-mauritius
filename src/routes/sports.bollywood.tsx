@@ -12,7 +12,7 @@ const heroImg =
   "https://images.unsplash.com/photo-1547153760-18fc86324498?w=1600&q=80&auto=format&fit=crop";
 
 const BOLLYWOOD_NOTE =
-  "No experience needed — every routine is taught from the ground up. Reserve your place ahead of the class and we'll confirm the instructor and studio.";
+  "No experience needed -every routine is taught from the ground up. Reserve your place ahead of the class and we'll confirm the instructor and studio.";
 
 export const Route = createFileRoute("/sports/bollywood")({
   head: () => ({
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/sports/bollywood")({
       {
         property: "og:description",
         content:
-          "High-energy choreography set to the beat of Mumbai — joyful and expressive, for every generation.",
+          "High-energy choreography set to the beat of Mumbai -joyful and expressive, for every generation.",
       },
       { property: "og:image", content: heroImg },
       { property: "og:type", content: "website" },
@@ -65,7 +65,7 @@ function BollywoodPage() {
       <PageHero
         overline="Studio · Rhythm & colour"
         title="Bollywood Dance"
-        intro="High-energy choreography set to the beat of Mumbai — a joyful, expressive class that brings the whole family onto the floor."
+        intro="High-energy choreography set to the beat of Mumbai -a joyful, expressive class that brings the whole family onto the floor."
         image={heroImg}
         imageAlt="An expressive dancer mid-routine under studio light"
       >
@@ -105,7 +105,7 @@ function BollywoodPage() {
           <SectionHeading
             overline="The class"
             title="Colour, rhythm and a lot of joy"
-            intro="Bollywood dance blends classical Indian technique with the exuberance of film choreography — a class built as much on expression as on steps."
+            intro="Bollywood dance blends classical Indian technique with the exuberance of film choreography -a class built as much on expression as on steps."
           />
           <p className="text-ink/70 leading-relaxed text-pretty max-w-[60ch]">
             Routines are taught piece by piece and set to well-loved tracks, so beginners keep up

@@ -42,7 +42,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Sports — bento showcase */}
+      {/* Sports -bento showcase */}
       <ServiceShowcase />
 
       {/* Alternating dining / venue */}
@@ -166,7 +166,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: "Member since 2015",
     company: "Tennis Section",
     content:
-      "The only grass tennis courts of the Indian Ocean — impeccably maintained. A rare privilege on this side of the world.",
+      "The only grass tennis courts of the Indian Ocean -impeccably maintained. A rare privilege on this side of the world.",
     rating: 5,
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=faces&auto=format",
   },
@@ -248,7 +248,7 @@ function ReciprocalStrip() {
   );
 }
 
-/** First letters of the club's two most significant words — its emblem when no crest artwork exists. */
+/** First letters of the club's two most significant words -its emblem when no crest artwork exists. */
 function clubInitials(name: string) {
   const words = name
     .replace(/[^\w\s]/g, "")
@@ -263,7 +263,7 @@ function clubInitials(name: string) {
 function ReciprocalClubCard({ club }: { club: ReciprocalClub }) {
   return (
     <div className="flex h-full w-72 shrink-0 flex-col items-center rounded-sm border border-cream/10 bg-pine-deep/70 px-6 py-8 text-center transition-colors hover:border-gold/40">
-      {/* Logo emblem — the focal point of the card */}
+      {/* Logo emblem -the focal point of the card */}
       <div className="relative mb-5 flex size-20 shrink-0 items-center justify-center rounded-full border border-gold/30 bg-linear-to-b from-gold/15 to-transparent">
         <span className="font-serif text-2xl text-gold">{clubInitials(club.name)}</span>
         <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-gold/20" />
@@ -300,7 +300,7 @@ const HERO_FRAMES = [
   { src: sportPool, alt: "The heated swimming pool at dusk", kb: 2 },
 ] as const;
 
-// Every scale value stays >= 1.04 — the minimum overscan needed so object-cover
+// Every scale value stays >= 1.04 -the minimum overscan needed so object-cover
 // still fully covers the frame at this preset's largest paired translate (1.4%).
 // Dropping to 1.0–1.02 (as some of these once did) leaves zero slack, so the
 // translate slides the image off one edge and uncovers a bare sliver of frame.
@@ -388,7 +388,7 @@ function CinematicHero() {
       }
     >
       {/* Image layer with drone-flyover sequence + entry blur reveal.
-          Settles at scale 1.1, not 1 — the mouse parallax below shifts this
+          Settles at scale 1.1, not 1 -the mouse parallax below shifts this
           whole layer (images + vignette + grain, all its children) by up to
           ±14px/±10px, and at scale 1 that has zero slack, so the shift used
           to slide the layer off one edge of the section and expose bare,
@@ -512,7 +512,7 @@ function ServiceShowcase() {
             </h2>
             <p className="text-base text-ink/70 text-pretty leading-relaxed">
               From championship fairways and grass tennis courts unique in the Indian
-              Ocean to studio wellness and floodlit football — every discipline
+              Ocean to studio wellness and floodlit football -every discipline
               backed by 180 years of tradition.
             </p>
           </div>

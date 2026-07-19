@@ -1,10 +1,10 @@
-# Mauritius Gymkhana Club — Refonte digitale
+# Mauritius Gymkhana Club -Refonte digitale
 
-## Rapport de présentation — Maquette UI/UX & feuille de route Back-Office
+## Rapport de présentation -Maquette UI/UX & feuille de route Back-Office
 
 **Date :** 15 juillet 2026
 **Préparé par :** Visylo Consulting
-**Statut du projet :** Maquette front-end (mockup) livrée — phase back-office à cadrer
+**Statut du projet :** Maquette front-end (mockup) livrée -phase back-office à cadrer
 
 ---
 
@@ -21,7 +21,7 @@ Il s'agit à ce stade d'un **prototype visuel et structurel** : les pages, la na
 
 ---
 
-## 2. Ce qui a été fait — Refonte UI/UX front-end
+## 2. Ce qui a été fait -Refonte UI/UX front-end
 
 ### 2.1 Identité visuelle
 
@@ -29,12 +29,12 @@ Un nouveau design system « Tropical Premium » a été défini et appliqué à 
 
 | Élément | Choix |
 |---|---|
-| Couleur principale | Vert pin profond (`#1B4332`) — évoque le gazon, l'héritage colonial britannique du club |
-| Couleur d'accent | Or chaleureux (`#E8B04B`) — utilisé avec parcimonie (CTA, filets, badges) |
-| Fond | Crème chaud (`#FDFBF5`) — plus doux qu'un blanc pur, évite l'effet « écran froid » |
+| Couleur principale | Vert pin profond (`#1B4332`) -évoque le gazon, l'héritage colonial britannique du club |
+| Couleur d'accent | Or chaleureux (`#E8B04B`) -utilisé avec parcimonie (CTA, filets, badges) |
+| Fond | Crème chaud (`#FDFBF5`) -plus doux qu'un blanc pur, évite l'effet « écran froid » |
 | Texte | Encre chaude quasi-noire (`#2D2A26`) |
-| Typographie de titres | DM Serif Display — registre éditorial, sérieux, en cohérence avec un club fondé en 1849 |
-| Typographie courante | Inter — lisible, neutre, optimisée pour les interfaces |
+| Typographie de titres | DM Serif Display -registre éditorial, sérieux, en cohérence avec un club fondé en 1849 |
+| Typographie courante | Inter -lisible, neutre, optimisée pour les interfaces |
 
 Principes appliqués : sobriété premium (pas de glassmorphism, pas de carrousel autoplay), grandes respirations, micro-interactions discrètes, mobile-first.
 
@@ -48,15 +48,15 @@ Principes appliqués : sobriété premium (pas de glassmorphism, pas de carrouse
 
 ### 2.3 Pages livrées (maquette visuelle)
 
-- **Accueil** — présentation, mise en avant des sports, actualités et vie du club
-- **Le Club** — Histoire (timeline consolidée 1844→aujourd'hui), Comité exécutif, Carrières, Appels d'offres, Règlements
-- **Sports** — hub + pages dédiées Golf (la plus aboutie : héros, statistiques du parcours, tableau de green fees, formulaire visiteur), Tennis, Squash, Fitness, Piscine
-- **Restauration** — présentation des espaces (restaurant, terrasse, bar)
+- **Accueil** -présentation, mise en avant des sports, actualités et vie du club
+- **Le Club** -Histoire (timeline consolidée 1844→aujourd'hui), Comité exécutif, Carrières, Appels d'offres, Règlements
+- **Sports** -hub + pages dédiées Golf (la plus aboutie : héros, statistiques du parcours, tableau de green fees, formulaire visiteur), Tennis, Squash, Fitness, Piscine
+- **Restauration** -présentation des espaces (restaurant, terrasse, bar)
 - **Événements** et **Actualités**
-- **Adhésion** — catégories, parcours « Comment adhérer », formulaire de demande, et page dédiée aux 26 clubs affiliés (réciprocité)
-- **Galerie** — index des albums + page d'album individuelle
+- **Adhésion** -catégories, parcours « Comment adhérer », formulaire de demande, et page dédiée aux 26 clubs affiliés (réciprocité)
+- **Galerie** -index des albums + page d'album individuelle
 - **Location de salles** (Conference Room, Multipurpose Hall, FootFive)
-- **Contact** — carte interactive, formulaire à sujets
+- **Contact** -carte interactive, formulaire à sujets
 
 ### 2.4 Autres corrections déjà intégrées à la maquette
 
@@ -71,11 +71,11 @@ Important pour cadrer les attentes du client : à ce stade, la maquette est un *
 
 - Les formulaires (adhésion, contact, devis, golf visiteur) sont visuellement fonctionnels mais **ne soumettent rien** (pas d'e-mail de confirmation, pas de stockage).
 - Le contenu de certaines pages (Comité exécutif, Appels d'offres, Carrières, Location de salles) reste indicatif, en attente de données réelles du club (photos, tarifs, textes définitifs).
-- Aucun outil ne permet encore au personnel du club de modifier un contenu sans passer par un développeur — **c'est précisément la cause racine de l'abandon du site actuel**, et l'objet de la phase suivante.
+- Aucun outil ne permet encore au personnel du club de modifier un contenu sans passer par un développeur -**c'est précisément la cause racine de l'abandon du site actuel**, et l'objet de la phase suivante.
 
 ---
 
-## 3. Ce qu'il reste à développer — Fonctionnalités Back-Office
+## 3. Ce qu'il reste à développer -Fonctionnalités Back-Office
 
 L'objectif de cette phase est de rendre le site **autonome pour le personnel du club** : plus aucune mise à jour de contenu ne doit nécessiter l'intervention d'un développeur.
 
@@ -89,7 +89,7 @@ L'objectif de cette phase est de rendre le site **autonome pour le personnel du 
 | 4 | **Gestion des événements** | Création/édition, catégories, filtres, export « Ajouter à mon agenda » (ICS) | Éditeur |
 | 5 | **Gestion des actualités** | Articles, pièces jointes PDF, liste paginée | Éditeur |
 | 6 | **Gestion de la galerie photo** | Upload, recadrage, texte alternatif obligatoire (accessibilité) | Éditeur |
-| 7 | **Bibliothèque de documents** | Règlements, cartes de menus, dossiers d'appels d'offres, newsletters — avec version et date | Éditeur |
+| 7 | **Bibliothèque de documents** | Règlements, cartes de menus, dossiers d'appels d'offres, newsletters -avec version et date | Éditeur |
 | 8 | **Clubs affiliés** | Liste filtrable par pays, validation des liens sortants | Éditeur |
 | 9 | **Appels d'offres** | Publication avec date limite et **retrait automatique** à échéance | Éditeur |
 | 10 | **Bandeau cookies conforme** | Accepter / Refuser / Préférences | Conformité légale |
@@ -106,8 +106,8 @@ L'objectif de cette phase est de rendre le site **autonome pour le personnel du 
 
 ### 3.4 Hors périmètre de cette phase (assumé, à réévaluer plus tard)
 
-- **Espace membre authentifié** (comptes, relevés) — nécessite une intégration avec le système de gestion interne du club, dont l'existence reste à vérifier avec le client.
-- **Réservation en ligne en temps réel** (départs de golf, courts de tennis) — même dépendance. Les formulaires de demande (point 2 ci-dessus) couvrent l'essentiel de la valeur en attendant.
+- **Espace membre authentifié** (comptes, relevés) -nécessite une intégration avec le système de gestion interne du club, dont l'existence reste à vérifier avec le client.
+- **Réservation en ligne en temps réel** (départs de golf, courts de tennis) -même dépendance. Les formulaires de demande (point 2 ci-dessus) couvrent l'essentiel de la valeur en attendant.
 
 ---
 
@@ -121,4 +121,4 @@ L'objectif de cette phase est de rendre le site **autonome pour le personnel du 
 
 ---
 
-*Document préparé pour présentation client — Visylo Consulting.*
+*Document préparé pour présentation client -Visylo Consulting.*

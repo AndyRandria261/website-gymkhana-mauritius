@@ -21,13 +21,13 @@ export const Route = createFileRoute("/sports/football")({
       {
         name: "description",
         content:
-          "Book the floodlit FootFive pitch at the Mauritius Gymkhana Club, Vacoas — six-a-side matches, leagues and evening kickabouts. Rates and rules.",
+          "Book the floodlit FootFive pitch at the Mauritius Gymkhana Club, Vacoas -six-a-side matches, leagues and evening kickabouts. Rates and rules.",
       },
       { property: "og:title", content: "Six-a-side Football at Mauritius Gymkhana Club" },
       {
         property: "og:description",
         content:
-          "Fast, floodlit six-a-side on the FootFive pitch — weekly fixtures, kickabouts and private bookings after dark.",
+          "Fast, floodlit six-a-side on the FootFive pitch -weekly fixtures, kickabouts and private bookings after dark.",
       },
       { property: "og:image", content: heroImg },
       { property: "og:type", content: "website" },
@@ -76,7 +76,7 @@ function FootballPage() {
       <PageHero
         overline="Floodlit FootFive pitch"
         title="Six-a-side Football"
-        intro="Fast, floodlit six-a-side on the FootFive pitch — weekly fixtures, casual kickabouts and private bookings long after the sun goes down."
+        intro="Fast, floodlit six-a-side on the FootFive pitch -weekly fixtures, casual kickabouts and private bookings long after the sun goes down."
         image={heroImg}
         imageAlt="A floodlit six-a-side football match at night"
       >
@@ -117,7 +117,7 @@ function FootballPage() {
           <SectionHeading
             overline="The pitch"
             title="Six a side, under the lights"
-            intro="The FootFive pitch is built for a fast, small-sided game — quick passing, plenty of touches and end-to-end action that suits every level of player."
+            intro="The FootFive pitch is built for a fast, small-sided game -quick passing, plenty of touches and end-to-end action that suits every level of player."
           />
           <p className="text-ink/70 leading-relaxed text-pretty max-w-[60ch]">
             Gather a squad for a weekly kickabout, enter a team in the seasonal league, or hire the
@@ -147,7 +147,7 @@ function FootballPage() {
               },
               {
                 title: "Footwear & conduct",
-                body: "Flat or moulded studs only — no metal blades. Fair play and respect for the pitch and other members are expected at all times.",
+                body: "Flat or moulded studs only -no metal blades. Fair play and respect for the pitch and other members are expected at all times.",
               },
             ].map((c) => (
               <div key={c.title} className="p-8 bg-cream rounded-sm ring-1 ring-pine/10">

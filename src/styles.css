@@ -146,7 +146,7 @@
   background: color-mix(in oklab, var(--pine) 20%, transparent);
 }
 
-/* Cinematic Ken Burns — very slow zoom + pan for hero imagery */
+/* Cinematic Ken Burns -very slow zoom + pan for hero imagery */
 @utility ken-burns {
   animation: ken-burns 28s ease-out both;
   transform-origin: 55% 60%;
@@ -157,7 +157,7 @@
   to   { transform: scale(1.02) translate3d(0.5%, -0.5%, 0); }
 }
 
-/* Film grain overlay — subtle argentic texture */
+/* Film grain overlay -subtle argentic texture */
 @utility film-grain {
   position: absolute;
   inset: 0;
@@ -177,9 +177,9 @@
   100% { transform: translate(0, 0); }
 }
 
-/* Cinematic vignette — radial darkening around the frame.
+/* Cinematic vignette -radial darkening around the frame.
    `farthest-side` (not the default farthest-corner) so the dark stop is
-   reached at the edge midpoints too, not just the corners — otherwise the
+   reached at the edge midpoints too, not just the corners -otherwise the
    ellipse overshoots past the sides and the mid-edges never reach full
    opacity, leaving the frame looking uncovered along the top/bottom/sides. */
 @utility vignette {
@@ -198,7 +198,7 @@
   }
 }
 
-/* Marquee — infinite horizontal scroll for the Marquee primitive */
+/* Marquee -infinite horizontal scroll for the Marquee primitive */
 @utility animate-marquee {
   animation: marquee var(--duration, 40s) linear infinite;
 }

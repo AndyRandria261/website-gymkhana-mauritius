@@ -8,11 +8,11 @@ import img from "@/assets/dining-brasserie.jpg";
 export const Route = createFileRoute("/the-club/careers")({
   head: () => ({
     meta: [
-      { title: "Careers — Mauritius Gymkhana Club" },
+      { title: "Careers -Mauritius Gymkhana Club" },
       {
         name: "description",
         content:
-          "Open positions and how to apply at the Mauritius Gymkhana Club — Food & Beverage, Golf and behind-the-scenes roles.",
+          "Open positions and how to apply at the Mauritius Gymkhana Club -Food & Beverage, Golf and behind-the-scenes roles.",
       },
       { property: "og:title", content: "Careers at MGC" },
       { property: "og:image", content: img },
@@ -46,7 +46,7 @@ function CareersPage() {
       <PageHero
         overline="Join the team"
         title="Careers at the Gymkhana"
-        intro="A wide variety of opportunities — from front office roles in Food & Beverage and Golf to behind-the-scenes positions across the estate."
+        intro="A wide variety of opportunities -from front office roles in Food & Beverage and Golf to behind-the-scenes positions across the estate."
         image={img}
         imageAlt="A candid moment in the clubhouse dining room"
       >
@@ -61,7 +61,7 @@ function CareersPage() {
       <Section>
         <SectionHeading overline="Open positions" title="Current vacancies" />
         <div className="p-6 border border-dashed border-pine/20 rounded-sm bg-pine/5 text-ink/60 max-w-2xl">
-          No open positions at this time — last updated {LAST_UPDATED}. Spontaneous applications are
+          No open positions at this time -last updated {LAST_UPDATED}. Spontaneous applications are
           welcome and kept on file for six months.
         </div>
       </Section>

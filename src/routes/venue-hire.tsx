@@ -11,7 +11,7 @@ import img from "@/assets/venue-events.jpg";
 export const Route = createFileRoute("/venue-hire")({
   head: () => ({
     meta: [
-      { title: "Venue Hire — Mauritius Gymkhana Club" },
+      { title: "Venue Hire -Mauritius Gymkhana Club" },
       {
         name: "description",
         content:
@@ -78,7 +78,7 @@ function VenueHirePage() {
           ))}
         </div>
         <p className="mt-8 text-xs text-ink/50 max-w-[60ch]">
-          Exact capacities and available equipment vary by configuration — our events team will
+          Exact capacities and available equipment vary by configuration -our events team will
           confirm the details for your event.
         </p>
       </Section>

@@ -21,13 +21,13 @@ export const Route = createFileRoute("/sports/paddle")({
       {
         name: "description",
         content:
-          "Enclosed paddle courts at the Mauritius Gymkhana Club, Vacoas — fast, social doubles. Booking rules, guest policy and rates.",
+          "Enclosed paddle courts at the Mauritius Gymkhana Club, Vacoas -fast, social doubles. Booking rules, guest policy and rates.",
       },
       { property: "og:title", content: "Paddle at Mauritius Gymkhana Club" },
       {
         property: "og:description",
         content:
-          "The club's newest racquet sport — fast, social doubles on enclosed courts. Members and guests welcome.",
+          "The club's newest racquet sport -fast, social doubles on enclosed courts. Members and guests welcome.",
       },
       { property: "og:image", content: heroImg },
       { property: "og:type", content: "website" },
@@ -51,8 +51,8 @@ const TABS = [
     id: "guests",
     label: "Guests",
     rows: [
-      ["Guest session — 1st & 2nd visit", "Rs 350"],
-      ["Guest session — subsequent visits", "Rs 700"],
+      ["Guest session -1st & 2nd visit", "Rs 350"],
+      ["Guest session -subsequent visits", "Rs 700"],
       ["No-show / late cancellation", "Rs 350"],
     ],
   },
@@ -76,7 +76,7 @@ function PaddlePage() {
       <PageHero
         overline="Glass courts · Doubles play"
         title="Paddle at Vacoas"
-        intro="The fastest-growing racquet sport in the world arrives at the Gymkhana — social, easy to learn and endlessly addictive, on enclosed courts."
+        intro="The fastest-growing racquet sport in the world arrives at the Gymkhana -social, easy to learn and endlessly addictive, on enclosed courts."
         image={heroImg}
         imageAlt="A racquet player on an enclosed paddle court"
       >
@@ -121,7 +121,7 @@ function PaddlePage() {
           />
           <p className="text-ink/70 leading-relaxed text-pretty max-w-[60ch]">
             Whether you come from tennis, squash or have never held a racquet, a first session is all
-            it takes. Bring three friends or let us pair you into a four — introductory clinics run
+            it takes. Bring three friends or let us pair you into a four -introductory clinics run
             through the week.
           </p>
         </div>
@@ -208,7 +208,7 @@ function PaddlePage() {
             Four players, ninety minutes, one addiction.
           </h2>
           <p className="mx-auto max-w-xl text-cream/80 mb-8">
-            Tell us your preferred day and time, one week ahead of play, and we'll hold a court — or
+            Tell us your preferred day and time, one week ahead of play, and we'll hold a court -or
             find you a four.
           </p>
           <BookingDialog

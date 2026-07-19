@@ -27,7 +27,7 @@ function SportsIndex() {
       <PageHero
         overline={`${SPORTS.length} sports · One estate`}
         title="Sport at the Gymkhana"
-        intro="From championship golf to the Indian Ocean's only grass tennis courts, studio wellness and floodlit football — every discipline at the MGC is served by 180 years of tradition."
+        intro="From championship golf to the Indian Ocean's only grass tennis courts, studio wellness and floodlit football -every discipline at the MGC is served by 180 years of tradition."
         image={heroImg}
         imageAlt="Palm-lined fairway of the MGC golf course"
       />

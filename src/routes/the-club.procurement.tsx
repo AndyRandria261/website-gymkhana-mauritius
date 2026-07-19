@@ -7,12 +7,12 @@ import img from "@/assets/venue-events.jpg";
 export const Route = createFileRoute("/the-club/procurement")({
   head: () => ({
     meta: [
-      { title: "Procurement — Mauritius Gymkhana Club" },
+      { title: "Procurement -Mauritius Gymkhana Club" },
       {
         name: "description",
         content: "Current tender bids and procurement notices from the Mauritius Gymkhana Club.",
       },
-      { property: "og:title", content: "Procurement — MGC" },
+      { property: "og:title", content: "Procurement -MGC" },
       { property: "og:image", content: img },
     ],
   }),
@@ -48,7 +48,7 @@ function ProcurementPage() {
 
         {open.length === 0 ? (
           <div className="p-6 border border-dashed border-pine/20 rounded-sm bg-pine/5 text-ink/60 max-w-2xl">
-            No open tenders — last updated {LAST_UPDATED}. Closed tenders are removed from this list
+            No open tenders -last updated {LAST_UPDATED}. Closed tenders are removed from this list
             automatically once their deadline passes.
           </div>
         ) : (

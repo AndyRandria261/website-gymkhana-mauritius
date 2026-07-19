@@ -12,7 +12,7 @@ const heroImg =
   "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?w=1600&q=80&auto=format&fit=crop";
 
 const TAICHI_NOTE =
-  "Sessions run outdoors in the garden, weather permitting. No equipment needed — just comfortable clothing and flat shoes. Reserve ahead and we'll confirm the meeting point.";
+  "Sessions run outdoors in the garden, weather permitting. No equipment needed -just comfortable clothing and flat shoes. Reserve ahead and we'll confirm the meeting point.";
 
 export const Route = createFileRoute("/sports/taichi")({
   head: () => ({
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/sports/taichi")({
       {
         property: "og:description",
         content:
-          "Slow, deliberate movement in the morning garden — a quiet discipline of balance and breath.",
+          "Slow, deliberate movement in the morning garden -a quiet discipline of balance and breath.",
       },
       { property: "og:image", content: heroImg },
       { property: "og:type", content: "website" },
@@ -64,7 +64,7 @@ function TaichiPage() {
       <PageHero
         overline="Garden · Balance & flow"
         title="Tai Chi"
-        intro="Slow, deliberate movement practised in the morning garden — a quiet discipline of balance, breath and calm to open the day."
+        intro="Slow, deliberate movement practised in the morning garden -a quiet discipline of balance, breath and calm to open the day."
         image={heroImg}
         imageAlt="A serene garden scene evoking stillness and balance"
       >
@@ -126,7 +126,7 @@ function TaichiPage() {
             {[
               {
                 title: "Low impact",
-                body: "Soft, flowing movement that is kind on joints — ideal for building balance and mobility at any age.",
+                body: "Soft, flowing movement that is kind on joints -ideal for building balance and mobility at any age.",
               },
               {
                 title: "In the open air",

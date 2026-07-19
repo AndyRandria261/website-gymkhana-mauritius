@@ -15,12 +15,12 @@ import member06 from "@/assets/member-06.jpg";
 export const Route = createFileRoute("/the-club/committee")({
   head: () => ({
     meta: [
-      { title: "Executive Committee — Mauritius Gymkhana Club" },
+      { title: "Executive Committee -Mauritius Gymkhana Club" },
       {
         name: "description",
         content: "The Executive Committee of the Mauritius Gymkhana Club.",
       },
-      { property: "og:title", content: "Executive Committee — MGC" },
+      { property: "og:title", content: "Executive Committee -MGC" },
       { property: "og:image", content: img },
     ],
   }),
@@ -90,7 +90,7 @@ function CommitteePage() {
 
         <div className="max-w-3xl border-t border-pine/10 pt-10">
           <p className="text-ink/70 leading-relaxed text-pretty max-w-[60ch] mb-8">
-            Portfolios shown are confirmed as at {LAST_UPDATED}. For any governance enquiry — AGM
+            Portfolios shown are confirmed as at {LAST_UPDATED}. For any governance enquiry -AGM
             minutes, committee portfolios, or how to raise a matter for the committee's attention —
             members may reach the office.
           </p>

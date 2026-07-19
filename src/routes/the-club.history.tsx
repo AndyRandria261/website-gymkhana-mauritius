@@ -114,7 +114,7 @@ const TIMELINE = [
       <div>
         <h3 className={heading}>First tennis courts</h3>
         <p className={`${lead} mb-6`}>
-          The first grass tennis courts are laid — still the only grass courts of
+          The first grass tennis courts are laid -still the only grass courts of
           the Indian Ocean.
         </p>
         <img

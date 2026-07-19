@@ -12,7 +12,7 @@ export type TeamMember = {
 
 /**
  * A grid of portrait cards for people (committee members, staff, coaches).
- * Presentational only — pass the members in. The card design follows the
+ * Presentational only -pass the members in. The card design follows the
  * club's shared language: cream card, pine serif name, gold overline role
  * and a restrained grayscale-to-colour hover, echoing the site's Reveal motion.
  */

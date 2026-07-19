@@ -27,7 +27,7 @@ export const Route = createFileRoute("/sports/yoga")({
       {
         property: "og:description",
         content:
-          "Sunrise flows to gentle evening sessions — breath, balance and stillness above the estate.",
+          "Sunrise flows to gentle evening sessions -breath, balance and stillness above the estate.",
       },
       { property: "og:image", content: heroImg },
       { property: "og:type", content: "website" },
@@ -66,7 +66,7 @@ function YogaPage() {
       <PageHero
         overline="Studio · Mind & body"
         title="Yoga & Wellness"
-        intro="A light-filled studio for breath, balance and stillness — from sunrise flows to gentle evening sessions, guided by our resident instructors."
+        intro="A light-filled studio for breath, balance and stillness -from sunrise flows to gentle evening sessions, guided by our resident instructors."
         image={heroImg}
         imageAlt="A person practising yoga at sunrise"
       >
@@ -136,7 +136,7 @@ function YogaPage() {
               },
               {
                 title: "Breathe out the day",
-                body: "Evening restorative and Yin sessions close with a long, quiet relaxation — the reset the week needs.",
+                body: "Evening restorative and Yin sessions close with a long, quiet relaxation -the reset the week needs.",
               },
             ].map((c) => (
               <div key={c.title} className="p-8 bg-cream rounded-sm ring-1 ring-pine/10">
