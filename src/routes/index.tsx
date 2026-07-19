@@ -541,6 +541,191 @@ function SportCard({
   );
 }
 
+type Service = {
+  to: string;
+  image: string;
+  title: string;
+  tagline: string;
+  stat: { value: string; label: string };
+  cta: string;
+};
+
+const SERVICES: readonly Service[] = [
+  {
+    to: "/sports/golf",
+    image: sportGolf,
+    title: "Championship Golf",
+    tagline:
+      "18 holes woven through 180 years of Mauritian history — the oldest course of the Southern Hemisphere, still played today.",
+    stat: { value: "1844", label: "Founded" },
+    cta: "Explore the course",
+  },
+  {
+    to: "/sports/tennis",
+    image: sportTennis,
+    title: "Grass Tennis",
+    tagline:
+      "The only manicured grass courts in the Indian Ocean — a Wimbledon-style bounce, minutes from Curepipe.",
+    stat: { value: "4", label: "Grass courts" },
+    cta: "Discover tennis",
+  },
+  {
+    to: "/sports/squash",
+    image: sportSquash,
+    title: "Squash",
+    tagline: "Two air-conditioned glass-backed courts with dedicated coaching.",
+    stat: { value: "2", label: "Courts" },
+    cta: "See squash",
+  },
+  {
+    to: "/sports/fitness",
+    image: sportFitness,
+    title: "Health & Fitness",
+    tagline: "Full cardio and strength floor, morning to evening access.",
+    stat: { value: "6am–9pm", label: "Open daily" },
+    cta: "Visit the gym",
+  },
+  {
+    to: "/sports/pool",
+    image: sportPool,
+    title: "Swimming",
+    tagline: "Outdoor 25-metre heated pool with shaded family lounging.",
+    stat: { value: "25 m", label: "Heated pool" },
+    cta: "See the pool",
+  },
+] as const;
+
+function ServiceShowcase() {
+  const [featured, ...rest] = SERVICES;
+  return (
+    <section className="py-24 md:py-28">
+      <div className="mx-auto max-w-7xl px-6">
+        <Reveal className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div className="space-y-3 max-w-2xl">
+            <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-gold">
+              Six sports · One estate
+            </span>
+            <h2 className="font-serif text-4xl md:text-5xl text-pine text-balance">
+              Centuries of Sport
+            </h2>
+            <p className="text-base text-ink/70 text-pretty leading-relaxed">
+              From championship fairways to grass tennis courts unique in the Indian
+              Ocean — every discipline backed by 180 years of tradition.
+            </p>
+          </div>
+          <Link
+            to="/sports"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-pine border-b border-pine/20 pb-1 transition-colors hover:text-pine/70 hover:border-gold focus-visible:outline-none focus-visible:border-gold"
+          >
+            All sports <ArrowRight className="size-4" />
+          </Link>
+        </Reveal>
+
+        {/* Bento: 1 col mobile, 2 col md, 12-col bento lg */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 md:gap-6">
+          <ServiceFeaturedCard service={featured} className="lg:col-span-7 lg:row-span-2" />
+          <ServiceCard service={rest[0]} className="lg:col-span-5 lg:row-span-2" tall />
+          {rest.slice(1).map((s) => (
+            <ServiceCard key={s.to} service={s} className="lg:col-span-4" />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ServiceFeaturedCard({
+  service,
+  className = "",
+}: {
+  service: Service;
+  className?: string;
+}) {
+  return (
+    <Link
+      to={service.to}
+      className={`group relative flex min-h-[24rem] md:min-h-[28rem] lg:min-h-[32rem] overflow-hidden rounded-sm ring-1 ring-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream ${className}`}
+    >
+      <img
+        src={service.image}
+        alt=""
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.03]"
+      />
+      <div className="absolute inset-0 bg-linear-to-t from-pine/90 via-pine/50 to-pine/10" />
+
+      {/* Top-right stat pill */}
+      <div className="absolute right-6 top-6 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] uppercase tracking-widest text-pine shadow-sm">
+        <span className="font-serif text-base tracking-normal text-pine mr-2">
+          {service.stat.value}
+        </span>
+        {service.stat.label}
+      </div>
+
+      {/* Bottom content */}
+      <div className="relative mt-auto p-8 md:p-10 max-w-2xl text-cream">
+        <span className="block text-[11px] font-semibold uppercase tracking-[0.3em] text-gold mb-3">
+          Signature discipline
+        </span>
+        <h3 className="font-serif text-3xl md:text-5xl text-balance">{service.title}</h3>
+        <p className="mt-4 text-cream/85 text-pretty leading-relaxed max-w-[52ch]">
+          {service.tagline}
+        </p>
+        <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold border-b border-gold/30 pb-0.5 transition-colors group-hover:border-gold">
+          {service.cta} <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+function ServiceCard({
+  service,
+  className = "",
+  tall,
+}: {
+  service: Service;
+  className?: string;
+  tall?: boolean;
+}) {
+  return (
+    <Link
+      to={service.to}
+      className={`group relative flex overflow-hidden rounded-sm ring-1 ring-black/5 ${
+        tall ? "min-h-[24rem] md:min-h-[28rem] lg:min-h-[32rem]" : "min-h-[18rem] lg:min-h-[16rem]"
+      } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream ${className}`}
+    >
+      <img
+        src={service.image}
+        alt=""
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.03]"
+      />
+      <div className="absolute inset-0 bg-linear-to-t from-pine/90 via-pine/40 to-transparent" />
+
+      <div className="absolute right-5 top-5 rounded-full bg-cream/90 px-3 py-1 text-[10px] uppercase tracking-widest text-pine">
+        <span className="font-serif text-sm tracking-normal text-pine mr-1.5">
+          {service.stat.value}
+        </span>
+        {service.stat.label}
+      </div>
+
+      <div className="relative mt-auto p-6 text-cream w-full">
+        <h3 className={`font-serif ${tall ? "text-3xl md:text-4xl" : "text-2xl"}`}>
+          {service.title}
+        </h3>
+        <p className="mt-2 text-sm text-cream/80 leading-relaxed line-clamp-2 max-w-[42ch]">
+          {service.tagline}
+        </p>
+        <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-gold">
+          {service.cta}
+          <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 function SplitFeature({
   image,
   imageAlt,
