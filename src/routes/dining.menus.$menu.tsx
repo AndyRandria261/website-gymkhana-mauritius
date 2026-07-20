@@ -18,7 +18,11 @@ export const Route = createFileRoute("/dining/menus/$menu")({
   loader: ({ params }) => {
     const menu = getMenu(params.menu);
     if (!menu) throw notFound();
-    return menu;
+    // `icon` is a lucide-react component (a function), which the loader's
+    // server->client serializer (seroval) cannot serialize -strip it here;
+    // the "other menus" links below read icons straight from MENUS instead.
+    const { icon: _icon, ...serializableMenu } = menu;
+    return serializableMenu;
   },
   head: ({ loaderData }) => ({
     meta: loaderData

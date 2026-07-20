@@ -15,6 +15,7 @@ import { AnimatedTestimonials, type Testimonial } from "@/components/ui/animated
 import { Marquee } from "@/components/ui/marquee";
 import { RECIPROCAL_CLUBS, type ReciprocalClub } from "@/lib/reciprocal-clubs-data";
 import { FEATURED_SPORTS, SPORTS, type Sport } from "@/lib/sports-data";
+import heroGmc from "@/assets/hero-gmc.jpeg";
 import heroGolf from "@/assets/hero-golf-course.jpg";
 import heroTennis from "@/assets/hero-tennis-grass.jpg";
 import sportGolf from "@/assets/sport-golf.jpg";
@@ -286,11 +287,12 @@ function ReciprocalClubCard({ club }: { club: ReciprocalClub }) {
 const HERO_TITLE = "The Living Heart of Mauritian Sporting Heritage";
 
 /**
- * Drone-flyover hero sequence: seven aerial + ground plates crossfade with
+ * Drone-flyover hero sequence: eight aerial + ground plates crossfade with
  * per-frame Ken Burns motion so it reads as one continuous camera move rather
- * than a slideshow. Total loop ≈ 36s. Respects prefers-reduced-motion.
+ * than a slideshow. Total loop ≈ 42s. Respects prefers-reduced-motion.
  */
 const HERO_FRAMES = [
+  { src: heroGmc, alt: "The clubhouse and putting green at golden hour", kb: 3 },
   { src: heroGolf, alt: "Wide aerial view of the Mauritius Gymkhana estate at sunset", kb: 0 },
   { src: sportGolf, alt: "Descending over the 1844 golf course fairways", kb: 1 },
   { src: heroTennis, alt: "The grass tennis courts from above", kb: 2 },
