@@ -1,23 +1,21 @@
-import { createFileRoute } from "@tanstack/react-router";
-import type { LucideIcon } from "lucide-react";
-import {
-  ArrowRight,
-  ChefHat,
-  Clock,
-  Pizza,
-  Sparkles,
-  TreePalm,
-  Tv,
-  Wine,
-  Waves,
-} from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Clock, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/section";
 import { ActionButton } from "@/components/action-button";
 import { BookingDialog } from "@/components/booking-dialog";
+import {
+  MENUS,
+  VENUES,
+  VENUE_NAMES,
+  menuItemCount,
+  type Menu,
+  type Venue,
+  venueOptionsFor,
+} from "@/lib/dining-data";
 import heroImg from "@/assets/dining-brasserie.jpg";
 
-export const Route = createFileRoute("/dining")({
+export const Route = createFileRoute("/dining/")({
   head: () => ({
     meta: [
       { title: "Dining - Mauritius Gymkhana Club" },
@@ -32,68 +30,6 @@ export const Route = createFileRoute("/dining")({
   }),
   component: DiningPage,
 });
-
-const VENUES: Array<{
-  title: string;
-  tag: string;
-  hours: string;
-  body: string;
-  icon: LucideIcon;
-}> = [
-  {
-    title: "The Brasserie",
-    tag: "Lunch & dinner",
-    hours: "12:00–15:00 · 19:00–22:30",
-    body: "The Club's main dining room - Mauritian and continental cuisine, open for lunch and dinner.",
-    icon: ChefHat,
-  },
-  {
-    title: "The Veranda",
-    tag: "Long lunches & Sunday brunch",
-    hours: "07:00–16:00",
-    body: "Shaded terrace dining overlooking the course, favoured for long lunches and Sunday breakfasts.",
-    icon: TreePalm,
-  },
-  {
-    title: "Sport Bar & Leisure",
-    tag: "Match days & casual bites",
-    hours: "12:00–23:00",
-    body: "Casual food and screens for match days, open through the afternoon and evening.",
-    icon: Tv,
-  },
-  {
-    title: "Bar & Lounge",
-    tag: "Evenings by the fireplace",
-    hours: "17:00–23:00",
-    body: "Drinks and light bites by the clubhouse fireplace, open into the evening.",
-    icon: Wine,
-  },
-];
-
-const MENU_CARDS: Array<{ title: string; body: string; icon: LucideIcon }> = [
-  {
-    title: "Pizza Menu",
-    body: "Wood-fired classics and seasonal toppings, served at the Veranda and poolside.",
-    icon: Pizza,
-  },
-  {
-    title: "Restaurant Menu",
-    body: "The Brasserie's seasonal Mauritian and continental dishes, for lunch and dinner.",
-    icon: ChefHat,
-  },
-  {
-    title: "Wine List",
-    body: "Old World labels alongside a growing selection from the Cape and Australia.",
-    icon: Wine,
-  },
-  {
-    title: "Deck Menu",
-    body: "Light bites and grills served poolside through the afternoon.",
-    icon: Waves,
-  },
-];
-
-const VENUE_NAMES = VENUES.map((v) => v.title);
 
 const BOOKING_STEPS = [
   "Choose your venue - the Brasserie for a full meal, the Veranda for a long lunch, the Sport Bar for match days, or the Lounge for drinks.",
@@ -144,9 +80,7 @@ function formatRange(from: string, to: string) {
 
 function DiningPage() {
   const isStale = new Date() > new Date(`${MENU_VALID_UNTIL}T23:59:59`);
-  const todayName = !isStale
-    ? new Date().toLocaleDateString("en-US", { weekday: "long" })
-    : null;
+  const todayName = !isStale ? new Date().toLocaleDateString("en-US", { weekday: "long" }) : null;
 
   return (
     <>
@@ -160,7 +94,11 @@ function DiningPage() {
         <BookingDialog
           subject="dining"
           variant="gold"
-          ctaLabel={<>Reserve a table <ArrowRight /></>}
+          ctaLabel={
+            <>
+              Reserve a table <ArrowRight />
+            </>
+          }
           title="Reserve a table"
           description="Tell us the date, time and party size. Reception will confirm your table within 24 hours."
           fields={["date", "time", "party"]}
@@ -175,8 +113,8 @@ function DiningPage() {
       <div className="bg-pine text-cream border-y border-gold/20">
         <div className="mx-auto max-w-7xl px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            ["Venues", "4"],
-            ["Kitchen", "Mauritian & continental"],
+            ["Venues", String(VENUES.length)],
+            ["Menus", String(MENUS.length)],
             ["Open", "Breakfast to late"],
             ["Reservations", "Confirmed within 24h"],
           ].map(([k, v]) => (
@@ -188,47 +126,9 @@ function DiningPage() {
         </div>
       </div>
 
-      <Section>
-        <SectionHeading overline="Where to eat" title="Four settings, one kitchen" />
-        <div className="grid md:grid-cols-2 gap-6">
-          {VENUES.map((v) => (
-            <div
-              key={v.title}
-              className="p-8 bg-pine/5 rounded-sm ring-1 ring-pine/10 transition-colors hover:bg-pine/[0.07]"
-            >
-              <span className="inline-flex items-center justify-center size-11 rounded-full bg-gold/15 text-pine ring-1 ring-gold/25 mb-5">
-                <v.icon className="size-5" aria-hidden="true" />
-              </span>
-              <h3 className="font-serif text-2xl text-pine mb-1">{v.title}</h3>
-              <p className="text-xs uppercase tracking-widest text-gold mb-4">{v.tag}</p>
-              <p className="text-ink/70 leading-relaxed mb-4">{v.body}</p>
-              <p className="inline-flex items-center gap-2 text-xs text-ink/50">
-                <Clock className="size-3.5 text-gold" aria-hidden="true" /> {v.hours}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Section>
+      <VenueShowcase />
 
-      <section className="bg-pine/5 py-24">
-        <div className="mx-auto max-w-4xl px-6">
-          <SectionHeading
-            overline="Reservations"
-            title="How to book a table"
-            intro="Reservations are simple - tell us when, where and how many, and we'll take care of the rest."
-          />
-          <ol className="space-y-6">
-            {BOOKING_STEPS.map((s, i) => (
-              <li key={s} className="flex gap-6 items-start">
-                <span className="shrink-0 font-serif text-3xl text-gold w-12 tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="text-ink/80 pt-2 leading-relaxed">{s}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <MenuShowcase />
 
       <section id="menu" className="py-24 scroll-mt-24">
         <div className="mx-auto max-w-4xl px-6">
@@ -274,9 +174,7 @@ function DiningPage() {
                     return (
                       <tr
                         key={d.day}
-                        className={`border-b border-pine/5 ${
-                          isToday ? "bg-gold/10" : ""
-                        }`}
+                        className={`border-b border-pine/5 ${isToday ? "bg-gold/10" : ""}`}
                       >
                         <th
                           scope="row"
@@ -314,26 +212,25 @@ function DiningPage() {
         </div>
       </section>
 
-      <Section>
-        <SectionHeading overline="Menu cards" title="More to explore" />
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-          {MENU_CARDS.map((m) => (
-            <div
-              key={m.title}
-              className="p-6 bg-cream ring-1 ring-pine/10 rounded-sm flex flex-col items-start gap-3 transition-shadow hover:shadow-sm"
-            >
-              <span className="inline-flex items-center justify-center size-10 rounded-full bg-gold/15 text-pine ring-1 ring-gold/25">
-                <m.icon className="size-5" aria-hidden="true" />
-              </span>
-              <h3 className="font-serif text-lg text-pine">{m.title}</h3>
-              <p className="text-xs text-ink/60 leading-relaxed">{m.body}</p>
-            </div>
-          ))}
+      <section className="bg-pine/5 py-24">
+        <div className="mx-auto max-w-4xl px-6">
+          <SectionHeading
+            overline="Reservations"
+            title="How to book a table"
+            intro="Reservations are simple - tell us when, where and how many, and we'll take care of the rest."
+          />
+          <ol className="space-y-6">
+            {BOOKING_STEPS.map((s, i) => (
+              <li key={s} className="flex gap-6 items-start">
+                <span className="shrink-0 font-serif text-3xl text-gold w-12 tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="text-ink/80 pt-2 leading-relaxed">{s}</p>
+              </li>
+            ))}
+          </ol>
         </div>
-        <p className="mt-8 text-xs text-ink/50">
-          Printed copies of every menu are available at each venue - ask your server.
-        </p>
-      </Section>
+      </section>
 
       <Section>
         <div className="rounded-sm bg-pine text-cream p-12 md:p-20 text-center">
@@ -341,13 +238,17 @@ function DiningPage() {
             A table, whenever you're ready.
           </h2>
           <p className="mx-auto max-w-xl text-cream/80 mb-8">
-            Send a request below, or call reception directly - either way, we'll confirm your
-            table within 24 hours.
+            Send a request below, or call reception directly - either way, we'll confirm your table
+            within 24 hours.
           </p>
           <BookingDialog
             subject="dining"
             variant="gold"
-            ctaLabel={<>Reserve a table <ArrowRight /></>}
+            ctaLabel={
+              <>
+                Reserve a table <ArrowRight />
+              </>
+            }
             title="Reserve a table"
             description="Tell us the date, time and party size. Reception will confirm your table within 24 hours."
             fields={["date", "time", "party"]}
@@ -357,5 +258,163 @@ function DiningPage() {
         </div>
       </Section>
     </>
+  );
+}
+
+/* ---------- Venues ---------- */
+
+/**
+ * Bento showcase of the four venues, mirroring the home page's sports grid: the
+ * Brasserie leads as the wide card, the Veranda takes the tall companion, and
+ * the two bars split the row beneath. Each card carries its own booking CTA so
+ * a visitor never has to scroll back up and re-pick a venue in the dialog.
+ */
+function VenueShowcase() {
+  const [brasserie, veranda, ...bars] = VENUES;
+
+  return (
+    <Section>
+      <SectionHeading
+        overline="Where to eat"
+        title="Four settings, one kitchen"
+        intro="One brigade cooks for all four rooms - what changes is the pace, the view and the hour."
+      />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 md:gap-6">
+        <VenueCard venue={brasserie} featured className="lg:col-span-7" />
+        <VenueCard venue={veranda} className="lg:col-span-5" />
+        {bars.map((v) => (
+          <VenueCard key={v.slug} venue={v} className="lg:col-span-6" />
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function VenueCard({
+  venue,
+  featured,
+  className = "",
+}: {
+  venue: Venue;
+  featured?: boolean;
+  className?: string;
+}) {
+  return (
+    <article
+      className={`group relative flex flex-col justify-end overflow-hidden rounded-sm ring-1 ring-black/5 ${
+        featured ? "min-h-[26rem] lg:min-h-[32rem]" : "min-h-[22rem] lg:min-h-[24rem]"
+      } ${className}`}
+    >
+      <img
+        src={venue.image}
+        alt={venue.imageAlt}
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.03]"
+      />
+      <div className="absolute inset-0 bg-linear-to-t from-pine/95 via-pine/55 to-pine/10" />
+
+      {/* Category chip -lets the eye sort the four rooms at a glance */}
+      <span className="absolute right-5 top-5 inline-flex items-center gap-2 rounded-full bg-cream/95 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-pine shadow-sm">
+        <venue.icon className="size-3.5 text-pine/70" aria-hidden="true" />
+        {venue.tag}
+      </span>
+
+      <div className="relative p-6 md:p-8 text-cream">
+        <h3 className={`font-serif text-balance ${featured ? "text-3xl md:text-4xl" : "text-2xl"}`}>
+          {venue.title}
+        </h3>
+        <p
+          className={`mt-3 text-cream/80 leading-relaxed text-pretty ${
+            featured ? "max-w-[48ch]" : "max-w-[44ch] text-sm"
+          }`}
+        >
+          {venue.body}
+        </p>
+        <p className="mt-4 inline-flex items-center gap-2 text-xs text-cream/70">
+          <Clock className="size-3.5 text-gold" aria-hidden="true" />
+          <span className="sr-only">Opening hours: </span>
+          {venue.hours}
+        </p>
+        <div className="mt-6">
+          <BookingDialog
+            subject="dining"
+            variant={featured ? "gold" : "outline"}
+            ctaLabel={
+              <>
+                Reserve<span className="sr-only"> a table at {venue.title}</span>
+                <ArrowRight />
+              </>
+            }
+            title={`Reserve at ${venue.title}`}
+            description="Tell us the date, time and party size. Reception will confirm your table within 24 hours."
+            fields={["date", "time", "party"]}
+            partyLabel="Number of guests"
+            venueOptions={venueOptionsFor(venue.title)}
+          />
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/* ---------- Menus ---------- */
+
+/**
+ * The four standing menus. Same card anatomy as the home page's sports cards
+ * -image, gradient, stat pill, arrow CTA -with the pill carrying the dish
+ * count, so the card promises something concrete before the click.
+ */
+function MenuShowcase() {
+  return (
+    <Section className="bg-pine/5">
+      <SectionHeading
+        overline="Our menus"
+        title="Browse before you sit down"
+        intro="Every standing menu in full - dishes, descriptions and prices - so you arrive knowing what you came for."
+      />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        {MENUS.map((menu) => (
+          <MenuCard key={menu.slug} menu={menu} />
+        ))}
+      </div>
+      <p className="mt-8 text-xs text-ink/50">
+        Printed copies of every menu are available at each venue - ask your server.
+      </p>
+    </Section>
+  );
+}
+
+function MenuCard({ menu }: { menu: Menu }) {
+  const count = menuItemCount(menu);
+
+  return (
+    <Link
+      to="/dining/menus/$menu"
+      params={{ menu: menu.slug }}
+      className="group relative flex min-h-[20rem] flex-col justify-end overflow-hidden rounded-sm ring-1 ring-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+    >
+      <img
+        src={menu.image}
+        alt=""
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.03]"
+      />
+      <div className="absolute inset-0 bg-linear-to-t from-pine/95 via-pine/60 to-pine/15" />
+
+      {/* Count pill -the concrete promise behind the click */}
+      <span className="absolute right-5 top-5 rounded-full bg-cream/95 px-3 py-1 text-[10px] uppercase tracking-widest text-pine shadow-sm">
+        <span className="mr-1.5 font-serif text-sm tracking-normal text-pine">{count}</span>
+        {menu.unit}
+      </span>
+
+      <div className="relative w-full p-6 text-cream">
+        <h3 className="font-serif text-2xl text-balance">{menu.title}</h3>
+        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-cream/80">{menu.summary}</p>
+        <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-gold">
+          View the menu
+          <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+        </span>
+      </div>
+    </Link>
   );
 }
