@@ -462,8 +462,8 @@ function CinematicHero() {
               <Plus strokeWidth={2.2} />
               Become a Member
             </ActionButton>
-            <ActionButton to="/sports/golf" variant="outline">
-              Visitor Green Fees
+            <ActionButton to="/sports" variant="outline">
+              Discover Our Sports
               <ArrowRight />
             </ActionButton>
           </motion.div>
