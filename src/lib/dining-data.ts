@@ -144,53 +144,17 @@ export const MENUS: readonly Menu[] = [
             image: unsplash("photo-1574071318508-1cdbab80d002"),
             price: 380,
           },
-          { name: "Napoletana", description: "Anchovy, caper, black olive, tomato", price: 490 },
-          {
-            name: "Quattro Formaggi",
-            description: "Fior di latte, gorgonzola, parmesan, goat's cheese",
-            price: 560,
-          },
-          {
-            name: "Prosciutto e Rucola",
-            description: "Parma ham, rocket, shaved parmesan",
-            price: 620,
-          },
-          {
-            name: "Funghi",
-            description: "Field mushroom, thyme, garlic cream, mozzarella",
-            price: 520,
-          },
         ],
       },
       {
         name: "Signature",
         items: [
           {
-            name: "Gymkhana",
-            description: "Smoked marlin, red onion, crème fraîche, lime",
-            price: 690,
-          },
-          {
             name: "Vindaye",
             description: "Chicken vindaye, mustard seed, curry leaf, mozzarella",
             price: 640,
             image: unsplash("photo-1565299624946-b28f40a0ae38"),
             imageAlt: "Pizza topped with chicken, red onion and coriander",
-          },
-          {
-            name: "Prawn & Chilli",
-            description: "Tiger prawn, bird's eye chilli, garlic, coriander",
-            price: 720,
-          },
-          {
-            name: "Vacoas Garden",
-            description: "Grilled aubergine, courgette, roast pepper, goat's cheese",
-            price: 560,
-          },
-          {
-            name: "Boeuf Bourguignon",
-            description: "Slow-braised beef, caramelised onion, gruyère",
-            price: 680,
           },
         ],
       },
@@ -202,6 +166,8 @@ export const MENUS: readonly Menu[] = [
             name: "Pineapple & Cinnamon",
             description: "Victoria pineapple, honey, mascarpone",
             price: 360,
+            image: unsplash("photo-1565299624946-b28f40a0ae38"),
+            imageAlt: "Pizza topped with chicken, red onion and coriander",
           },
         ],
       },
@@ -232,26 +198,6 @@ export const MENUS: readonly Menu[] = [
             description: "Ourite, red onion, coriander, chilli oil",
             price: 520,
           },
-          {
-            name: "Smoked marlin",
-            description: "Estate-smoked, crème fraîche, rye toast",
-            price: 560,
-          },
-          {
-            name: "Pumpkin velouté",
-            description: "Roast pumpkin, curry leaf oil, crème fraîche",
-            price: 380,
-          },
-          {
-            name: "Gâteaux piments",
-            description: "Split pea fritters, tamarind chutney",
-            price: 280,
-          },
-          {
-            name: "Prawn cocktail",
-            description: "Tiger prawn, avocado, cocktail sauce",
-            price: 590,
-          },
         ],
       },
       {
@@ -266,23 +212,6 @@ export const MENUS: readonly Menu[] = [
             name: "Kingfish rougaille",
             description: "Seared kingfish, tomato rougaille, steamed rice",
             price: 850,
-          },
-          {
-            name: "Camarons à l'ail",
-            description: "Freshwater prawns, garlic butter, herb rice",
-            price: 1150,
-            image: unsplash("photo-1559847844-5315695dadae"),
-            imageAlt: "Prawns in creole sauce served with rice",
-          },
-          {
-            name: "Calamari à la creole",
-            description: "Braised squid, thyme, tomato, rice",
-            price: 780,
-          },
-          {
-            name: "Fish of the day",
-            description: "Landed that morning -ask your server",
-            price: 950,
           },
         ],
       },
@@ -299,37 +228,11 @@ export const MENUS: readonly Menu[] = [
             description: "Mustard seed, turmeric, ginger, steamed rice",
             price: 720,
           },
-          {
-            name: "Venison civet",
-            description: "Mauritian deer, juniper, root vegetables",
-            price: 980,
-          },
-          {
-            name: "Roast leg of lamb",
-            description: "Rosemary jus, gratin dauphinois",
-            price: 1050,
-          },
-          {
-            name: "Sunday roast",
-            description: "Sundays only -seasonal vegetables, Yorkshire pudding",
-            price: 890,
-          },
-          {
-            name: "Vegetable curry",
-            description: "Seasonal island vegetables, coconut, roti",
-            price: 620,
-          },
         ],
       },
       {
         name: "To finish",
         items: [
-          {
-            name: "Coconut blancmange",
-            description: "Fresh coconut, passion fruit coulis",
-            price: 340,
-          },
-          { name: "Gâteau patate", description: "Sweet potato, coconut, cardamom", price: 290 },
           {
             name: "Tarte tatin",
             description: "Caramelised apple, vanilla crème fraîche",
@@ -337,12 +240,6 @@ export const MENUS: readonly Menu[] = [
             image: unsplash("photo-1568571780765-9276ac8b75a2"),
             imageAlt: "Slice of caramelised apple tart",
           },
-          {
-            name: "Crème caramel",
-            description: "The Brasserie's, unchanged since 1979",
-            price: 320,
-          },
-          { name: "Lime tart", description: "Torched meringue, shortcrust", price: 360 },
         ],
       },
     ],
@@ -380,13 +277,6 @@ export const MENUS: readonly Menu[] = [
           },
           { name: "Chablis 1er Cru", description: "Burgundy, France", price: 3900 },
           { name: "Pouilly-Fumé", description: "Loire, France", price: 2800 },
-          {
-            name: "Cloudy Bay Sauvignon Blanc",
-            description: "Marlborough, New Zealand",
-            price: 3100,
-          },
-          { name: "Boschendal Chardonnay", description: "Franschhoek, South Africa", price: 1750 },
-          { name: "Pinot Grigio, Alto Adige", description: "Trentino, Italy", price: 1550 },
         ],
       },
       {
@@ -413,33 +303,17 @@ export const MENUS: readonly Menu[] = [
             image: unsplash("photo-1553361371-9b22f78e8b1d"),
             imageAlt: "Red wine poured into a glass beside a carving board",
           },
-          { name: "Saint-Émilion Grand Cru", description: "Bordeaux, France", price: 3800 },
-          { name: "Gevrey-Chambertin", description: "Burgundy, France", price: 5200 },
-          { name: "Châteauneuf-du-Pape", description: "Rhône, France", price: 3600 },
-          { name: "Kanonkop Pinotage", description: "Stellenbosch, South Africa", price: 2600 },
-          { name: "Penfolds Bin 389", description: "South Australia", price: 3400 },
-          { name: "Chianti Classico Riserva", description: "Tuscany, Italy", price: 2200 },
         ],
       },
       {
         name: "Dessert & fortified",
         items: [
           {
-            name: "Sauternes, Château Rieussec",
-            description: "Bordeaux, France · 375ml",
-            price: 3100,
-          },
-          {
             name: "Taylor's 10 Year Tawny",
             description: "Douro, Portugal",
             price: 2400,
             image: unsplash("photo-1516594915697-87eb3b1c14ea"),
             imageAlt: "Row of wine bottles resting on a cellar shelf",
-          },
-          {
-            name: "Vin de Constance",
-            description: "Constantia, South Africa · 500ml",
-            price: 3800,
           },
         ],
       },
@@ -467,17 +341,6 @@ export const MENUS: readonly Menu[] = [
           },
           { name: "Samoussas", description: "Vegetable or chicken, mint chutney", price: 260 },
           { name: "Salt & pepper calamari", description: "Lime aioli", price: 480 },
-          { name: "Chicken wings", description: "Honey and chilli glaze", price: 420 },
-          {
-            name: "Loaded fries",
-            description: "Cheddar, spring onion, smoked paprika",
-            price: 380,
-          },
-          {
-            name: "Green papaya salad",
-            description: "Peanut, lime, bird's eye chilli",
-            price: 340,
-          },
         ],
       },
       {
@@ -489,14 +352,6 @@ export const MENUS: readonly Menu[] = [
             price: 650,
             image: unsplash("photo-1568901346375-23c9450c58cd"),
             imageAlt: "Beef burger with cheddar, pickles and salad",
-          },
-          { name: "Chicken burger", description: "Grilled breast, avocado, fries", price: 590 },
-          { name: "Prawn skewers", description: "Garlic butter, lemon, salad", price: 780 },
-          { name: "Fish brochette", description: "Catch of the day, creole marinade", price: 720 },
-          {
-            name: "Grilled vegetable wrap",
-            description: "Halloumi, roast pepper, hummus",
-            price: 480,
           },
         ],
       },
@@ -522,7 +377,7 @@ export const MENUS: readonly Menu[] = [
 ] as const;
 
 /** Total dishes across every section -the count shown on each menu card. */
-export function menuItemCount(menu: Menu): number {
+export function menuItemCount(menu: Pick<Menu, "sections">): number {
   return menu.sections.reduce((n, s) => n + s.items.length, 0);
 }
 
