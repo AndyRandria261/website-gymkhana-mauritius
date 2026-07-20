@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Menu, X, Plus, ChevronDown, ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { ActionButton } from "./action-button";
+import { SPORT_GROUPS, SPORTS, sportsByGroup } from "@/lib/sports-data";
 
 type LeafLink = { to: string; label: string; description?: string };
 type MegaColumn = { heading: string; links: LeafLink[] };
@@ -21,6 +22,23 @@ type MegaSection = {
   };
   columns: MegaColumn[];
 };
+
+// The Sports columns are generated from the single sports-data source so the
+// menu never drifts out of sync with the pages. Grouped into three balanced
+// columns, with an "All sports" catch-all appended to the last.
+const SPORTS_COLUMNS: MegaColumn[] = SPORT_GROUPS.map((g) => ({
+  heading: g.heading,
+  links: sportsByGroup(g.key).map((s) => ({
+    to: s.path,
+    label: s.navLabel,
+    description: s.megaShort,
+  })),
+}));
+SPORTS_COLUMNS[SPORTS_COLUMNS.length - 1]!.links.push({
+  to: "/sports",
+  label: "All sports",
+  description: `${SPORTS.length} disciplines, one estate`,
+});
 
 const MEGA_NAV: MegaSection[] = [
   {
@@ -63,24 +81,7 @@ const MEGA_NAV: MegaSection[] = [
       body: "Play the oldest golf course of the Southern Hemisphere at the foot of the Corps de Garde.",
       image: "/mcg-logo.png",
     },
-    columns: [
-      {
-        heading: "Racquet & club",
-        links: [
-          { to: "/sports/golf", label: "Golf", description: "1844 · 18 holes" },
-          { to: "/sports/tennis", label: "Tennis", description: "Grass & hard courts" },
-          { to: "/sports/squash", label: "Squash", description: "Two dedicated courts" },
-        ],
-      },
-      {
-        heading: "Health & leisure",
-        links: [
-          { to: "/sports/fitness", label: "Health & Fitness", description: "Cardio · strength" },
-          { to: "/sports/pool", label: "Swimming", description: "Open year-round" },
-          { to: "/sports", label: "All sports", description: "Six sports, one estate" },
-        ],
-      },
-    ],
+    columns: SPORTS_COLUMNS,
   },
   {
     key: "dining",
@@ -312,7 +313,11 @@ export function SiteHeader() {
             {MEGA_NAV.filter((s) => s.key === activeKey).map((section) => (
               <div
                 key={section.key}
-                className="mx-auto grid max-w-7xl grid-cols-[1.1fr_2fr] gap-12 px-6 py-12"
+                className={`mx-auto grid max-w-7xl gap-12 px-6 py-12 ${
+                  section.columns.length >= 3
+                    ? "grid-cols-[0.9fr_2.6fr]"
+                    : "grid-cols-[1.1fr_2fr]"
+                }`}
               >
                 <Link
                   to={section.feature.to}
@@ -336,7 +341,13 @@ export function SiteHeader() {
                     </span>
                   </div>
                 </Link>
-                <div className="grid grid-cols-2 gap-x-10 gap-y-8">
+                <div
+                  className={`grid gap-y-8 ${
+                    section.columns.length >= 3
+                      ? "grid-cols-3 gap-x-8"
+                      : "grid-cols-2 gap-x-10"
+                  }`}
+                >
                   {section.columns.map((col) => (
                     <div key={col.heading}>
                       <h4 className="text-[10px] font-semibold uppercase tracking-[0.3em] text-gold mb-5">

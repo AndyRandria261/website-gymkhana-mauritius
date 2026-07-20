@@ -10,13 +10,13 @@ import img from "@/assets/dining-brasserie.jpg";
 export const Route = createFileRoute("/membership/reciprocal")({
   head: () => ({
     meta: [
-      { title: "Reciprocal Clubs — Mauritius Gymkhana Club" },
+      { title: "Reciprocal Clubs -Mauritius Gymkhana Club" },
       {
         name: "description",
         content:
           "26 reciprocal clubs worldwide, granting Mauritius Gymkhana Club members access to affiliated venues on their travels.",
       },
-      { property: "og:title", content: "Reciprocal Clubs — MGC" },
+      { property: "og:title", content: "Reciprocal Clubs -MGC" },
       { property: "og:image", content: img },
     ],
   }),

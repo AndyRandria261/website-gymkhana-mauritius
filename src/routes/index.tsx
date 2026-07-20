@@ -14,12 +14,11 @@ import { Reveal } from "@/components/reveal";
 import { AnimatedTestimonials, type Testimonial } from "@/components/ui/animated-testimonials";
 import { Marquee } from "@/components/ui/marquee";
 import { RECIPROCAL_CLUBS, type ReciprocalClub } from "@/lib/reciprocal-clubs-data";
+import { FEATURED_SPORTS, SPORTS, type Sport } from "@/lib/sports-data";
 import heroGolf from "@/assets/hero-golf-course.jpg";
 import heroTennis from "@/assets/hero-tennis-grass.jpg";
 import sportGolf from "@/assets/sport-golf.jpg";
 import sportTennis from "@/assets/sport-tennis.png";
-import sportSquash from "@/assets/sport-squash.jpg";
-import sportFitness from "@/assets/sport-fitness.jpg";
 import sportPool from "@/assets/sport-pool.jpg";
 import diningBrasserie from "@/assets/dining-brasserie.jpg";
 import venueEvents from "@/assets/venue-events.jpg";
@@ -43,7 +42,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Sports — bento showcase */}
+      {/* Sports -bento showcase */}
       <ServiceShowcase />
 
       {/* Alternating dining / venue */}
@@ -167,7 +166,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: "Member since 2015",
     company: "Tennis Section",
     content:
-      "The only grass tennis courts of the Indian Ocean — impeccably maintained. A rare privilege on this side of the world.",
+      "The only grass tennis courts of the Indian Ocean -impeccably maintained. A rare privilege on this side of the world.",
     rating: 5,
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=faces&auto=format",
   },
@@ -249,7 +248,7 @@ function ReciprocalStrip() {
   );
 }
 
-/** First letters of the club's two most significant words — its emblem when no crest artwork exists. */
+/** First letters of the club's two most significant words -its emblem when no crest artwork exists. */
 function clubInitials(name: string) {
   const words = name
     .replace(/[^\w\s]/g, "")
@@ -264,7 +263,7 @@ function clubInitials(name: string) {
 function ReciprocalClubCard({ club }: { club: ReciprocalClub }) {
   return (
     <div className="flex h-full w-72 shrink-0 flex-col items-center rounded-sm border border-cream/10 bg-pine-deep/70 px-6 py-8 text-center transition-colors hover:border-gold/40">
-      {/* Logo emblem — the focal point of the card */}
+      {/* Logo emblem -the focal point of the card */}
       <div className="relative mb-5 flex size-20 shrink-0 items-center justify-center rounded-full border border-gold/30 bg-linear-to-b from-gold/15 to-transparent">
         <span className="font-serif text-2xl text-gold">{clubInitials(club.name)}</span>
         <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-gold/20" />
@@ -301,6 +300,7 @@ const HERO_FRAMES = [
   { src: sportPool, alt: "The heated swimming pool at dusk", kb: 2 },
 ] as const;
 
+// Every scale value stays >= 1.04 -the minimum overscan needed so object-cover
 // Every scale value stays >= 1.04 — the minimum overscan needed so object-cover
 // still fully covers the frame at this preset's largest paired translate (1.4%).
 // Dropping to 1.0–1.02 (as some of these once did) leaves zero slack, so the
@@ -389,7 +389,7 @@ function CinematicHero() {
       }
     >
       {/* Image layer with drone-flyover sequence + entry blur reveal.
-          Settles at scale 1.1, not 1 — the mouse parallax below shifts this
+          Settles at scale 1.1, not 1 -the mouse parallax below shifts this
           whole layer (images + vignette + grain, all its children) by up to
           ±14px/±10px, and at scale 1 that has zero slack, so the shift used
           to slide the layer off one edge of the section and expose bare,
@@ -480,7 +480,7 @@ function CinematicHero() {
             <li className="hidden sm:block h-3 w-px bg-cream/25" aria-hidden />
             <li><span className="text-gold font-semibold">26</span> reciprocal clubs</li>
             <li className="hidden sm:block h-3 w-px bg-cream/25" aria-hidden />
-            <li><span className="text-gold font-semibold">6</span> sports · one estate</li>
+            <li><span className="text-gold font-semibold">{SPORTS.length}</span> sports · one estate</li>
           </motion.ul>
         </div>
       </div>
@@ -498,76 +498,23 @@ function CinematicHero() {
   );
 }
 
-type Service = {
-  to: string;
-  image: string;
-  title: string;
-  tagline: string;
-  stat: { value: string; label: string };
-  cta: string;
-};
-
-const SERVICES: readonly Service[] = [
-  {
-    to: "/sports/golf",
-    image: sportGolf,
-    title: "Championship Golf",
-    tagline:
-      "18 holes woven through 180 years of Mauritian history — the oldest course of the Southern Hemisphere, still played today.",
-    stat: { value: "1844", label: "Founded" },
-    cta: "Explore the course",
-  },
-  {
-    to: "/sports/tennis",
-    image: sportTennis,
-    title: "Grass Tennis",
-    tagline:
-      "The only manicured grass courts in the Indian Ocean — a Wimbledon-style bounce, minutes from Curepipe.",
-    stat: { value: "4", label: "Grass courts" },
-    cta: "Discover tennis",
-  },
-  {
-    to: "/sports/squash",
-    image: sportSquash,
-    title: "Squash",
-    tagline: "Two air-conditioned glass-backed courts with dedicated coaching.",
-    stat: { value: "2", label: "Courts" },
-    cta: "See squash",
-  },
-  {
-    to: "/sports/fitness",
-    image: sportFitness,
-    title: "Health & Fitness",
-    tagline: "Full cardio and strength floor, morning to evening access.",
-    stat: { value: "6am–9pm", label: "Open daily" },
-    cta: "Visit the gym",
-  },
-  {
-    to: "/sports/pool",
-    image: sportPool,
-    title: "Swimming",
-    tagline: "Outdoor 25-metre heated pool with shaded family lounging.",
-    stat: { value: "25 m", label: "Heated pool" },
-    cta: "See the pool",
-  },
-] as const;
-
 function ServiceShowcase() {
-  const [featured, ...rest] = SERVICES;
+  const [featured, ...rest] = FEATURED_SPORTS;
   return (
     <section className="py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <Reveal className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
             <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-              Six sports · One estate
+              Eleven sports · One estate
             </span>
             <h2 className="font-serif text-4xl md:text-5xl text-pine text-balance">
               Centuries of Sport
             </h2>
             <p className="text-base text-ink/70 text-pretty leading-relaxed">
-              From championship fairways to grass tennis courts unique in the Indian
-              Ocean — every discipline backed by 180 years of tradition.
+              From championship fairways and grass tennis courts unique in the Indian
+              Ocean to studio wellness and floodlit football -every discipline
+              backed by 180 years of tradition.
             </p>
           </div>
           <Link
@@ -583,7 +530,7 @@ function ServiceShowcase() {
           <ServiceFeaturedCard service={featured} className="lg:col-span-7 lg:row-span-2" />
           <ServiceCard service={rest[0]} className="lg:col-span-5 lg:row-span-2" tall />
           {rest.slice(1).map((s) => (
-            <ServiceCard key={s.to} service={s} className="lg:col-span-4" />
+            <ServiceCard key={s.path} service={s} className="lg:col-span-4" />
           ))}
         </div>
       </div>
@@ -595,12 +542,12 @@ function ServiceFeaturedCard({
   service,
   className = "",
 }: {
-  service: Service;
+  service: Sport;
   className?: string;
 }) {
   return (
     <Link
-      to={service.to}
+      to={service.path}
       className={`group relative flex min-h-[24rem] md:min-h-[28rem] lg:min-h-[32rem] overflow-hidden rounded-sm ring-1 ring-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream ${className}`}
     >
       <img
@@ -641,13 +588,13 @@ function ServiceCard({
   className = "",
   tall,
 }: {
-  service: Service;
+  service: Sport;
   className?: string;
   tall?: boolean;
 }) {
   return (
     <Link
-      to={service.to}
+      to={service.path}
       className={`group relative flex overflow-hidden rounded-sm ring-1 ring-black/5 ${
         tall ? "min-h-[24rem] md:min-h-[28rem] lg:min-h-[32rem]" : "min-h-[18rem] lg:min-h-[16rem]"
       } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream ${className}`}

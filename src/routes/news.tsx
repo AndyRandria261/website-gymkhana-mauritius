@@ -7,12 +7,12 @@ import img from "@/assets/history-archive.jpg";
 export const Route = createFileRoute("/news")({
   head: () => ({
     meta: [
-      { title: "News — Mauritius Gymkhana Club" },
+      { title: "News -Mauritius Gymkhana Club" },
       {
         name: "description",
         content: "News and newsletters from the Mauritius Gymkhana Club, Vacoas.",
       },
-      { property: "og:title", content: "News — Mauritius Gymkhana Club" },
+      { property: "og:title", content: "News -Mauritius Gymkhana Club" },
       { property: "og:image", content: img },
     ],
   }),
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/news")({
 
 const ARTICLES = [
   {
-    title: "Club Newsletter — September 2023",
+    title: "Club Newsletter -September 2023",
     date: "September 2023",
     excerpt:
       "The Club's regular newsletter, rounding up recent tournaments, social events and committee updates.",
@@ -58,7 +58,7 @@ function NewsPage() {
         </div>
 
         <div className="p-6 border border-dashed border-pine/20 rounded-sm bg-pine/5 text-ink/60">
-          More news will be published here as it happens — check back soon.
+          More news will be published here as it happens -check back soon.
         </div>
       </Section>
     </>

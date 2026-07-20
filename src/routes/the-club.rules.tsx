@@ -7,13 +7,13 @@ import img from "@/assets/history-archive.jpg";
 export const Route = createFileRoute("/the-club/rules")({
   head: () => ({
     meta: [
-      { title: "Rules & Bye-Laws — Mauritius Gymkhana Club" },
+      { title: "Rules & Bye-Laws -Mauritius Gymkhana Club" },
       {
         name: "description",
         content:
           "A plain-language summary of the Mauritius Gymkhana Club's rules and bye-laws, with the full PDF document.",
       },
-      { property: "og:title", content: "Rules & Bye-Laws — MGC" },
+      { property: "og:title", content: "Rules & Bye-Laws -MGC" },
       { property: "og:image", content: img },
     ],
   }),
@@ -43,7 +43,7 @@ function RulesPage() {
       <PageHero
         overline="For members"
         title="Rules & bye-laws"
-        intro="A short summary of the club's most-consulted rules — guests, attire and member accounts — with the full document below."
+        intro="A short summary of the club's most-consulted rules -guests, attire and member accounts -with the full document below."
         image={img}
         imageAlt="Archive photograph of members outside the clubhouse"
       >
