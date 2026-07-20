@@ -37,6 +37,7 @@ import { Route as SportsFitnessRouteImport } from './routes/sports.fitness'
 import { Route as SportsBollywoodRouteImport } from './routes/sports.bollywood'
 import { Route as MembershipReciprocalRouteImport } from './routes/membership.reciprocal'
 import { Route as GalleryAlbumRouteImport } from './routes/gallery.$album'
+import { Route as BackOfficeLoginRouteImport } from './routes/back-office.login'
 import { Route as DiningMenusMenuRouteImport } from './routes/dining.menus.$menu'
 
 const VenueHireRoute = VenueHireRouteImport.update({
@@ -179,6 +180,11 @@ const GalleryAlbumRoute = GalleryAlbumRouteImport.update({
   path: '/gallery/$album',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BackOfficeLoginRoute = BackOfficeLoginRouteImport.update({
+  id: '/back-office/login',
+  path: '/back-office/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DiningMenusMenuRoute = DiningMenusMenuRouteImport.update({
   id: '/dining/menus/$menu',
   path: '/dining/menus/$menu',
@@ -192,6 +198,7 @@ export interface FileRoutesByFullPath {
   '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/venue-hire': typeof VenueHireRoute
+  '/back-office/login': typeof BackOfficeLoginRoute
   '/gallery/$album': typeof GalleryAlbumRoute
   '/membership/reciprocal': typeof MembershipReciprocalRoute
   '/sports/bollywood': typeof SportsBollywoodRoute
@@ -223,6 +230,7 @@ export interface FileRoutesByTo {
   '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/venue-hire': typeof VenueHireRoute
+  '/back-office/login': typeof BackOfficeLoginRoute
   '/gallery/$album': typeof GalleryAlbumRoute
   '/membership/reciprocal': typeof MembershipReciprocalRoute
   '/sports/bollywood': typeof SportsBollywoodRoute
@@ -255,6 +263,7 @@ export interface FileRoutesById {
   '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/venue-hire': typeof VenueHireRoute
+  '/back-office/login': typeof BackOfficeLoginRoute
   '/gallery/$album': typeof GalleryAlbumRoute
   '/membership/reciprocal': typeof MembershipReciprocalRoute
   '/sports/bollywood': typeof SportsBollywoodRoute
@@ -288,6 +297,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/sitemap.xml'
     | '/venue-hire'
+    | '/back-office/login'
     | '/gallery/$album'
     | '/membership/reciprocal'
     | '/sports/bollywood'
@@ -319,6 +329,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/sitemap.xml'
     | '/venue-hire'
+    | '/back-office/login'
     | '/gallery/$album'
     | '/membership/reciprocal'
     | '/sports/bollywood'
@@ -350,6 +361,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/sitemap.xml'
     | '/venue-hire'
+    | '/back-office/login'
     | '/gallery/$album'
     | '/membership/reciprocal'
     | '/sports/bollywood'
@@ -382,6 +394,7 @@ export interface RootRouteChildren {
   NewsRoute: typeof NewsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VenueHireRoute: typeof VenueHireRoute
+  BackOfficeLoginRoute: typeof BackOfficeLoginRoute
   GalleryAlbumRoute: typeof GalleryAlbumRoute
   MembershipReciprocalRoute: typeof MembershipReciprocalRoute
   SportsBollywoodRoute: typeof SportsBollywoodRoute
@@ -605,6 +618,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryAlbumRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/back-office/login': {
+      id: '/back-office/login'
+      path: '/back-office/login'
+      fullPath: '/back-office/login'
+      preLoaderRoute: typeof BackOfficeLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dining/menus/$menu': {
       id: '/dining/menus/$menu'
       path: '/dining/menus/$menu'
@@ -622,6 +642,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewsRoute: NewsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VenueHireRoute: VenueHireRoute,
+  BackOfficeLoginRoute: BackOfficeLoginRoute,
   GalleryAlbumRoute: GalleryAlbumRoute,
   MembershipReciprocalRoute: MembershipReciprocalRoute,
   SportsBollywoodRoute: SportsBollywoodRoute,

@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -13,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
+import { BackOfficeFooter } from "../components/back-office-footer";
 
 function NotFoundComponent() {
   return (
@@ -133,15 +135,18 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const isBackOffice = useRouterState({
+    select: (s) => s.location.pathname.startsWith("/back-office"),
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col bg-background text-foreground">
-        <SiteHeader />
+        {!isBackOffice && <SiteHeader />}
         <main className="flex-1">
           <Outlet />
         </main>
-        <SiteFooter />
+        {isBackOffice ? <BackOfficeFooter /> : <SiteFooter />}
       </div>
     </QueryClientProvider>
   );

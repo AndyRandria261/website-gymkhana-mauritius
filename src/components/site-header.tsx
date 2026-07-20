@@ -1,150 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, Plus, ChevronDown, ArrowRight } from "lucide-react";
+import { Menu, X, Lock, User, ChevronDown, ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { ActionButton } from "./action-button";
-import { SPORT_GROUPS, SPORTS, sportsByGroup } from "@/lib/sports-data";
-
-type LeafLink = { to: string; label: string; description?: string };
-type MegaColumn = { heading: string; links: LeafLink[] };
-type MegaSection = {
-  key: string;
-  label: string;
-  /** Landing route for the "meta" header link */
-  to: string;
-  /** Featured card on the left of the panel */
-  feature: {
-    to: string;
-    overline: string;
-    title: string;
-    body: string;
-    image: string;
-  };
-  columns: MegaColumn[];
-};
-
-// The Sports columns are generated from the single sports-data source so the
-// menu never drifts out of sync with the pages. Grouped into three balanced
-// columns, with an "All sports" catch-all appended to the last.
-const SPORTS_COLUMNS: MegaColumn[] = SPORT_GROUPS.map((g) => ({
-  heading: g.heading,
-  links: sportsByGroup(g.key).map((s) => ({
-    to: s.path,
-    label: s.navLabel,
-    description: s.megaShort,
-  })),
-}));
-SPORTS_COLUMNS[SPORTS_COLUMNS.length - 1]!.links.push({
-  to: "/sports",
-  label: "All sports",
-  description: `${SPORTS.length} disciplines, one estate`,
-});
-
-const MEGA_NAV: MegaSection[] = [
-  {
-    key: "club",
-    label: "The Club",
-    to: "/the-club/history",
-    feature: {
-      to: "/the-club/history",
-      overline: "Since 1849",
-      title: "180 years of Mauritian sport",
-      body: "The oldest golf course of the Southern Hemisphere and the beating heart of Vacoas life.",
-      image: "/mcg-logo.png",
-    },
-    columns: [
-      {
-        heading: "Our Heritage",
-        links: [
-          { to: "/the-club/history", label: "History", description: "1844 to today" },
-          { to: "/the-club/committee", label: "Committee", description: "Elected officers & board" },
-          { to: "/the-club/rules", label: "Rules & Bylaws", description: "House rules and dress code" },
-        ],
-      },
-      {
-        heading: "Working with us",
-        links: [
-          { to: "/the-club/careers", label: "Careers", description: "Join the team" },
-          { to: "/the-club/procurement", label: "Procurement", description: "Open tenders" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "sports",
-    label: "Sports",
-    to: "/sports",
-    feature: {
-      to: "/sports/golf",
-      overline: "Championship · 18 holes",
-      title: "The 1844 Course",
-      body: "Play the oldest golf course of the Southern Hemisphere at the foot of the Corps de Garde.",
-      image: "/mcg-logo.png",
-    },
-    columns: SPORTS_COLUMNS,
-  },
-  {
-    key: "dining",
-    label: "Dining & Venues",
-    to: "/dining",
-    feature: {
-      to: "/dining",
-      overline: "Refined island dining",
-      title: "From veranda to Brasserie",
-      body: "Mauritian flavours and continental tradition, served under the shutters of the estate.",
-      image: "/mcg-logo.png",
-    },
-    columns: [
-      {
-        heading: "At the table",
-        links: [
-          { to: "/dining", label: "Dining", description: "Venues & opening hours" },
-          {
-            to: "/dining/menus/restaurant",
-            label: "Restaurant Menu",
-            description: "The Brasserie, à la carte",
-          },
-          { to: "/dining/menus/wine-list", label: "Wine List", description: "Cellar, by the bottle" },
-          { to: "/events", label: "Club Events", description: "Tournaments & socials" },
-        ],
-      },
-      {
-        heading: "Host with us",
-        links: [
-          { to: "/venue-hire", label: "Venue Hire", description: "Weddings · galas · corporate" },
-          { to: "/gallery", label: "Gallery", description: "See past events" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "membership",
-    label: "Membership",
-    to: "/membership",
-    feature: {
-      to: "/membership",
-      overline: "Applications open",
-      title: "Become a Member",
-      body: "Join a community that values heritage, sportsmanship and the quiet luxury of the MGC.",
-      image: "/mcg-logo.png",
-    },
-    columns: [
-      {
-        heading: "Join the Club",
-        links: [
-          { to: "/membership", label: "Membership overview", description: "Categories & fees" },
-          { to: "/membership/reciprocal", label: "Reciprocal Clubs", description: "Global partner clubs" },
-        ],
-      },
-      {
-        heading: "Stay in touch",
-        links: [
-          { to: "/news", label: "News", description: "From the estate" },
-        ],
-      },
-    ],
-  },
-];
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { MEGA_NAV, type LeafLink, type MegaSection } from "./MEGA_NAV";
 
 const UTILITY_LINKS: LeafLink[] = [
   { to: "/gallery", label: "Gallery" },
@@ -281,14 +147,41 @@ export function SiteHeader() {
               </Link>
             ))}
           </nav>
-          <ActionButton
-            to="/membership"
-            variant={solid ? "pine" : "gold"}
-            className="hidden px-4 py-2 sm:inline-flex"
-          >
-            <Plus strokeWidth={2} />
-            Join the Club
-          </ActionButton>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                type="button"
+                aria-label="Account"
+                onFocus={() => setActiveKey(null)}
+                className={`hidden size-10 items-center justify-center rounded-full ring-1 transition-colors sm:inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
+                  solid
+                    ? "text-ink/70 ring-pine/20 hover:text-pine hover:ring-pine/40"
+                    : "text-cream/85 ring-cream/30 hover:text-cream hover:ring-cream/50"
+                }`}
+              >
+                <User className="size-4" strokeWidth={2.25} />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              sideOffset={12}
+              className="w-52 rounded-sm border-pine/10 bg-cream p-1.5"
+            >
+              <DropdownMenuLabel className="px-2 py-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-gold">
+                Staff & Committee
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator className="bg-pine/10" />
+              <DropdownMenuItem
+                asChild
+                className="cursor-pointer gap-2 rounded-sm py-2 text-sm text-ink/80 focus:bg-pine/5 focus:text-pine"
+              >
+                <Link to="/back-office/login">
+                  <Lock className="size-3.5" strokeWidth={2.25} />
+                  Sign in to Back Office
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <button
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
@@ -426,14 +319,13 @@ export function SiteHeader() {
                 ))}
               </div>
 
-              <ActionButton
-                to="/membership"
-                variant="pine"
+              <Link
+                to="/back-office/login"
                 onClick={() => setMobileOpen(false)}
-                className="mt-8 w-full justify-center"
+                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-medium uppercase tracking-widest text-pine ring-1 ring-pine/25 transition-colors hover:bg-pine/5"
               >
-                <Plus /> Join the Club
-              </ActionButton>
+                <User className="size-4" strokeWidth={2.25} /> Sign in to Back Office
+              </Link>
             </nav>
           </motion.div>
         )}
