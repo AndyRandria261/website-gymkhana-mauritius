@@ -177,9 +177,9 @@
   100% { transform: translate(0, 0); }
 }
 
-/* Cinematic vignette -radial darkening around the frame.
+/* Cinematic vignette — radial darkening around the frame.
    `farthest-side` (not the default farthest-corner) so the dark stop is
-   reached at the edge midpoints too, not just the corners -otherwise the
+   reached at the edge midpoints too, not just the corners — otherwise the
    ellipse overshoots past the sides and the mid-edges never reach full
    opacity, leaving the frame looking uncovered along the top/bottom/sides. */
 @utility vignette {

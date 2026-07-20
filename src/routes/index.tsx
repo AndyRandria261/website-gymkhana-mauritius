@@ -301,6 +301,7 @@ const HERO_FRAMES = [
 ] as const;
 
 // Every scale value stays >= 1.04 -the minimum overscan needed so object-cover
+// Every scale value stays >= 1.04 — the minimum overscan needed so object-cover
 // still fully covers the frame at this preset's largest paired translate (1.4%).
 // Dropping to 1.0–1.02 (as some of these once did) leaves zero slack, so the
 // translate slides the image off one edge and uncovers a bare sliver of frame.
