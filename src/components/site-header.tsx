@@ -98,7 +98,13 @@ const MEGA_NAV: MegaSection[] = [
       {
         heading: "At the table",
         links: [
-          { to: "/dining", label: "Dining", description: "Menus & opening hours" },
+          { to: "/dining", label: "Dining", description: "Venues & opening hours" },
+          {
+            to: "/dining/menus/restaurant",
+            label: "Restaurant Menu",
+            description: "The Brasserie, à la carte",
+          },
+          { to: "/dining/menus/wine-list", label: "Wine List", description: "Cellar, by the bottle" },
           { to: "/events", label: "Club Events", description: "Tournaments & socials" },
         ],
       },

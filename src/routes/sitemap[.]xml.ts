@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { MENUS } from "@/lib/dining-data";
 
 const BASE_URL = "https://www.mgc.mu";
 
@@ -23,6 +24,7 @@ const PATHS = [
   "/sports/fitness",
   "/sports/pool",
   "/dining",
+  ...MENUS.map((m) => `/dining/menus/${m.slug}`),
   "/venue-hire",
   "/events",
   "/gallery",
