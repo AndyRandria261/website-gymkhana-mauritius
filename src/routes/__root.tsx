@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
 import { BackOfficeFooter } from "../components/back-office-footer";
+import { ChatWidget } from "../components/chatbot/chat-widget";
 
 function NotFoundComponent() {
   return (
@@ -147,6 +148,7 @@ function RootComponent() {
           <Outlet />
         </main>
         {isBackOffice ? <BackOfficeFooter /> : <SiteFooter />}
+        {!isBackOffice && <ChatWidget />}
       </div>
     </QueryClientProvider>
   );
