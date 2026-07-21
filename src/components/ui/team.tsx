@@ -13,8 +13,7 @@ export type TeamMember = {
 /**
  * A grid of portrait cards for people (committee members, staff, coaches).
  * Presentational only -pass the members in. The card design follows the
- * club's shared language: cream card, pine serif name, gold overline role
- * and a restrained grayscale-to-colour hover, echoing the site's Reveal motion.
+ * club's shared language: cream card, pine serif name, gold overline role.
  */
 export function TeamSection({
   members,
@@ -37,7 +36,7 @@ export function TeamSection({
               width={826}
               height={1239}
               loading="lazy"
-              className="h-full w-full object-cover object-top grayscale transition-[filter,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] group-hover:grayscale-0"
+              className="h-full w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
             />
           </div>
           <div className="p-5">
