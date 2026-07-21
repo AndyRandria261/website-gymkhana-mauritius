@@ -10,7 +10,9 @@ import member02 from "@/assets/member-02.jpg";
 import member03 from "@/assets/member-03.jpg";
 import member04 from "@/assets/member-04.jpg";
 import member05 from "@/assets/member-05.jpg";
-import member06 from "@/assets/member-06.jpg";
+import member06 from "@/assets/member-06.jpeg";
+import member07 from "@/assets/member-07.jpeg";
+import member08 from "@/assets/member-08.png";
 
 export const Route = createFileRoute("/the-club/committee")({
   head: () => ({
@@ -65,6 +67,18 @@ const COMMITTEE: TeamMember[] = [
     role: "Committee Member",
     avatar: member06,
     link: "https://www.linkedin.com/in/akil-pirbhai",
+  },
+  {
+    name: "Atma Nundoosing",
+    role: "Committee Member",
+    avatar: member07,
+    link: "https://www.linkedin.com/in/atma-nundoosing",
+  },
+  {
+    name: "Ganessen Singaravelloo",
+    role: "Committee Member",
+    avatar: member08,
+    link: "https://www.linkedin.com/in/ganessen-singaravelloo",
   },
 ];
 
